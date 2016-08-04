@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <title>{{title }}</title>
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/components/bootstrap/dist/css/bootstrap.css">
+  {{{block "style"}}}
+  <script src="/components/jquery/dist/jquery.min.js"></script>
+    <script src="/components/bootstrap/dist/js/bootstrap.min.js"></script>
+  {{#if ENV_DEVELOPMENT}}
+    <script src="http://localhost:35729/livereload.js"></script>
+  {{/if}}
+
+</head>
+<body>
+
+  {{{body}}}
+
+  {{{block "script"}}}
+  </body>
+</html>

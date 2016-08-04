@@ -14,22 +14,22 @@ mongoose.model('Category', CategorySchema);
 //db.categorys.insert([
 //  {
 //    title:"javascript",
-//    flug:"javascript",
+//    slug:"javascript",
 //    created:new Date()
 //  },
 //  {
 //    title:"css",
-//    flug:"css",
+//    slug:"css",
 //    created:new Date()
 //  },
 //  {
 //    title:"html",
-//    flug:"html",
+//    slug:"html",
 //    created:new Date()
 //  },
 //  {
 //    title:"Tools",
-//    flug:"Tools",
+//    slug:"Tools",
 //    created:new Date()
 //  }
 //])

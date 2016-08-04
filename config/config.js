@@ -9,7 +9,7 @@ var config = {
       name: 'expressblog'
     },
     port: process.env.PORT || 3000,
-    db: 'mongodb://localhost/nodeblog'
+    db: 'mongodb://localhost/nodeblogs'
   },
 
   test: {
@@ -18,7 +18,7 @@ var config = {
       name: 'expressblog'
     },
     port: process.env.PORT || 3000,
-    db: 'mongodb://localhost/nodeblog'
+    db: 'mongodb://localhost/nodeblogs'
   },
 
   production: {
@@ -27,7 +27,7 @@ var config = {
       name: 'expressblog'
     },
     port: process.env.PORT || 3000,
-    db: 'mongodb://localhost/nodeblog'
+    db: 'mongodb://localhost/nodeblogs'
   }
 };
 

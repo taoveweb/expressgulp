@@ -17,3 +17,6 @@ router.get('/', function (req, res, next) {
     });
   });
 });
+
+
+db.inserts

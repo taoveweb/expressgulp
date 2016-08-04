@@ -1,19 +1,19 @@
 var express = require('express'),
   router = express.Router(),
   mongoose = require('mongoose'),
-  Article = mongoose.model('Article');
+  Post = mongoose.model('Post');
 
 module.exports = function (app) {
   app.use('/', router);
 };
 
 router.get('/', function (req, res, next) {
-  Article.find(function (err, articles) {
+  Post.find(function (err, posts) {
     if (err) return next(err);
-    console.log(articles.length,'articles')
+    console.log(posts.length,'articles')
     res.render('blog/index', {
       title: '前端的首页',
-      articles: articles,
+      articles: posts,
       data:['a', 'b', 'c', 'd', 'e']
     });
   });

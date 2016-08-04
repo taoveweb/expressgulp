@@ -4,6 +4,11 @@ var gulp = require('gulp'),
   cleanCSS = require('gulp-clean-css'),
   livereload = require('gulp-livereload');
 
+var paths = {
+  scripts: ['client/js/**/*.coffee', '!client/external/**/*.coffee'],
+  images: 'client/img/**/*',
+  css:['public/css/*.css']
+};
 
 gulp.task('develop', function () {
   livereload.listen();
@@ -23,9 +28,9 @@ gulp.task('develop', function () {
 });
 
 gulp.task('minify-css', function() {
-  return gulp.src('public/css/*.css')
+  return gulp.src(paths.css)
     .pipe(cleanCSS())
-    .pipe(gulp.dest('dist'))
+    .pipe(gulp.dest('dist/assets/css'))
 });
 
 gulp.task('default', [

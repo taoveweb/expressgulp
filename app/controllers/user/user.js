@@ -59,8 +59,9 @@ router.post('/register', function (req, res, next) {
 });
 
 
-router.post('/loginout', function (req, res, next) {
+router.get('/loginout', function (req, res, next) {
   //todo
+  req.logout()
   res.redirect('/')
 });
 

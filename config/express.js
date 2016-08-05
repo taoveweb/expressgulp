@@ -44,6 +44,11 @@ module.exports = function (app, config,connection) {
     cookie: { secure: false },
     store: new MongoStore({ mongooseConnection: connection })
   }));
+  app.use(require('connect-flash')());
+  app.use(function (req, res, next) {
+    res.locals.messages = require('express-messages')(req, res);
+    next();
+  });
   app.use(passport.initialize());
   app.use(passport.session());
   app.use(function(req,res,next){

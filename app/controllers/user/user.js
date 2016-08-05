@@ -17,7 +17,7 @@ router.get('/login', function (req, res, next) {
 });
 
 router.post('/login',passport.authenticate('local', { failureRedirect: '/user/login' }), function (req, res, next) {
-    res.json(req.body)
+   res.redirect("/")
 });
 
 router.get('/register', function (req, res, next) {
@@ -61,7 +61,11 @@ router.post('/register', function (req, res, next) {
 
 router.get('/loginout', function (req, res, next) {
   //todo
-  req.logout()
+  req.logout();
+  req.flash("info", "a");
+  req.flash("info", "b");
+  req.flash("info", "c");
+  req.flash("info", "出错了出错了");
   res.redirect('/')
 });
 

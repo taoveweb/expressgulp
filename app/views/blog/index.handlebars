@@ -5,6 +5,9 @@
       }
   </style>
 {{/extend}}
+<div class="top">
+  {{#if user}}{{user.name}}{{/if}}
+</div>
 <h1>{{title }}</h1>
 {{post}}
 {{#forEach posts}}

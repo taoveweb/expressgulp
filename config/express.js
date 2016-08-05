@@ -11,9 +11,12 @@ var exphbs = require('express-handlebars');
 var myhelper = require("./myRegisterHelpers");
 var expressValidator = require('express-validator');
 var session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 var passport = require('passport');
+var mongoose = require('mongoose');
+var User = mongoose.model('User');
 
-module.exports = function (app, config) {
+module.exports = function (app, config,connection) {
   var env = process.env.NODE_ENV || 'development';
   app.locals.ENV = env;
   app.locals.ENV_DEVELOPMENT = env == 'development';
@@ -38,10 +41,25 @@ module.exports = function (app, config) {
     secret: 'nodeblog',
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: true }
+    cookie: { secure: false },
+    store: new MongoStore({ mongooseConnection: connection })
   }));
   app.use(passport.initialize());
   app.use(passport.session());
+  app.use(function(req,res,next){
+    req.user = null;
+    if(req.session.passport && req.session.passport.user){
+      User.findById(req.session.passport.user,function(err,user){
+        if(err) return next(err);
+        user.password = null ;
+        req.user = user;
+        next()
+      })
+    }else{
+      next()
+    }
+
+  });
   app.use(expressValidator({
     errorFormatter: function(param, msg, value) {
       var namespace = param.split('.')
@@ -58,6 +76,10 @@ module.exports = function (app, config) {
       };
     }
   }));
+  app.use(function(req,res,next){
+    app.locals.user = req.user;
+    next();
+  });
   app.use(compress());
   app.use(express.static(config.root + '/public'));
   app.use(express.static(config.root + '/dist'));

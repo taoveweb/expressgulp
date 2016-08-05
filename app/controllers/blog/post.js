@@ -11,6 +11,7 @@ module.exports = function (app) {
 
 router.get('/', function (req, res, next) {
   Post.find().populate("category").populate("author").exec(function (err, posts) {
+    console.log()
     if (err) return next(err);
     res.render('blog/index', {
       title: '前端的首页',

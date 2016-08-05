@@ -1,6 +1,5 @@
 var express = require('express');
 var glob = require('glob');
-
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
@@ -10,6 +9,9 @@ var methodOverride = require('method-override');
 var helper = require('handlebars-helpers')();
 var exphbs = require('express-handlebars');
 var myhelper = require("./myRegisterHelpers");
+var expressValidator = require('express-validator');
+var session = require('express-session');
+var passport = require('passport');
 
 module.exports = function (app, config) {
   var env = process.env.NODE_ENV || 'development';
@@ -32,6 +34,30 @@ module.exports = function (app, config) {
     extended: true
   }));
   app.use(cookieParser());
+  app.use(session({
+    secret: 'nodeblog',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true }
+  }));
+  app.use(passport.initialize());
+  app.use(passport.session());
+  app.use(expressValidator({
+    errorFormatter: function(param, msg, value) {
+      var namespace = param.split('.')
+        , root    = namespace.shift()
+        , formParam = root;
+
+      while(namespace.length) {
+        formParam += '[' + namespace.shift() + ']';
+      }
+      return {
+        param : formParam,
+        msg   : msg,
+        value : value
+      };
+    }
+  }));
   app.use(compress());
   app.use(express.static(config.root + '/public'));
   app.use(express.static(config.root + '/dist'));
@@ -69,3 +95,6 @@ module.exports = function (app, config) {
   });
 
 };
+
+
+

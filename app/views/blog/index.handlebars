@@ -6,11 +6,23 @@
   </style>
 {{/extend}}
 <h1>{{title }}</h1>
-  <p>Welcome to {{title }}</p>
-  {{articles}}
-  {{isArray "['a', 'b', 'c']"}}
-  {{join data "-"}}
-  {{>welcome}}
+{{post}}
+{{#forEach posts}}
+
+  <div>
+      <h2>{{post.title}}</h2>
+      <div>{{content}}</div>
+      <div>
+          <span>发布时间：{{created}}</span>
+          <span>作者：{{author.name}}</span>
+          <span>评论：{{comments.length}}</span>
+          <span>被赞：{{meta.favourates}}</span>
+          <a href="/posts/view/{{_id}}" target="_blank">查看全文</a>
+      </div>
+  </div>
+
+{{/forEach}}
+
   <script>
       $(function(){
           console.log('ready')

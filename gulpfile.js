@@ -33,6 +33,12 @@ gulp.task('minify-css', function() {
     .pipe(gulp.dest('dist/assets/css'))
 });
 
+gulp.task('miniJs', ()=>
+  gulp.src('./public/**/*.js').
+    pipe(uglify()),
+    pipe(gulp.dest("./dist/"))
+)
+
 gulp.task('default', [
   'develop','minify-css'
 ]);

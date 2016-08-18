@@ -35,7 +35,7 @@ gulp.task('minify-css', function() {
 
 gulp.task('miniJs', ()=>
   gulp.src('./public/**/*.js').
-    pipe(uglify()),
+    pipe(uglify()).
     pipe(gulp.dest("./dist/"))
 )
 

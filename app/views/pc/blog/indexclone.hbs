@@ -1,0 +1,18 @@
+{{#extend "style"}}
+  <style>
+      body{
+          background: #fff;
+      }
+  </style>
+{{/extend}}
+<h1>{{title }}</h1>
+  <p>Welcome to {{title }}</p>
+  {{articles}}
+  {{isArray "['a', 'b', 'c']"}}
+  {{join data "-"}}
+  {{>welcome}}
+  <script>
+      $(function(){
+          console.log('ready')
+      })
+  </script>

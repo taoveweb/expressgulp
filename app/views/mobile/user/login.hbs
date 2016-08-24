@@ -1,0 +1,36 @@
+{{#extend "style"}}
+    <link rel="stylesheet" href="{{STATIC}}/mobile/css/signin.css">
+{{/extend}}
+<div class="container">
+
+    <div class="br"><a href="/user/register">注册</a></div>
+    <div class="logo">
+<!--
+        <img src="{{STATIC}}/mobile/css/img/logo.png" alt=""/>
+-->
+    </div>
+
+    <form class="form-signin" method="post" action="/user/login">
+
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required
+               autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+
+        <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" value="remember-me"> Remember me
+            </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+
+</div> <!-- /container -->
+
+
+{{#extend "script"}}
+
+{{/extend}}
+

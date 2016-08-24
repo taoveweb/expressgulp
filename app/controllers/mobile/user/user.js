@@ -6,11 +6,11 @@ var express = require('express'),
   passport = require('passport');
 
 module.exports = function (app) {
-  app.use('/user', router);
+  app.use('/m/user', router);
 };
 
 router.get('/login', function (req, res, next) {
-  res.render('user/login', {
+  res.render('mobile/user/login', {
     title: '登录页面',
 
   });
@@ -21,7 +21,7 @@ router.post('/login',passport.authenticate('local', { failureRedirect: '/user/lo
 });
 
 router.get('/register', function (req, res, next) {
-  res.render('user/register', {
+  res.render('mobile/user/register', {
     title: '注册页面',
 
   });
@@ -37,7 +37,7 @@ router.post('/register', function (req, res, next) {
   var errors = req.validationErrors();
   if (errors) {
     console.log("post user/register",errors);
-    return res.render('user/register', req.body
+    return res.render('mobile/user/register', req.body
     );
   }
 
@@ -50,8 +50,7 @@ router.post('/register', function (req, res, next) {
 
   user.save(function(err,user){
     if(err) {
-      console.log("admin/user/register",err);
-      res.render('user/register')
+      res.render('mobile/user/register')
     }else{
       res.redirect('/user/login')
     }
@@ -62,9 +61,6 @@ router.post('/register', function (req, res, next) {
 router.get('/loginout', function (req, res, next) {
   //todo
   req.logout();
-  req.flash("info", "a");
-  req.flash("info", "b");
-  req.flash("info", "c");
   req.flash("info", "出错了出错了");
   res.redirect('/')
 });

@@ -30,6 +30,8 @@
     "gulp": "^3.9.0",
     "gulp-clean-css": "^2.0.12",
     "gulp-htmlmin": "^2.0.0",
+    "gulp-imagemin": "^3.0.3",
+    "gulp-less": "^3.0.1",
     "gulp-livereload": "^3.8.0",
     "gulp-nodemon": "^2.0.2",
     "gulp-plumber": "^1.0.0"

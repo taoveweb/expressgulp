@@ -7,7 +7,9 @@ var mongoose = require('mongoose'),
 var UserSchema = new Schema({
   name: {type:String,required:true},
   email: {type:String,required:true},
+  phone:{type:String,default:0},
   password: {type:String,required:true},
+  headPicture:{type:String,default :0},
   created: {type:Date}
 });
 UserSchema.methods.verifyPassword = function(password){

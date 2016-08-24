@@ -1,0 +1,36 @@
+{{#extend "style"}}
+  <link rel="stylesheet" href="{{STATIC}}/pc/css/signin.css">
+{{/extend}}
+<div class="container">
+
+
+
+    <form class="form-signin" method="post" action="/m/user/login">
+        <div class="br"><a href="/m/user/register">注册</a></div>
+        <div class="logo"></div>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input name="email" type="email" id="inputEmail" class="form-control" placeholder="手机号/邮箱" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+
+        <input name="password" type="password" id="inputPassword" class="form-control" placeholder="密码" required>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" value="remember-me"> Remember me
+            </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+        <a href="m/user/forgetpassword">忘记密码</a>
+        <h3><span>快速登录</span></h3>
+        <div class="login-list">
+            <a class="weixin" href="">微信</a>
+            <a class="weibo" href="">新浪</a>
+        </div>
+    </form>
+
+</div> <!-- /container -->
+
+
+{{#extend "script"}}
+
+{{/extend}}
+

@@ -4,12 +4,12 @@ var express = require('express'),
   User = mongoose.model('User');
 
 module.exports = function (app) {
-  app.use('/m/personal', router);
+  app.use('/m/personalset', router);
 };
 
 router.get('/', function (req, res, next) {
-  res.render('mobile/personal/personal', {
-    title: '个人主页',
+  res.render('mobile/personal/personalset', {
+    title: '个人设置',
   });
 });
 

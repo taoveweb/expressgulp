@@ -4,12 +4,12 @@ var express = require('express'),
   User = mongoose.model('User');
 
 module.exports = function (app) {
-  app.use('/m/personal', router);
+  app.use('/m/addfriend', router);
 };
 
 router.get('/', function (req, res, next) {
-  res.render('mobile/personal/personal', {
-    title: '个人主页',
+  res.render('mobile/personal/addFriend', {
+    title: '添加好友',
   });
 });
 

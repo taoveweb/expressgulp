@@ -12,7 +12,6 @@ module.exports = function (app) {
 router.get('/login', function (req, res, next) {
   res.render('mobile/user/login', {
     title: '登录页面',
-
   });
 });
 
@@ -22,8 +21,7 @@ router.post('/login',passport.authenticate('local', { failureRedirect: '/user/lo
 
 router.get('/register', function (req, res, next) {
   res.render('mobile/user/register', {
-    title: '注册页面',
-
+    title: '注册页面'
   });
 });
 
@@ -55,6 +53,18 @@ router.post('/register', function (req, res, next) {
       res.redirect('/user/login')
     }
   });
+});
+
+
+router.get('/forgetpassword', function (req, res, next) {
+  res.render('mobile/user/forgetpassword', {
+    title: '忘记密码',
+
+  });
+});
+
+router.post('/forgetpassword', function (req, res, next) {
+  res.redirect("/")
 });
 
 

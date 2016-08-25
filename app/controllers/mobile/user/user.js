@@ -14,7 +14,15 @@ module.exports.requireLogin=function(req,res,next){
     }else{
         res.redirect('/m/user/login');
     }
-}
+};
+
+module.exports.adminLogin=function(req,res,next){
+    if(req.user && req.user.admin){
+        next();
+    }else{
+        res.redirect('/admin/login');
+    }
+};
 
 router.get('/login', function (req, res, next) {
     if(req.session && req.session.passport && req.session.passport.user){

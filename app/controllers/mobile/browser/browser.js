@@ -5,10 +5,10 @@ var express = require('express'),
   auth = require('../user/user') ;
 
 module.exports = function (app) {
-  app.use('/m/browser', router);
+  app.use('/m/browser', auth.requireLogin,router);
 };
 
-router.get('/',auth.requireLogin, function (req, res, next) {
+router.get('/' , function (req, res, next) {
   res.render('mobile/browser/browser', {
     title: '浏览页面',
   });

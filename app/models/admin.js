@@ -4,21 +4,17 @@ var mongoose = require('mongoose'),
   Schema = mongoose.Schema,
   md5 = require('md5');
 
-var UserSchema = new Schema({
+var AdminSchema = new Schema({
   name: {type:String,required:true},
-  admin: {type:String,default:false},
-  email: {type:String,required:true},
-  phone:{type:String,default:0},
+  admin: {type:Boolean,default:false},
   password: {type:String,required:true},
-  headPicture:{type:String,default :0},
-  concern:{type:Schema.Types.ObjectId,ref:"User"},
   created: {type:Date}
 });
-UserSchema.methods.verifyPassword = function(password){
+AdminSchema.methods.verifyPassword = function(password){
   var isMatch = md5(password) === this.password;
   return isMatch
 }
-mongoose.model('User', UserSchema);
+mongoose.model('Admin', AdminSchema);
 
 
 //db.users.insert([

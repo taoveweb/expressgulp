@@ -22,7 +22,6 @@ router.post('/login', passport.authenticate('local', {failureRedirect: '/user/lo
 router.get('/register', function (req, res, next) {
     res.render('pc/user/register', {
         title: '注册页面',
-
     });
 });
 

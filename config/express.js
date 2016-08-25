@@ -71,7 +71,6 @@ module.exports = function (app, config,connection) {
   });
   app.use(function(req,res,next){
     res.locals.user=req.user;
-    console.log(req.session,app.locals.user);
     next();
   });
   app.use(expressValidator({

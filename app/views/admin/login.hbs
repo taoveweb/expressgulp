@@ -1,0 +1,28 @@
+{{#extend "style"}}
+    <link rel="stylesheet" href="{{STATIC}}/pc/css/signin.css">
+{{/extend}}
+<div class="container">
+
+
+
+    <form class="form-signin" method="post" action="/adminlogin">
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input name="email" type="email" id="inputEmail" class="form-control" placeholder="手机号/邮箱" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+
+        <input name="password" type="password" id="inputPassword" class="form-control" placeholder="密码" required>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" value="remember-me"> Remember me
+            </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+    </form>
+
+</div> <!-- /container -->
+
+
+{{#extend "script"}}
+
+{{/extend}}
+

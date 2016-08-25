@@ -4,7 +4,6 @@ var express = require('express'),
   Post = mongoose.model('Post');
 
 module.exports = function (app) {
-  console.log('aaa')
   app.use('/posts', router);
 
 };

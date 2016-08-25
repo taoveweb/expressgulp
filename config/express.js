@@ -25,7 +25,10 @@ module.exports = function (app, config,connection) {
     extname:'.hbs',
     layoutsDir: config.root + '/app/views/layouts/',
     defaultLayout: 'main',
-    partialsDir: [config.root + '/app/views/partials/'],
+    partialsDir: [
+      config.root + '/app/views/partials/',
+      config.root + '/app/views/partials/mobile/'
+    ],
     helpers:myhelper
   }));
   app.set('views', config.root + '/app/views');

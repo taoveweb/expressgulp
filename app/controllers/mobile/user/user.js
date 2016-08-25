@@ -8,15 +8,27 @@ var express = require('express'),
 module.exports = function (app) {
   app.use('/m/user', router);
 };
+module.exports.requireLogin=function(req,res,next){
+    if(req.user){
+        next();
+    }else{
+        res.redirect('/m/user/login');
+    }
+}
 
 router.get('/login', function (req, res, next) {
-  res.render('mobile/user/login', {
-    title: '登录页面',
-  });
+    if(req.session && req.session.passport && req.session.passport.user){
+        res.redirect('/m/browser')
+    }else{
+        res.render('mobile/user/login', {
+            title: '登录页面',
+        });
+    }
+
 });
 
 router.post('/login',passport.authenticate('local', { failureRedirect: '/user/login' }), function (req, res, next) {
-   res.redirect("/")
+   res.redirect("/m/browser")
 });
 
 router.get('/register', function (req, res, next) {
@@ -46,6 +58,7 @@ router.post('/register', function (req, res, next) {
     created:new Date()
   });
 
+
   user.save(function(err,user){
     if(err) {
       res.render('mobile/user/register')
@@ -71,8 +84,7 @@ router.post('/forgetpassword', function (req, res, next) {
 router.get('/loginout', function (req, res, next) {
   //todo
   req.logout();
-  req.flash("info", "出错了出错了");
-  res.redirect('/')
+  res.redirect('/m/user/login')
 });
 
 

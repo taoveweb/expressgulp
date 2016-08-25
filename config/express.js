@@ -62,12 +62,17 @@ module.exports = function (app, config,connection) {
         if(err) return next(err);
         user.password = null ;
         req.user = user;
+
         next()
       })
     }else{
       next()
     }
-
+  });
+  app.use(function(req,res,next){
+    res.locals.user=req.user;
+    console.log(req.session,app.locals.user);
+    next();
   });
   app.use(expressValidator({
     errorFormatter: function(param, msg, value) {

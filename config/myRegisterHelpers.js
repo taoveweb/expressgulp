@@ -14,5 +14,11 @@ module.exports={
     var val = (blocks[name] || []).join('\n');
     blocks[name] = [];
     return val;
+  },
+  for: function(from, to, incr, block) {
+    var accum = '';
+    for(var i = from; i < to; i += incr)
+      accum += block.fn(i);
+    return accum;
   }
 }

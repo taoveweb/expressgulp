@@ -27,7 +27,8 @@ module.exports = function (app, config,connection) {
     defaultLayout: 'main',
     partialsDir: [
       config.root + '/app/views/partials/',
-      config.root + '/app/views/partials/mobile/'
+      config.root + '/app/views/partials/mobile/',
+      config.root + '/app/views/partials/admin/'
     ],
     helpers:myhelper
   }));

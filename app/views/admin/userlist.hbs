@@ -1,0 +1,71 @@
+{{>admin_navbarHeader}}
+<div class="container-fluid">
+    <div class="row">
+      {{>admin_navSidebar}}
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <nav>
+
+                {{starPage }}
+                {{endPage }}
+                <ul class="pagination">
+                    <li>
+                        <a href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+
+                  {{#for starPage endPage  1}}
+                      <li><a href="?page={{this}}">{{this}}</a></li>
+                  {{/for}}
+                    <li><a href="?page={{pageCount}}">总共{{pageCount}}页</a></li>
+                    <li>
+                        <a href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <table class="table table-hover">
+                <thead>
+                <th>昵称</th>
+                <th>性别</th>
+                <th>邮箱</th>
+                <th>电话号吗</th>
+                <th>头像</th>
+                <th>关注数</th>
+                <th>粉丝数</th>
+                <th>创建时间</th>
+                <th>摄影师级别</th>
+                <th>操作</th>
+                </thead>
+                <tbody>
+                {{#forEach users}}
+                    <tr>
+                        <td>{{name}}</td>
+                        <td>{{sex}}</td>
+                        <td>{{email}}</td>
+                        <td>{{phone}}</td>
+                        <td>{{headPicture}}</td>
+                        <td>{{length fans}}</td>
+                        <td>{{length concern}}</td>
+                        <td>{{moment created "YYYY-MM-DD HH.mm.ss"}}</td>
+                        <td>{{level}}</td>
+                        <td>
+                            <button type="button" class="btn btn-primary"><span
+                                    class="glyphicon glyphicon-play-circle"></span>查看
+                            </button>
+                            <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span>编缉
+                            </button>
+                            <button type="button" class="btn btn-danger"><span
+                                    class="glyphicon glyphicon-remove"></span>删除
+                            </button>
+                        </td>
+                    </tr>
+                {{/forEach}}
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+

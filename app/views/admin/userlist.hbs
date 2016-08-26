@@ -4,22 +4,20 @@
       {{>admin_navSidebar}}
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <nav>
-
-                {{starPage }}
-                {{endPage }}
                 <ul class="pagination">
                     <li>
-                        <a href="#" aria-label="Previous">
+                        <a href="?page={{prePage}}" aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
 
                   {{#for starPage endPage  1}}
-                      <li><a href="?page={{this}}">{{this}}</a></li>
+                      <li  class="{{#is   this  ../currentPage }} active{{/is}}">
+                          <a href="?page={{this}}">{{this}}</a></li>
                   {{/for}}
                     <li><a href="?page={{pageCount}}">总共{{pageCount}}页</a></li>
                     <li>
-                        <a href="#" aria-label="Next">
+                        <a href="?page={{nextPage}}" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                         </a>
                     </li>

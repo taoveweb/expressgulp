@@ -6,18 +6,18 @@
             <nav>
                 <ul class="pagination">
                     <li>
-                        <a href="?page={{prePage}}" aria-label="Previous">
+                        <a href="?page={{prePage}}&sortby={{../sortby}}&sortdir={{../sortdir}}" aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
 
                   {{#for starPage endPage  1}}
-                      <li  class="{{#is   this  ../currentPage }} active{{/is}}">
-                          <a href="?page={{this}}">{{this}}</a></li>
+                      <li class="{{#is   this  ../currentPage }} active{{/is}}">
+                          <a href="?page={{this}}&sortby={{../sortby}}&sortdir={{../sortdir}}">{{this}}</a></li>
                   {{/for}}
-                    <li><a href="?page={{pageCount}}">总共{{pageCount}}页</a></li>
+                    <li><a href="?page={{pageCount}}&sortby={{../sortby}}&sortdir={{../sortdir}}">总共{{pageCount}}页</a></li>
                     <li>
-                        <a href="?page={{nextPage}}" aria-label="Next">
+                        <a href="?page={{nextPage}}&sortby={{../sortby}}&sortdir={{../sortdir}}" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                         </a>
                     </li>
@@ -30,9 +30,48 @@
                 <th>邮箱</th>
                 <th>电话号吗</th>
                 <th>头像</th>
-                <th><a href="?page={{currentPage}}&concern=">关注数 <span class="glyphicon glyphicon-arrow-down"></span></a></th>
-                <th><a href="?page={{currentPage}}&fans=">粉丝数 <span class="glyphicon glyphicon-arrow-down"></span></a></th>
-                <th><a href="?page={{currentPage}}&created=">创建时间 <span class="glyphicon glyphicon-arrow-down"></span></a></th>
+                <th>
+                  {{#eq sortby 'concern'}}
+
+                    {{#eq sortdir 'desc'}}
+                        <a href="?page={{currentPage}}&sortby=concern&sortdir=asc">关注数 <span
+                                class="glyphicon glyphicon-arrow-down"></span></a>
+                    {{else}}
+                        <a href="?page={{currentPage}}&sortby=concern&sortdir=desc">关注数 <span
+                                class="glyphicon glyphicon-arrow-up"></span></a>
+                    {{/eq}}
+                  {{else}}
+                      <a href="?page={{currentPage}}&sortby=concern&sortdir=desc">关注数 </a>
+                  {{/eq}}
+                </th>
+                <th>
+                  {{#eq sortby 'fans'}}
+
+                    {{#eq sortdir 'desc'}}
+                        <a href="?page={{currentPage}}&sortby=fans&sortdir=asc">粉丝数 <span
+                                class="glyphicon glyphicon-arrow-down"></span></a>
+                    {{else}}
+                        <a href="?page={{currentPage}}&sortby=fans&sortdir=desc">粉丝数 <span
+                                class="glyphicon glyphicon-arrow-up"></span></a>
+                    {{/eq}}
+                  {{else}}
+                      <a href="?page={{currentPage}}&sortby=fans&sortdir=desc">粉丝数 </a>
+                  {{/eq}}
+                </th>
+                <th>
+                  {{#eq sortby 'created'}}
+
+                    {{#eq sortdir 'desc'}}
+                        <a href="?page={{currentPage}}&sortby=created&sortdir=asc">创建时间 <span
+                                class="glyphicon glyphicon-arrow-down"></span></a>
+                    {{else}}
+                        <a href="?page={{currentPage}}&sortby=created&sortdir=desc">创建时间 <span
+                                class="glyphicon glyphicon-arrow-up"></span></a>
+                    {{/eq}}
+                  {{else}}
+                      <a href="?page={{currentPage}}&sortby=created&sortdir=desc">创建时间 </a>
+                  {{/eq}}
+                </th>
                 <th>摄影师级别</th>
                 <th>操作</th>
                 </thead>
@@ -68,17 +107,18 @@
 </div>
 
 {{#extend "script"}}
-  <script>
-      $(function(){
-          $('.table thead').on('click','a',function(e){
-              e.preventDefault();
-              var sort='1';
-              if($(this).find('span').hasClass('glyphicon-arrow-down')){
-                  sort='-1'
-              }
-
-              window.location.href=window.location.href.split("?")[0]+$(this).attr('href')+sort
-          })
-      })
-  </script>
+    <script>
+        $(function () {
+//            $('.table thead').on('click', 'a', function (e) {
+//                e.preventDefault();
+//                var sort = '1';
+//                if ($(this).find('span').hasClass('glyphicon-arrow-down')) {
+//                    sort = '-1'
+//                    $(this).find('span').removeClass('glyphicon-arrow-down').addClass('glyphicon-arrow-up')
+//                }
+//
+//                window.location.href = window.location.href.split("?")[0] + $(this).attr('href') + sort
+//            })
+        })
+    </script>
 {{/extend}}

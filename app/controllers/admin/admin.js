@@ -13,7 +13,7 @@ module.exports = function (app) {
 //会员列表
 router.get('/', function (req, res, next) {
   co(function *() {
-    var pageSize = 20;
+    var pageSize = 18;
     var count = yield User.count({});
     var pageNum = req.query.page || 1;
     if (pageNum > pageCount) {
@@ -21,7 +21,21 @@ router.get('/', function (req, res, next) {
     }
     var pageCount = Math.ceil(count / pageSize);
     var starPage = 1;
-    var sort={created:1};
+    var sortby= req.query.sortby ? req.query.sortby : 'created';
+    var sortdir= req.query.sortdir ? req.query.sortdir : 'desc';
+    if(['created','fans','concern'].indexOf(sortby) ===-1){
+      console.log('sortby')
+      sortby='created'
+    }
+
+    if(['desc','asc'].indexOf(sortdir) ===-1){
+      console.log('sortdir')
+      sortdir='desc'
+    }
+
+    var sortObj={};
+    sortObj[sortby]=sortdir;
+    console.log(sortObj)
     if(req.query.fans){
       sort={fans:parseInt(req.query.fans)}
     }
@@ -38,7 +52,7 @@ router.get('/', function (req, res, next) {
     var endPage = starPage + pageSize >= pageCount ? pageCount+1 : starPage + pageSize;
     var prePage = starPage - pageSize <= 0 ? 1 : starPage - pageSize;
     var nextPage = starPage + pageSize >= pageCount ? pageCount : starPage + pageSize;
-    var users = yield User.find().sort(sort).skip((pageNum - 1) * pageSize).limit(pageSize);
+    var users = yield User.find().sort(sortObj).skip((pageNum - 1) * pageSize).limit(pageSize);
 
     res.render('admin/userlist', {
       title: '会员列表',
@@ -49,6 +63,8 @@ router.get('/', function (req, res, next) {
       endPage: endPage,
       prePage: prePage,
       nextPage: nextPage,
+      sortdir:sortdir,
+      sortby:sortby,
       currentPage:parseInt(pageNum)
     });
   }).catch(function (err) {

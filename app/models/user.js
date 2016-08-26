@@ -24,7 +24,7 @@ UserSchema.methods.verifyPassword = function(password){
 mongoose.model('User', UserSchema);
 
 /*
-for(var i=0;i<10000000;i++){
+for(var i=0;i<10000;i++){
   db.users.insert(
     {
       name:"admin"+Math.random().toString(10).substr(0,5),

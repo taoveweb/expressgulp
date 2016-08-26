@@ -30,9 +30,9 @@
                 <th>邮箱</th>
                 <th>电话号吗</th>
                 <th>头像</th>
-                <th>关注数</th>
-                <th>粉丝数</th>
-                <th>创建时间</th>
+                <th><a href="?page={{currentPage}}&concern=">关注数 <span class="glyphicon glyphicon-arrow-down"></span></a></th>
+                <th><a href="?page={{currentPage}}&fans=">粉丝数 <span class="glyphicon glyphicon-arrow-down"></span></a></th>
+                <th><a href="?page={{currentPage}}&created=">创建时间 <span class="glyphicon glyphicon-arrow-down"></span></a></th>
                 <th>摄影师级别</th>
                 <th>操作</th>
                 </thead>
@@ -67,3 +67,18 @@
     </div>
 </div>
 
+{{#extend "script"}}
+  <script>
+      $(function(){
+          $('.table thead').on('click','a',function(e){
+              e.preventDefault();
+              var sort='1';
+              if($(this).find('span').hasClass('glyphicon-arrow-down')){
+                  sort='-1'
+              }
+
+              window.location.href=window.location.href.split("?")[0]+$(this).attr('href')+sort
+          })
+      })
+  </script>
+{{/extend}}

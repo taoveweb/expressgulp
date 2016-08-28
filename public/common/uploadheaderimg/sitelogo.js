@@ -194,7 +194,6 @@
       } else {
         this.$img = $('<img src="' + this.url + '">');
         this.$avatarWrapper.empty().html(this.$img);
-        console.log(this.$avatarPreview)
         this.$img.cropper({
           aspectRatio: 1,
           preview: this.$avatarPreview,
@@ -227,7 +226,6 @@
       var url = this.$avatarForm.attr('action'),
         data = new FormData(this.$avatarForm[0]),
         _this = this;
-        console.log(data)
       $.ajax(url, {
         headers: {'X-XSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
         type: 'post',
@@ -241,6 +239,11 @@
         },
 
         success: function (data) {
+          if(data.path){
+            $('.avatar-view').find('img').attr('src',data.path);
+            $('#headPicture').val(data.path);
+            _this.$avatarModal.modal('hide');
+          }
           _this.submitDone(data);
         },
 

@@ -10,7 +10,7 @@ var express = require('express'),
   gm = require('gm'),
   crypto = require('crypto'),
   config = require('../../../config/config');
-formidable.IncomingForm.prototype._uploadPath = function (filename) {
+  formidable.IncomingForm.prototype._uploadPath = function (filename) {
   var name = 'hp_';
   var buf = crypto.randomBytes(16);
   for (var i = 0; i < buf.length; ++i) {
@@ -38,6 +38,7 @@ router.get('/useredit', auth.adminLogin, function (req, res, next) {
     var user = {};
     if (id) {
       user = yield User.find({"_id": id});
+      user[0]['headPicture']="/common/uploadheaderimg/logo.jpg"
     }
 
     res.render('admin/useredit', {
@@ -50,6 +51,57 @@ router.get('/useredit', auth.adminLogin, function (req, res, next) {
     console.log('admin/useredit', err)
   });
 });
+
+router.post('/useredit', auth.adminLogin, function (req, res, next) {
+  co(function *() {
+    var update={};
+    if(req.body.name){
+      update.name=req.body.name;
+    }
+    if(req.body.sex){
+      req.checkBody('sex', '不是数字').isInt();
+      update.sex=req.body.sex
+    }
+    if(req.body.email){
+      req.checkBody('email', "格试不对").isEmail();
+      update.email=req.body.email
+    }
+    if(req.body.phone){
+      req.checkBody('phone', "电话格试不对").isMobilePhone('zh-CN');
+      update.phone=req.body.phone
+    }
+    if(req.body.headPicture){
+      update.headPicture=req.body.headPicture
+    }
+    if(req.body.level){
+      update.level=req.body.level
+    }
+
+    var errors = req.validationErrors();
+    if(errors){
+      console.log(errors);
+    }
+    console.log(req.body['_id'])
+    var id = req.body['_id'] || "";
+    var user = {};
+    if (id) {
+      user = yield User.find({"_id": id});
+      user[0]['headPicture']="/common/uploadheaderimg/logo.jpg"
+    }
+
+    res.render('admin/useredit', {
+      title: '会员编辑',
+      router: 'useredit',
+      user: user,
+      err:errors
+
+    });
+  }).catch(function (err) {
+    console.log('err at post admin/useredit', err)
+  });
+});
+
+
 
 router.post('/useredit/headerimg', auth.adminLogin, function (req, res, next) {
   co(function *() {
@@ -83,8 +135,10 @@ router.post('/useredit/headerimg', auth.adminLogin, function (req, res, next) {
 
         });
       })
+
+      res.json({path: ptah.split('upload')[1]});
     }
-    res.json({msg: "ok"});
+
 
   }).catch(function (err) {
     console.log('err at admin/useredit/headerimg', err)

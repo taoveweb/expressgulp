@@ -7,11 +7,12 @@ var express = require('express'),
 
 
 module.exports = function (app) {
-  app.use('/admin', auth.adminLogin, router);
+  app.use('/admin',  router);
 };
 
+
 //会员列表
-router.get('/', function (req, res, next) {
+router.get('/activitylist',auth.adminLogin, function (req, res, next) {
   co(function *() {
     var pageSize = 18;
     var count = yield User.count({});
@@ -23,7 +24,7 @@ router.get('/', function (req, res, next) {
     var starPage = 1;
     var sortby= req.query.sortby ? req.query.sortby : 'created';
     var sortdir= req.query.sortdir ? req.query.sortdir : 'desc';
-    if(['created','fans','concern'].indexOf(sortby) ===-1){
+    if(['created','sex','fans','concern'].indexOf(sortby) ===-1){
       console.log('sortby')
       sortby='created'
     }
@@ -65,6 +66,7 @@ router.get('/', function (req, res, next) {
       nextPage: nextPage,
       sortdir:sortdir,
       sortby:sortby,
+      router:'activitylist',
       currentPage:parseInt(pageNum)
     });
   }).catch(function (err) {

@@ -1,0 +1,81 @@
+{{>admin_navbarHeader}}
+<div class="container-fluid">
+    <div class="row">
+      {{>admin_navSidebar}}
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          {{#each user}}
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">昵称</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="{{name}}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">性别</label>
+
+                    <div class="col-sm-10">
+                        <label class="radio-inline">
+
+                            <input type="radio" name="sex" id="inlineRadio1" {{#eq sex 3}}checked{{/eq}} value="3"> 男
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="sex" id="inlineRadio2" {{#eq sex 2}}checked{{/eq}} value="2"> 女
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="sex" id="inlineRadio3" {{#eq sex 1}}checked{{/eq}} value="1"> 不填
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="col-sm-2 control-label">Email</label>
+
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="{{email}}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="phone" class="col-sm-2 control-label">手机号码</label>
+
+                    <div class="col-sm-10">
+                        <input type="tel" class="form-control" name="phone" id="phone" placeholder="{{phone}}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="headPicture" class="col-sm-2 control-label">头像</label>
+
+                    <div class="col-sm-10">
+                        <img src="{{headPicture}}" alt=""/>
+                        <input type="file" name="headPicture" id="headPicture">
+
+                        <p class="help-block">提交新的图片</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="level" class="col-sm-2 control-label">摄影级别</label>
+
+                    <div class="col-sm-10">
+                        <select id="level" name="level" class="form-control">
+                            <option {{#eq level 0}}selected{{/eq}} value="0">普能用户</option>
+                            <option {{#eq level 1}}selected{{/eq}} value="1">摄影师</option>
+                            <option {{#eq level 2}}selected{{/eq}} value="2">高级摄影师</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-primary btn-lg">提交</button>
+                    </div>
+                </div>
+            </form>
+          {{/each}}
+        </div>
+    </div>
+</div>
+
+{{#extend "script"}}
+    <script>
+
+    </script>
+{{/extend}}

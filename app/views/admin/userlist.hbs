@@ -26,7 +26,20 @@
             <table class="table table-hover">
                 <thead>
                 <th>昵称</th>
-                <th>性别</th>
+                <th>
+                  {{#eq sortby 'sex'}}
+
+                    {{#eq sortdir 'desc'}}
+                        <a href="?page={{currentPage}}&sortby=sex&sortdir=asc">性别 <span
+                                class="glyphicon glyphicon-arrow-down"></span></a>
+                    {{else}}
+                        <a href="?page={{currentPage}}&sortby=sex&sortdir=desc">性别 <span
+                                class="glyphicon glyphicon-arrow-up"></span></a>
+                    {{/eq}}
+                  {{else}}
+                      <a href="?page={{currentPage}}&sortby=sex&sortdir=desc">性别 </a>
+                  {{/eq}}
+                </th>
                 <th>邮箱</th>
                 <th>电话号吗</th>
                 <th>头像</th>
@@ -88,14 +101,14 @@
                         <td>{{moment created "YYYY-MM-DD HH.mm.ss"}}</td>
                         <td>{{level}}</td>
                         <td>
-                            <button type="button" class="btn btn-primary"><span
+                            <a href="/admin/useredit?id={{_id}}" class="btn btn-primary"><span
                                     class="glyphicon glyphicon-play-circle"></span>查看
-                            </button>
-                            <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span>编缉
-                            </button>
-                            <button type="button" class="btn btn-danger"><span
+                            </a>
+                            <a href="/admin/useredit?id={{_id}}" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span>编缉
+                            </a>
+                            <a href="/admin/useredit?id={{_id}}" class="btn btn-danger"><span
                                     class="glyphicon glyphicon-remove"></span>删除
-                            </button>
+                            </a>
                         </td>
                     </tr>
                 {{/forEach}}

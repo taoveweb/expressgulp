@@ -20,7 +20,7 @@ module.exports.adminLogin = function (req, res, next) {
     if (req.user && req.user.admin == 3) {
         next();
     } else {
-        res.redirect('/adminLogin');
+        res.redirect('/admin/login');
     }
 };
 

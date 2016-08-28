@@ -8,8 +8,24 @@ var express = require('express'),
   path = require('path'),
   fs = require('fs'),
   gm = require('gm'),
+  crypto = require('crypto'),
   config = require('../../../config/config');
+formidable.IncomingForm.prototype._uploadPath = function (filename) {
+  var name = 'hp_';
+  var buf = crypto.randomBytes(16);
+  for (var i = 0; i < buf.length; ++i) {
+    name += ('0' + buf[i].toString(16)).slice(-2);
+  }
 
+  if (this.keepExtensions) {
+    var ext = path.extname(filename);
+    ext = ext.replace(/(\.[a-z0-9]+).*/i, '$1');
+
+    name += ext;
+  }
+
+  return path.join(this.uploadDir, name);
+};
 
 module.exports = function (app) {
   app.use('/admin', router);
@@ -37,12 +53,13 @@ router.get('/useredit', auth.adminLogin, function (req, res, next) {
 
 router.post('/useredit/headerimg', auth.adminLogin, function (req, res, next) {
   co(function *() {
+
     var form = new formidable.IncomingForm();
     var dir = config.root + "/upload/images/" + new Date().getFullYear() + (new Date().getMonth() + 1) + '/';
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir);
     }
-    ;
+
     form.keepExtensions = true;
     form.uploadDir = dir;
     form.maxFieldsSize = 1 * 1024 * 1024;
@@ -56,13 +73,18 @@ router.post('/useredit/headerimg', auth.adminLogin, function (req, res, next) {
     if (formmid) {
       var crop = JSON.parse(formmid.fields.avatar_data);
       var ptah = formmid.files.avatar_file.path;
-      gm(ptah).crop(crop.width, crop.height, crop.x, crop.y).resize('200', '200').write(ptah, function (err) {
-        if (!err) console.log('crazytown has arrived');
-      });
+      yield new Promise(function (resolve, reject) {
+        gm(ptah).crop(crop.width, crop.height, crop.x, crop.y).resize('200', '200').write(ptah, function (err) {
+          if (!err) {
+            resolve();
+          } else {
+            reject(err);
+          }
 
+        });
+      })
     }
     res.json({msg: "ok"});
-
 
   }).catch(function (err) {
     console.log('err at admin/useredit/headerimg', err)

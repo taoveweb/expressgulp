@@ -67,7 +67,6 @@ router.post('/useredit', auth.adminLogin, function (req, res, next) {
       update.sex = req.body.sex
     }
     if (req.body.disable) {
-      console.log(req.body.disable)
       req.checkBody('disable', '不是数字').isInt();
       update.disable = req.body.disable
     }

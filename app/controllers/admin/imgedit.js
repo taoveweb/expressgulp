@@ -60,31 +60,20 @@ router.post('/imgedit', auth.adminLogin, function (req, res, next) {
   co(function *() {
     var update = {};
     var oldImg = "";
-    if (req.body.name) {
-      update.name = req.body.name;
+    if (req.body.excellent) {
+      req.checkBody('excellent', '不是数字').isInt();
+      update.excellent = req.body.excellent;
     }
-    if (req.body.sex) {
-      req.checkBody('sex', '不是数字').isInt();
-      update.sex = req.body.sex
+    if (req.body.published) {
+      req.checkBody('published', '不是数字').isInt();
+      update.published = req.body.published
     }
-    if (req.body.disable) {
-      console.log(req.body.disable)
-      req.checkBody('disable', '不是数字').isInt();
-      update.disable = req.body.disable
+    if (req.body.imgUrl) {
+      update.imgUrl = req.body.imgUrl
     }
-    if (req.body.email) {
-      req.checkBody('email', "格试不对").isEmail();
-      update.email = req.body.email
-    }
-    if (req.body.phone) {
-      req.checkBody('phone', "电话格试不对").isMobilePhone('zh-CN');
-      update.phone = req.body.phone
-    }
-    if (req.body.headPicture) {
-      update.headPicture = req.body.headPicture
-    }
-    if (req.body.level) {
-      update.level = req.body.level
+    if (req.body.introduction) {
+          req.checkBody('introduction', '简介不能为空').isNull();
+      update.introduction = req.body.introduction
     }
 
     var errors = req.validationErrors();
@@ -104,6 +93,8 @@ router.post('/imgedit', auth.adminLogin, function (req, res, next) {
         });
       })
     }
+
+    console.log(update)
 
     img['headPicture'] = img['headPicture'] == "" ? "/common/uploadheaderimg/logo.jpg" : img['headPicture'];
 

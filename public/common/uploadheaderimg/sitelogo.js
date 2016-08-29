@@ -241,7 +241,7 @@
         success: function (data) {
           if(data.path){
             $('.avatar-view').find('img').attr('src',data.path);
-            $('#headPicture').val(data.path);
+            $('#imgUrl').val(data.path);
             _this.$avatarModal.modal('hide');
           }
           _this.submitDone(data);

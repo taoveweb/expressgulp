@@ -14,7 +14,7 @@
     <script src="/components/jquery-validation/dist/jquery.validate.min.js"></script>
     <script>
         $(function () {
-            jQuery.validator.addMethod("isMobile", function(value, element) {
+            jQuery.validator.addMethod("isMobile", function (value, element) {
                 var length = value.length;
                 return this.optional(element) || (length == 11 && /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/.test(value));
             }, "请正确填写您的手机号码。");
@@ -64,25 +64,29 @@
           {{#each img}}
               <form id="postEdit" class="form-horizontal" action="/admin/imgedit" method="post">
                   <input name="_id" value="{{_id}}" type="hidden"/>
+
                   <div class="form-group">
                       <label class="col-sm-2 control-label">精选</label>
 
                       <div class="col-sm-10">
                           <label class="radio-inline">
-                              <input type="radio" name="disable" id="inlineRadio1" {{#eq excellent 0}}checked{{/eq}} value="0"> 普通
+                              <input type="radio" name="excellent" id="inlineRadio1" {{#eq excellent 0}}checked{{/eq}}
+                                     value="0"> 普通
                           </label>
                           <label class="radio-inline">
-                              <input type="radio" name="disable" id="inlineRadio2" {{#eq excellent 1}}checked{{/eq}} value="1"> 加精
+                              <input type="radio" name="excellent" id="inlineRadio2" {{#eq excellent 1}}checked{{/eq}}
+                                     value="1"> 加精
                           </label>
 
                       </div>
                   </div>
                   <div class="form-group">
-                      <label class="col-sm-2 control-label">精选</label>
+                      <label class="col-sm-2 control-label">发布状态</label>
 
                       <div class="col-sm-10">
                           <label class="radio-inline">
-                              <input type="radio" name="disable" id="inlineRadio1" {{#eq published 1}}checked{{/eq}} value="0"> 发布
+                              <input type="radio" name="published" id="inlineRadio1" {{#eq published 1}}checked{{/eq}}
+                                     value="0"> 发布
                           </label>
                       </div>
                   </div>
@@ -90,7 +94,8 @@
                       <label for="introduction" class="col-sm-2 control-label">简介</label>
 
                       <div class="col-sm-10">
-                          <input type="text" class="form-control" id="introduction" name="introduction" placeholder="{{introduction}}">
+                          <input type="text" class="form-control" id="introduction" name="introduction"
+                                 placeholder="{{introduction}}">
                       </div>
                   </div>
 
@@ -104,7 +109,6 @@
                                       <div class="avatar-view" title="Change Logo Picture">
                                           <img src="{{imgUrl}}" alt="Logo">
                                           <input id="imgUrl" name="imgUrl" type="hidden"/>
-                                          <input id="oldimgUrl" name="oldimgUrl" value="{{headPicture}}" type="hidden"/>
                                       </div>
                                   </div>
                               </div>

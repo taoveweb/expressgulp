@@ -1,0 +1,89 @@
+{{>admin_navbarHeader}}
+<div class="container-fluid">
+    <div class="row">
+      {{>admin_navSidebar}}
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <nav>
+                <ul class="pagination">
+                    <li>
+                        <a href="?page={{prePage}}&sortby={{../sortby}}&sortdir={{../sortdir}}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+
+                  {{#for starPage endPage  1}}
+                      <li class="{{#is   this  ../currentPage }} active{{/is}}">
+                          <a href="?page={{this}}&sortby={{../sortby}}&sortdir={{../sortdir}}">{{this}}</a></li>
+                  {{/for}}
+                    <li><a href="?page={{pageCount}}&sortby={{../sortby}}&sortdir={{../sortdir}}">总共{{pageCount}}页</a>
+                    </li>
+                    <li>
+                        <a href="?page={{nextPage}}&sortby={{../sortby}}&sortdir={{../sortdir}}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <table class="table table-hover">
+                <thead>
+                <th>简介</th>
+                <th>图片</th>
+                <th>作者</th>
+                <th>发布</th>
+                <th>签名</th>
+                <th>精选</th>
+                <th>被赞</th>
+                <th>评论</th>
+                <th>创建时间</th>
+                <th>操作</th>
+                </thead>
+                <tbody>
+                {{#forEach imgs}}
+                    <tr>
+                        <td>{{introduction}}</td>
+                        <td>{{sex}}</td>
+                        <td><img style="width: 30px; height: 30px;" src="{{imgUrl}}" alt=""/></td>
+                        <td>{{author}}</td>
+                        <td>{{#each sign}}{{this}}{{/each}}</td>
+                        <td>{{excellent}}</td>
+                        <td>
+                         {{meta.favourates}}
+                        </td>
+                        <td>{{length comments}}</td>
+                        <td>{{moment created "YYYY-MM-DD HH.mm.ss"}}</td>
+                        <td>
+                            <a href="/admin/imgedit?id={{_id}}" class="btn btn-primary"><span
+                                    class="glyphicon glyphicon-play-circle"></span>查看
+                            </a>
+                            <a href="/admin/imgedit?id={{_id}}" class="btn btn-primary"><span
+                                    class="glyphicon glyphicon-edit"></span>编缉
+                            </a>
+                            <a href="/admin/imgedit?id={{_id}}" class="btn btn-danger"><span
+                                    class="glyphicon glyphicon-remove"></span>删除
+                            </a>
+                        </td>
+                    </tr>
+                {{/forEach}}
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+{{#extend "script"}}
+    <script>
+        $(function () {
+//            $('.table thead').on('click', 'a', function (e) {
+//                e.preventDefault();
+//                var sort = '1';
+//                if ($(this).find('span').hasClass('glyphicon-arrow-down')) {
+//                    sort = '-1'
+//                    $(this).find('span').removeClass('glyphicon-arrow-down').addClass('glyphicon-arrow-up')
+//                }
+//
+//                window.location.href = window.location.href.split("?")[0] + $(this).attr('href') + sort
+//            })
+        })
+    </script>
+{{/extend}}

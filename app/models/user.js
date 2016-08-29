@@ -11,6 +11,7 @@ var UserSchema = new Schema({
   email: {type:String,required:true},
   phone:{type:String,default:0},
   password: {type:String,required:true},
+  disable: {type:Number,default:0},//0激活 1停用
   headPicture:{type:String,default :""},
   fans:[Schema.Types.Mixed],//粉丝
   concern:[Schema.Types.Mixed],//关注

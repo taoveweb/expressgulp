@@ -1,7 +1,7 @@
 var express = require('express'),
   router = express.Router(),
   mongoose = require('mongoose'),
-  Post = mongoose.model('Post');
+  Image = mongoose.model('Image');
 
 module.exports = function (app) {
   app.use('/posts', router);
@@ -9,7 +9,7 @@ module.exports = function (app) {
 };
 
 router.get('/', function (req, res, next) {
-  Post.find().populate("category").populate("author").exec(function (err, posts) {
+  Image.find().populate("category").populate("author").exec(function (err, posts) {
     console.log()
     if (err) return next(err);
     res.render('blog/index', {

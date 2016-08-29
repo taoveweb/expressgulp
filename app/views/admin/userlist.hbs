@@ -15,7 +15,8 @@
                       <li class="{{#is   this  ../currentPage }} active{{/is}}">
                           <a href="?page={{this}}&sortby={{../sortby}}&sortdir={{../sortdir}}">{{this}}</a></li>
                   {{/for}}
-                    <li><a href="?page={{pageCount}}&sortby={{../sortby}}&sortdir={{../sortdir}}">总共{{pageCount}}页</a></li>
+                    <li><a href="?page={{pageCount}}&sortby={{../sortby}}&sortdir={{../sortdir}}">总共{{pageCount}}页</a>
+                    </li>
                     <li>
                         <a href="?page={{nextPage}}&sortby={{../sortby}}&sortdir={{../sortdir}}" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
@@ -72,6 +73,19 @@
                   {{/eq}}
                 </th>
                 <th>
+                  {{#eq sortby 'disable'}}
+                    {{#eq sortdir 'desc'}}
+                        <a href="?page={{currentPage}}&sortby=disable&sortdir=asc">用户状态 <span
+                                class="glyphicon glyphicon-arrow-down"></span></a>
+                    {{else}}
+                        <a href="?page={{currentPage}}&sortby=disable&sortdir=desc">用户状态 <span
+                                class="glyphicon glyphicon-arrow-up"></span></a>
+                    {{/eq}}
+                  {{else}}
+                      <a href="?page={{currentPage}}&sortby=disable&sortdir=desc">用户状态 </a>
+                  {{/eq}}
+                </th>
+                <th>
                   {{#eq sortby 'created'}}
 
                     {{#eq sortdir 'desc'}}
@@ -95,20 +109,22 @@
                         <td>{{sex}}</td>
                         <td>{{email}}</td>
                         <td>{{phone}}</td>
-                        <td>{{headPicture}}</td>
+                        <td><img style="width: 30px; height: 30px;" src="{{headPicture}}" alt=""/></td>
                         <td>{{length fans}}</td>
                         <td>{{length concern}}</td>
+                        <td>{{#eq disable 0}}激活{{else}}停用{{/eq}}</td>
                         <td>{{moment created "YYYY-MM-DD HH.mm.ss"}}</td>
                         <td>{{level}}</td>
                         <td>
                             <a href="/admin/useredit?id={{_id}}" class="btn btn-primary"><span
                                     class="glyphicon glyphicon-play-circle"></span>查看
                             </a>
-                            <a href="/admin/useredit?id={{_id}}" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span>编缉
+                            <a href="/admin/useredit?id={{_id}}" class="btn btn-primary"><span
+                                    class="glyphicon glyphicon-edit"></span>编缉
                             </a>
-                            <a href="/admin/useredit?id={{_id}}" class="btn btn-danger"><span
+                            <!--<a href="/admin/useredit?id={{_id}}" class="btn btn-danger"><span
                                     class="glyphicon glyphicon-remove"></span>删除
-                            </a>
+                            </a>-->
                         </td>
                     </tr>
                 {{/forEach}}

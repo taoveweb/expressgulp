@@ -61,73 +61,55 @@
           {{#if success}}
               <div class="alert alert-success" role="alert">提交成功</div>
           {{/if}}
-          {{#each user}}
-              <form id="postEdit" class="form-horizontal" action="/admin/useredit" method="post">
+          {{#each img}}
+              <form id="postEdit" class="form-horizontal" action="/admin/imgedit" method="post">
                   <input name="_id" value="{{_id}}" type="hidden"/>
-
                   <div class="form-group">
-                      <label for="name" class="col-sm-2 control-label">昵称</label>
-
-                      <div class="col-sm-10">
-                          <input type="text" class="form-control" id="name" name="name" placeholder="{{name}}">
-                      </div>
-                  </div>
-                  <div class="form-group">
-                      <label class="col-sm-2 control-label">性别</label>
+                      <label class="col-sm-2 control-label">精选</label>
 
                       <div class="col-sm-10">
                           <label class="radio-inline">
-                              <input type="radio" name="sex" id="inlineRadio1" {{#eq sex 3}}checked{{/eq}} value="3"> 男
+                              <input type="radio" name="disable" id="inlineRadio1" {{#eq excellent 0}}checked{{/eq}} value="0"> 普通
                           </label>
                           <label class="radio-inline">
-                              <input type="radio" name="sex" id="inlineRadio2" {{#eq sex 2}}checked{{/eq}} value="2"> 女
+                              <input type="radio" name="disable" id="inlineRadio2" {{#eq excellent 1}}checked{{/eq}} value="1"> 加精
                           </label>
+
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-sm-2 control-label">精选</label>
+
+                      <div class="col-sm-10">
                           <label class="radio-inline">
-                              <input type="radio" name="sex" id="inlineRadio3" {{#eq sex 1}}checked{{/eq}} value="1"> 不填
+                              <input type="radio" name="disable" id="inlineRadio1" {{#eq published 1}}checked{{/eq}} value="0"> 发布
                           </label>
                       </div>
                   </div>
                   <div class="form-group">
-                      <label for="email" class="col-sm-2 control-label">Email</label>
+                      <label for="introduction" class="col-sm-2 control-label">简介</label>
 
                       <div class="col-sm-10">
-                          <input type="email" class="form-control" id="email" name="email" placeholder="{{email}}">
+                          <input type="text" class="form-control" id="introduction" name="introduction" placeholder="{{introduction}}">
                       </div>
                   </div>
-                  <div class="form-group">
-                      <label for="phone" class="col-sm-2 control-label">手机号码</label>
 
-                      <div class="col-sm-10">
-                          <input class="form-control" name="phone" id="phone" placeholder="{{phone}}">
-                      </div>
-                  </div>
                   <div class="form-group">
-                      <label for="headPicture" class="col-sm-2 control-label">头像</label>
+                      <label for="imgUrl" class="col-sm-2 control-label">图片</label>
 
                       <div class="col-sm-10">
                           <div class="ibox-content">
                               <div class="row">
                                   <div id="crop-avatar" class="col-md-6">
                                       <div class="avatar-view" title="Change Logo Picture">
-                                          <img src="{{headPicture}}" alt="Logo">
-                                          <input id="headPicture" name="headPicture" type="hidden"/>
-                                          <input id="oldheadPicture" name="oldheadPicture" value="{{headPicture}}" type="hidden"/>
+                                          <img src="{{imgUrl}}" alt="Logo">
+                                          <input id="imgUrl" name="imgUrl" type="hidden"/>
+                                          <input id="oldimgUrl" name="oldimgUrl" value="{{headPicture}}" type="hidden"/>
                                       </div>
                                   </div>
                               </div>
                           </div>
                           <p class="help-block">提交新的图片</p>
-                      </div>
-                  </div>
-                  <div class="form-group">
-                      <label for="level" class="col-sm-2 control-label">摄影级别</label>
-
-                      <div class="col-sm-10">
-                          <select id="level" name="level" class="form-control">
-                              <option {{#eq level 0}}selected{{/eq}} value="0">普能用户</option>
-                              <option {{#eq level 1}}selected{{/eq}} value="1">摄影师</option>
-                              <option {{#eq level 2}}selected{{/eq}} value="2">高级摄影师</option>
-                          </select>
                       </div>
                   </div>
 
@@ -147,7 +129,7 @@
      tabindex="-1">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <form class="avatar-form" action="/admin/useredit/headerimg" enctype="multipart/form-data" method="post">
+            <form class="avatar-form" action="/admin/postimg" enctype="multipart/form-data" method="post">
                 <div class="modal-header">
                     <button class="close" data-dismiss="modal" type="button">&times;</button>
                     <h4 class="modal-title" id="avatar-modal-label">Change Logo Picture</h4>

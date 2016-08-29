@@ -2,7 +2,7 @@ var express = require('express'),
   router = express.Router(),
   auth = require('../mobile/user/user'),
   mongoose = require('mongoose'),
-  User = mongoose.model('User'),
+  Image = mongoose.model('Image'),
   co = require('co'),
   formidable = require('formidable'),
   path = require('path'),
@@ -32,29 +32,30 @@ module.exports = function (app) {
   app.use('/admin', router);
 };
 
-//会员列表
-router.get('/useredit', auth.adminLogin, function (req, res, next) {
+//图片表单
+router.get('/imgedit', auth.adminLogin, function (req, res, next) {
+
   co(function *() {
     var id = req.query.id || "";
-    var user = {};
+    var img = {};
     if (id) {
-      user = yield User.find({"_id": id});
-
-      user[0]['headPicture'] = user[0]['headPicture'] == "" ? "/common/uploadheaderimg/logo.jpg" : user[0]['headPicture'];
+      img = yield Image.find({"_id": id});
+      img[0]['headPicture'] = img[0]['headPicture'] == "" ? "/common/uploadheaderimg/logo.jpg" : img[0]['headPicture'];
     }
 
-    res.render('admin/useredit', {
-      title: '会员编辑',
-      router: 'useredit',
-      user: user
+    console.log(img)
+    res.render('admin/imgedit', {
+      title: '图片编缉',
+      router: 'imgedit',
+      img: img
 
     });
   }).catch(function (err) {
-    console.log('admin/useredit', err)
+    console.log('admin/imgedit', err)
   });
 });
 
-router.post('/useredit', auth.adminLogin, function (req, res, next) {
+router.post('/imgedit', auth.adminLogin, function (req, res, next) {
 
   co(function *() {
     var update = {};
@@ -91,56 +92,36 @@ router.post('/useredit', auth.adminLogin, function (req, res, next) {
       console.log(errors);
     }
     var id = req.body['_id'] || "";
-    var user = {};
+    var img = {};
     if (update) {
-      user = yield new Promise(function (resolve, reject) {
-        User.findOneAndUpdate({"_id": id}, update, {new: true}, function (err, user) {
+      img = yield new Promise(function (resolve, reject) {
+        Image.findOneAndUpdate({"_id": id}, update, {new: true}, function (err, img) {
           if (err) {
             reject(err)
           } else {
-            resolve(user)
+            resolve(img)
           }
         });
       })
     }
 
-    user['headPicture'] = user['headPicture'] == "" ? "/common/uploadheaderimg/logo.jpg" : user['headPicture'];
+    img['headPicture'] = img['headPicture'] == "" ? "/common/uploadheaderimg/logo.jpg" : img['headPicture'];
 
-    res.render('admin/useredit', {
-      title: '会员编辑',
-      router: 'useredit',
-      user: [user],
+    res.render('admin/imgedit', {
+      title: '图片编缉',
+      router: 'imgedit',
+      img: [img],
       err: errors,
       success: !errors.length
     });
   }).catch(function (err) {
-    console.log('err at post admin/useredit', err)
-  });
-});
-
-router.get('/userdisable', auth.adminLogin, function (req, res, next) {
-  co(function *() {
-    var id = req.query.id || "";
-    var user = {};
-    if (id) {
-      user = yield User.find({"_id": id});
-
-      user[0]['headPicture'] = user[0]['headPicture'] == "" ? "/common/uploadheaderimg/logo.jpg" : user[0]['headPicture'];
-    }
-
-    res.render('admin/useredit', {
-      title: '会员编辑',
-      router: 'useredit',
-      user: user
-
-    });
-  }).catch(function (err) {
-    console.log('admin/useredit', err)
+    console.log('err at post admin/imgedit', err)
   });
 });
 
 
-router.post('/useredit/headerimg', auth.adminLogin, function (req, res, next) {
+
+router.post('/postimg', auth.adminLogin, function (req, res, next) {
   co(function *() {
 
     var form = new formidable.IncomingForm();
@@ -178,7 +159,7 @@ router.post('/useredit/headerimg', auth.adminLogin, function (req, res, next) {
 
 
   }).catch(function (err) {
-    console.log('err at admin/useredit/headerimg', err)
+    console.log('err at admin/imgedit/headerimg', err)
     res.json({msg: err});
   });
 })

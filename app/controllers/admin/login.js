@@ -16,7 +16,7 @@ router.get('/login', function (req, res, next) {
 
 
 router.post('/login', passport.authenticate('local', {failureRedirect: '/admin/login'}), function (req, res, next) {
-  res.redirect("/admin/userlist")
+  res.redirect("/admin/user/list")
 });
 
 

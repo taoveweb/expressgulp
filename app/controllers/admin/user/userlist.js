@@ -1,18 +1,21 @@
 var express = require('express'),
   router = express.Router(),
-  auth = require('../mobile/user/user'),
+  auth = require('../../mobile/user/user'),
   mongoose = require('mongoose'),
   User = mongoose.model('User'),
   co = require('co');
 
 
 module.exports = function (app) {
-  app.use('/admin',  router);
+  app.use('/admin/user',auth.adminLogin, router);
 };
 
+router.get('/',function(req,res,next){
+  res.redirect('/admin/user/list');
+})
 
 //会员列表
-router.get('/activitylist',auth.adminLogin, function (req, res, next) {
+router.get('/list',  function (req, res, next) {
   co(function *() {
     var pageSize = 18;
     var count = yield User.count({});
@@ -24,8 +27,7 @@ router.get('/activitylist',auth.adminLogin, function (req, res, next) {
     var starPage = 1;
     var sortby= req.query.sortby ? req.query.sortby : 'created';
     var sortdir= req.query.sortdir ? req.query.sortdir : 'desc';
-    if(['created','sex','fans','concern'].indexOf(sortby) ===-1){
-      console.log('sortby')
+    if(['created','sex','disable','fans','concern'].indexOf(sortby) ===-1){
       sortby='created'
     }
 
@@ -36,7 +38,6 @@ router.get('/activitylist',auth.adminLogin, function (req, res, next) {
 
     var sortObj={};
     sortObj[sortby]=sortdir;
-    console.log(sortObj)
     if(req.query.fans){
       sort={fans:parseInt(req.query.fans)}
     }
@@ -54,8 +55,8 @@ router.get('/activitylist',auth.adminLogin, function (req, res, next) {
     var prePage = starPage - pageSize <= 0 ? 1 : starPage - pageSize;
     var nextPage = starPage + pageSize >= pageCount ? pageCount : starPage + pageSize;
     var users = yield User.find().sort(sortObj).skip((pageNum - 1) * pageSize).limit(pageSize);
-
-    res.render('admin/userlist', {
+  console.log(users)
+    res.render('admin/user/userlist', {
       title: '会员列表',
       users: users,
       pageNum: pageNum,
@@ -66,11 +67,11 @@ router.get('/activitylist',auth.adminLogin, function (req, res, next) {
       nextPage: nextPage,
       sortdir:sortdir,
       sortby:sortby,
-      router:'activitylist',
+      router:'userlist',
       currentPage:parseInt(pageNum)
     });
   }).catch(function (err) {
-    console.log('get /admin', err)
+    console.log('err at get admin/user/userlist', err)
   });
 });
 

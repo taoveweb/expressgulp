@@ -1,6 +1,6 @@
 var express = require('express'),
   router = express.Router(),
-  auth = require('../mobile/user/user'),
+  auth = require('../../mobile/user/user'),
   mongoose = require('mongoose'),
   Image = mongoose.model('Image'),
   co = require('co'),
@@ -10,7 +10,7 @@ var express = require('express'),
   gm = require('gm'),
   crypto = require('crypto'),
   _ = require('lodash'),
-  config = require('../../../config/config');
+  config = require('../../../../config/config');
 formidable.IncomingForm.prototype._uploadPath = function (filename) {
   var name = 'hp_';
   var buf = crypto.randomBytes(16);
@@ -29,11 +29,11 @@ formidable.IncomingForm.prototype._uploadPath = function (filename) {
 };
 
 module.exports = function (app) {
-  app.use('/admin', router);
+  app.use('/admin/img', auth.adminLogin,router);
 };
 
 //图片表单
-router.get('/imgedit', auth.adminLogin, function (req, res, next) {
+router.get('/edit',  function (req, res, next) {
 
   co(function *() {
     var id = req.query.id || "";
@@ -43,19 +43,18 @@ router.get('/imgedit', auth.adminLogin, function (req, res, next) {
       img[0]['headPicture'] = img[0]['headPicture'] == "" ? "/common/uploadheaderimg/logo.jpg" : img[0]['headPicture'];
     }
 
-    console.log(img)
-    res.render('admin/imgedit', {
+    res.render('admin/img/imgedit', {
       title: '图片编缉',
       router: 'imgedit',
       img: img
 
     });
   }).catch(function (err) {
-    console.log('admin/imgedit', err)
+    console.log('admin/img/imgedit', err)
   });
 });
 
-router.post('/imgedit', auth.adminLogin, function (req, res, next) {
+router.post('/update',  function (req, res, next) {
 
   co(function *() {
     var update = {};
@@ -94,11 +93,10 @@ router.post('/imgedit', auth.adminLogin, function (req, res, next) {
       })
     }
 
-    console.log(update)
 
     img['headPicture'] = img['headPicture'] == "" ? "/common/uploadheaderimg/logo.jpg" : img['headPicture'];
 
-    res.render('admin/imgedit', {
+    res.render('admin/img/imgedit', {
       title: '图片编缉',
       router: 'imgedit',
       img: [img],
@@ -112,7 +110,7 @@ router.post('/imgedit', auth.adminLogin, function (req, res, next) {
 
 
 
-router.post('/postimg', auth.adminLogin, function (req, res, next) {
+router.post('/edit/postimg',function (req, res, next) {
   co(function *() {
 
     var form = new formidable.IncomingForm();
@@ -150,7 +148,7 @@ router.post('/postimg', auth.adminLogin, function (req, res, next) {
 
 
   }).catch(function (err) {
-    console.log('err at admin/imgedit/headerimg', err)
+    console.log('err at admin/img/edit/postimg', err)
     res.json({msg: err});
   });
 })

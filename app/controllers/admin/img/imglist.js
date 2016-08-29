@@ -1,18 +1,18 @@
 var express = require('express'),
   router = express.Router(),
-  auth = require('../mobile/user/user'),
+  auth = require('../../mobile/user/user'),
   mongoose = require('mongoose'),
   Image = mongoose.model('Image'),
   co = require('co');
 
 
 module.exports = function (app) {
-  app.use('/admin', router);
+  app.use('/admin/img', auth.adminLogin,router);
 };
 
 
 //会员列表
-router.get('/imglist', auth.adminLogin, function (req, res, next) {
+router.get('/list',  function (req, res, next) {
   co(function *() {
     var pageSize = 18;
     var count = yield Image.count({});
@@ -59,7 +59,7 @@ router.get('/imglist', auth.adminLogin, function (req, res, next) {
       });
     });
 
-    res.render('admin/imglist', {
+    res.render('admin/img/imglist', {
       title: '会员列表',
       imgs: imgs,
       pageNum: pageNum,
@@ -74,7 +74,7 @@ router.get('/imglist', auth.adminLogin, function (req, res, next) {
       currentPage: parseInt(pageNum)
     });
   }).catch(function (err) {
-    console.log('get /admin', err)
+    console.log('err get at /admin/img/list', err)
   });
 });
 

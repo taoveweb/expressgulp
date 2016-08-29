@@ -1,6 +1,6 @@
 var express = require('express'),
   router = express.Router(),
-  auth = require('../mobile/user/user'),
+  auth = require('../../mobile/user/user'),
   mongoose = require('mongoose'),
   User = mongoose.model('User'),
   co = require('co'),
@@ -10,7 +10,7 @@ var express = require('express'),
   gm = require('gm'),
   crypto = require('crypto'),
   _ = require('lodash'),
-  config = require('../../../config/config');
+  config = require('../../../../config/config');
 formidable.IncomingForm.prototype._uploadPath = function (filename) {
   var name = 'hp_';
   var buf = crypto.randomBytes(16);
@@ -29,11 +29,11 @@ formidable.IncomingForm.prototype._uploadPath = function (filename) {
 };
 
 module.exports = function (app) {
-  app.use('/admin', router);
+  app.use('/admin/user',auth.adminLogin, router);
 };
 
-//会员列表
-router.get('/useredit', auth.adminLogin, function (req, res, next) {
+//get会员编缉
+router.get('/edit',  function (req, res, next) {
   co(function *() {
     var id = req.query.id || "";
     var user = {};
@@ -43,18 +43,19 @@ router.get('/useredit', auth.adminLogin, function (req, res, next) {
       user[0]['headPicture'] = user[0]['headPicture'] == "" ? "/common/uploadheaderimg/logo.jpg" : user[0]['headPicture'];
     }
 
-    res.render('admin/useredit', {
+    res.render('admin/user/useredit', {
       title: '会员编辑',
       router: 'useredit',
       user: user
 
     });
   }).catch(function (err) {
-    console.log('admin/useredit', err)
+    console.log('err at get admin/user/edit', err)
   });
 });
 
-router.post('/useredit', auth.adminLogin, function (req, res, next) {
+
+router.post('/update', function (req, res, next) {
 
   co(function *() {
     var update = {};
@@ -105,7 +106,7 @@ router.post('/useredit', auth.adminLogin, function (req, res, next) {
 
     user['headPicture'] = user['headPicture'] == "" ? "/common/uploadheaderimg/logo.jpg" : user['headPicture'];
 
-    res.render('admin/useredit', {
+    res.render('admin/user/useredit', {
       title: '会员编辑',
       router: 'useredit',
       user: [user],
@@ -117,29 +118,8 @@ router.post('/useredit', auth.adminLogin, function (req, res, next) {
   });
 });
 
-router.get('/userdisable', auth.adminLogin, function (req, res, next) {
-  co(function *() {
-    var id = req.query.id || "";
-    var user = {};
-    if (id) {
-      user = yield User.find({"_id": id});
 
-      user[0]['headPicture'] = user[0]['headPicture'] == "" ? "/common/uploadheaderimg/logo.jpg" : user[0]['headPicture'];
-    }
-
-    res.render('admin/useredit', {
-      title: '会员编辑',
-      router: 'useredit',
-      user: user
-
-    });
-  }).catch(function (err) {
-    console.log('admin/useredit', err)
-  });
-});
-
-
-router.post('/useredit/headerimg', auth.adminLogin, function (req, res, next) {
+router.post('/edit/postheaderimg',  function (req, res, next) {
   co(function *() {
 
     var form = new formidable.IncomingForm();

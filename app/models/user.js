@@ -11,7 +11,7 @@ var UserSchema = new Schema({
   email: {type:String,required:true},
   phone:{type:String,default:0},
   password: {type:String,required:true},
-  headPicture:{type:String,default :0},
+  headPicture:{type:String,default :""},
   fans:[Schema.Types.Mixed],//粉丝
   concern:[Schema.Types.Mixed],//关注
   level:{type:Number,default :0},

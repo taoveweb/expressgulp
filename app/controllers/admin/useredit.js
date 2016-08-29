@@ -38,7 +38,8 @@ router.get('/useredit', auth.adminLogin, function (req, res, next) {
     var user = {};
     if (id) {
       user = yield User.find({"_id": id});
-      user[0]['headPicture']="/common/uploadheaderimg/logo.jpg"
+
+      user[0]['headPicture']=user[0]['headPicture']==""?"/common/uploadheaderimg/logo.jpg" :user[0]['headPicture'];
     }
 
     res.render('admin/useredit', {
@@ -55,6 +56,7 @@ router.get('/useredit', auth.adminLogin, function (req, res, next) {
 router.post('/useredit', auth.adminLogin, function (req, res, next) {
   co(function *() {
     var update={};
+    var success={};
     if(req.body.name){
       update.name=req.body.name;
     }
@@ -81,19 +83,19 @@ router.post('/useredit', auth.adminLogin, function (req, res, next) {
     if(errors){
       console.log(errors);
     }
-    console.log(req.body['_id'])
     var id = req.body['_id'] || "";
     var user = {};
     if (id) {
       user = yield User.find({"_id": id});
-      user[0]['headPicture']="/common/uploadheaderimg/logo.jpg"
+      user[0]['headPicture']=user[0]['headPicture']==""?"/common/uploadheaderimg/logo.jpg" :user[0]['headPicture'];
     }
 
     res.render('admin/useredit', {
       title: '会员编辑',
       router: 'useredit',
       user: user,
-      err:errors
+      err:errors,
+      success:success
 
     });
   }).catch(function (err) {

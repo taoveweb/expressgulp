@@ -29,7 +29,7 @@ router.get('/login', function (req, res, next) {
         res.redirect('/m/browser')
     } else {
         res.render('mobile/user/login', {
-            title: '登录页面',
+            title: '登录页面'
         });
     }
 

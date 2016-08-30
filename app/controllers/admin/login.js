@@ -9,9 +9,14 @@ module.exports = function (app) {
 };
 
 router.get('/login', function (req, res, next) {
-  res.render('admin/login', {
-    title: '后台登录'
-  });
+  if (req.user) {
+    res.redirect('/admin/user/list');
+  } else {
+    res.render('admin/login', {
+      title: '后台登录'
+    });
+  }
+
 });
 
 

@@ -45,12 +45,12 @@ router.get('/edit',  function (req, res, next) {
 
     res.render('admin/user/useredit', {
       title: '会员编辑',
-      router: 'useredit',
+      router: 'userlist',
       user: user
 
     });
   }).catch(function (err) {
-    console.log('err at get admin/user/edit', err)
+    console.log('出错文件'+ __filename + "出错方法：edit 具体内容", err)
   });
 });
 
@@ -114,7 +114,7 @@ router.post('/update', function (req, res, next) {
       success: !errors.length
     });
   }).catch(function (err) {
-    console.log('err at post admin/useredit', err)
+    console.log('出错文件'+ __filename + "出错方法：update 具体内容", err)
   });
 });
 
@@ -157,7 +157,7 @@ router.post('/edit/postheaderimg',  function (req, res, next) {
 
 
   }).catch(function (err) {
-    console.log('err at admin/useredit/headerimg', err)
+    console.log('出错文件'+ __filename + "出错方法：/edit/postheaderimg 具体内容", err)
     res.json({msg: err});
   });
 })

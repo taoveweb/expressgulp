@@ -8,9 +8,9 @@ var ImageSchema = new Schema({
   imgUrl: {type: String, required: true},
   author: {type: Schema.Types.ObjectId, ref: "User"},
   published: {type: Number, default: 1},
-  sign:[Schema.Types.Mixed],
-  meta: {type: Schema.Types.Mixed},
-  excellent:{type:Number,default :0},
+  sign:[Schema.Types.Mixed],//关健字
+  meta: {type: Schema.Types.Mixed},//被赞
+  excellent:{type:Number,default :0},//是否精选
   comments: [Schema.Types.Mixed],
   created: {type: Date}
 });

@@ -71,7 +71,8 @@ router.get('/list',  function (req, res, next) {
       currentPage:parseInt(pageNum)
     });
   }).catch(function (err) {
-    console.log('err at get admin/user/userlist', err)
+    console.log('出错文件'+ __filename + "出错方法：/list 具体内容", err)
+
   });
 });
 

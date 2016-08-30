@@ -14,29 +14,19 @@ module.exports = function (app) {
 };
 
 //图片表单
-router.get('/edit',  function (req, res, next) {
-
+router.get('/add',  function (req, res, next) {
   co(function *() {
-    var id = req.query.id || "";
-    var img = {};
-    if (id) {
-      img = yield Image.find({"_id": id});
-      img[0]['headPicture'] = img[0]['headPicture'] == "" ? "/common/uploadheaderimg/logo.jpg" : img[0]['headPicture'];
-    }
-
-    res.render('admin/img/imgedit', {
+    res.render('admin/img/imgadd', {
       title: '图片编缉',
-      router: 'imgedit',
-      img: img
-
+      router: 'imgadd',
+      imgUrl: "/common/uploadheaderimg/logo.jpg"
     });
   }).catch(function (err) {
-    console.log('出错文件'+ __filename + "出错方法：edit 具体内容", err)
+    console.log('err at'+ __dirname + "get add", err)
   });
 });
 
 router.post('/update',  function (req, res, next) {
-
   co(function *() {
     var update = {};
     var oldImg = "";
@@ -52,7 +42,7 @@ router.post('/update',  function (req, res, next) {
       update.imgUrl = req.body.imgUrl
     }
     if (req.body.introduction) {
-          req.checkBody('introduction', '简介不能为空').isNull();
+      req.checkBody('introduction', '简介不能为空').isNull();
       update.introduction = req.body.introduction
     }
 
@@ -88,6 +78,7 @@ router.post('/update',  function (req, res, next) {
     console.log('出错文件'+ __filename + "出错方法：update 具体内容", err)
   });
 });
+
 
 
 //提交图片

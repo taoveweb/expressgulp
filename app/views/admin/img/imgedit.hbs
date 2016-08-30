@@ -93,7 +93,7 @@
                 setsign();
             })
 
-            function setsign(){
+            function setsign() {
                 $('#sign').val(sign.join('.'));
             }
         })
@@ -143,7 +143,8 @@
 
                       <div class="col-sm-10">
                           <label class="checkbox-inline">
-                              <input type="checkbox" name="published" id="inlineRadio1" {{#eq published 1}}checked{{/eq}}
+                              <input type="checkbox" name="published" id="inlineRadio1"
+                                     {{#eq published 1}}checked{{/eq}}
                                      value="0"> 发布
                           </label>
                       </div>
@@ -175,16 +176,16 @@
                             </span>
                           </div>
                           <input id="sign" name="sign" value="{{sign}}" type="hidden"/>
+
                           <div class="bj">
-              <!--                {{info sign}}
-                            {{split  sign "."}}
-                            {{#forEach sign}}
-                                {{this}}
-                                <span  class=" label label-primary" >手机摄影<em aria-hidden="true">&times;</em></span>
-                            {{/forEach}}-->
-                              <!--
-                                                      <span  class=" label label-primary" >手机摄影<em aria-hidden="true">&times;</em></span>
-                              -->
+                              {{sign}}
+                            {{#each (split sign.to ".")}}
+                              {{this}}
+                            {{/each}}
+                            {{log (split sign ".")}}
+                              <span class=" label label-primary">手机摄影<em aria-hidden="true">&times;</em></span>
+                              <span class=" label label-primary">手机摄影<em aria-hidden="true">&times;</em></span>
+
                           </div>
                       </div>
                   </div>

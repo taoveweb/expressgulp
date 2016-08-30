@@ -51,8 +51,11 @@ router.post('/update', function (req, res, next) {
     if (req.body.imgUrl) {
       update.imgUrl = req.body.imgUrl
     }
+    if (req.body.sign) {
+      update.sign = req.body.sign
+    }
     if (req.body.introduction) {
-      req.checkBody('introduction', '简介不能为空').isNull();
+      req.checkBody('introduction', '简介不能为空').notEmpty();
       update.introduction = req.body.introduction
     }
 

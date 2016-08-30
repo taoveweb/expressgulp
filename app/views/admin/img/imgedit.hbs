@@ -5,14 +5,19 @@
         label.error {
             color: red;
         }
-        .input-group{
+
+        .input-group {
             width: 300px;
         }
-        .label-primary{
+
+        .label-primary {
             position: relative;
             padding-right: 0;
+            margin-right: 5px;
+            margin-top: 5px;
         }
-        .label-primary em{
+
+        .label-primary em {
             position: relative;
             top: 2px;
             display: inline-block;
@@ -23,7 +28,8 @@
             cursor: pointer;
             font-size: 18px;
         }
-        .label-primary em:hover{
+
+        .label-primary em:hover {
             color: #ffdc1e;
         }
     </style>
@@ -35,35 +41,61 @@
     <script src="/components/jquery-validation/dist/jquery.validate.min.js"></script>
     <script>
         $(function () {
-            jQuery.validator.addMethod("isMobile", function (value, element) {
-                var length = value.length;
-                return this.optional(element) || (length == 11 && /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/.test(value));
-            }, "请正确填写您的手机号码。");
-
-            $().ready(function () {
-                $("#postEdit").validate({
-                    rules: {
-                        email: {
-                            email: true
-                        },
-                        phone: {
-                            isMobile: true
-                        }
+            $("#postEdit").validate({
+                rules: {
+                    introduction: {
+                        required: true,
+                        minlength: 5
                     },
-                    messages: {
-                        email: "请输入正确的邮箱格式如: example@oldku.com",
-                        phoneUK: "请输入正确的邮箱格式如: 18059178863"
-                    },
-                    submitHandler: function (form) {
-                        // some other code
-                        // maybe disabling submit button
-                        // then:
-                        //$(form).submit();
-                        return true;
+                    sign: {
+                        required: true
                     }
-                });
-
+                },
+                messages: {
+                    introduction: "至少5个字的简介",
+                    required: "没有设置签名"
+                },
+                submitHandler: function (form) {
+                    return true;
+                }
             });
+
+            var sign = [];
+            Array.prototype.indexOf = function (val) {
+                for (var i = 0; i < this.length; i++) {
+                    if (this[i] == val) return i;
+                }
+                return -1;
+            };
+
+            Array.prototype.remove = function (val) {
+                var index = this.indexOf(val);
+                if (index > -1) {
+                    this.splice(index, 1);
+                }
+            };
+
+            $('#addSign').click(function () {
+                var val = $(".form-control  option:selected").val();
+                if (sign.indexOf(val) === -1) {
+                    sign.push(val);
+                    $('.bj').append('<span  class=" label label-primary" >' + val + '<em class="delsign" aria-hidden="true">&times;</em></span>')
+                    setsign();
+                }
+            });
+
+            $('.bj').on('click', '.delsign', function () {
+                var parent = $(this).parent();
+                parent.find('em').remove();
+                var val = parent.html();
+                parent.remove();
+                sign.remove(val);
+                setsign();
+            })
+
+            function setsign(){
+                $('#sign').val(sign.join('.'));
+            }
         })
     </script>
 {{/extend}}
@@ -139,10 +171,17 @@
                                   <option>未分类</option>
                               </select>
                             <span class="input-group-btn">
-                              <button class="btn btn-default" type="button">添加</button>
+                              <button id="addSign" class="btn btn-default" type="button">添加</button>
                             </span>
                           </div>
+                          <input id="sign" name="sign" value="{{sign}}" type="hidden"/>
                           <div class="bj">
+              <!--                {{info sign}}
+                            {{split  sign "."}}
+                            {{#forEach sign}}
+                                {{this}}
+                                <span  class=" label label-primary" >手机摄影<em aria-hidden="true">&times;</em></span>
+                            {{/forEach}}-->
                               <!--
                                                       <span  class=" label label-primary" >手机摄影<em aria-hidden="true">&times;</em></span>
                               -->
@@ -154,7 +193,7 @@
 
                       <div class="col-sm-10">
                           <input type="text" class="form-control" id="introduction" name="introduction"
-                                 placeholder="{{introduction}}">
+                                 value="{{introduction}}">
                       </div>
                   </div>
 

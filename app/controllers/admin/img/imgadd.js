@@ -33,6 +33,7 @@ router.post('/add', function (req, res, next) {
     req.checkBody('published', '不是数字').isInt();
     req.checkBody('imgUrl', '图片不能为空').notEmpty();
     req.checkBody('introduction', '简介不能为空').notEmpty();
+    req.checkBody('sign', '没有设置签名').notEmpty();
     add.introduction = req.body.introduction;
     add.published = req.body.published;
     add.imgUrl = req.body.imgUrl;
@@ -56,13 +57,26 @@ router.post('/add', function (req, res, next) {
     }
 
 
-    res.render('admin/img/imgedit', {
-      title: '厍图片',
-      router: 'imgedit',
-      img:[add],
-      err: errors,
-      success: !errors.length
-    });
+    if(errors){
+      res.render('admin/img/imgadd', {
+        title: '厍图片',
+        router: 'imgadd',
+        img:[add],
+        err: errors,
+        success: !errors.length
+      });
+    }else{
+      res.render('admin/img/imgedit', {
+        title: '厍图片',
+        router: 'imgedit',
+        img:[add],
+        err: errors,
+        success: !errors.length
+      });
+    }
+
+
+
   }).catch(function (err) {
     console.log('出错文件' + __filename + "出错方法：update 具体内容", err)
   });

@@ -37,7 +37,12 @@ router.post('/add', function (req, res, next) {
     add.introduction = req.body.introduction;
     add.published = req.body.published;
     add.imgUrl = req.body.imgUrl;
-    add.sign = req.body.sign;
+    var sign=req.body.sign;
+    if(sign.indexOf('.')){
+      add.sign=sign.split(".");
+    }else{
+      add.sign = req.body.sign;
+    }
     add.excellent = req.body.excellent;
 
     var errors = req.validationErrors();

@@ -59,8 +59,9 @@
                     return true;
                 }
             });
-
-            var sign = [];
+            var val=$('#sign').val()
+            var sign = val.split(',');
+            setsign();
             Array.prototype.indexOf = function (val) {
                 for (var i = 0; i < this.length; i++) {
                     if (this[i] == val) return i;
@@ -178,14 +179,10 @@
                           <input id="sign" name="sign" value="{{sign}}" type="hidden"/>
 
                           <div class="bj">
-                              {{sign}}
-                            {{#each (split sign.to ".")}}
-                              {{this}}
-                            {{/each}}
-                            {{log (split sign ".")}}
-                              <span class=" label label-primary">手机摄影<em aria-hidden="true">&times;</em></span>
-                              <span class=" label label-primary">手机摄影<em aria-hidden="true">&times;</em></span>
 
+                            {{#each sign}}
+                                <span class=" label label-primary">{{this}}<em class="delsign" aria-hidden="true">&times;</em></span>
+                            {{/each}}
                           </div>
                       </div>
                   </div>
@@ -257,15 +254,15 @@
                         <div class="row avatar-btns">
                             <div class="col-md-9">
                                 <div class="btn-group">
-                                    <button class="btn" data-method="rotate" data-option="-90" type="button"
-                                            title="Rotate -90 degrees"><i class="fa fa-undo"></i> 向左旋转
+                                    <button class="btn" data-method="reset"  type="button"
+                                             ><i class="fa fa-undo"></i> 重置
                                     </button>
                                 </div>
-                                <div class="btn-group">
-                                    <button class="btn" data-method="rotate" data-option="90" type="button"
-                                            title="Rotate 90 degrees"><i class="fa fa-repeat"></i> 向右旋转
-                                    </button>
-                                </div>
+                                <!--<div class="btn-group">-->
+                                    <!--<button class="btn" data-method="rotate" data-option="90" type="button"-->
+                                            <!--title="Rotate 90 degrees"><i class="fa fa-repeat"></i> 向右旋转-->
+                                    <!--</button>-->
+                                <!--</div>-->
                             </div>
                             <div class="col-md-3">
                                 <button class="btn btn-success btn-block avatar-save" type="submit"><i

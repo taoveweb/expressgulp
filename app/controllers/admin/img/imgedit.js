@@ -23,11 +23,12 @@ router.get('/edit', function (req, res, next) {
       img = yield Image.find({"_id": id});
       img[0]['headPicture'] = img[0]['headPicture'] == "" ? "/common/uploadheaderimg/logo.jpg" : img[0]['headPicture'];
     }
-
+    console.log(img[0]);
     res.render('admin/img/imgedit', {
       title: '图片编缉',
       router: 'imgedit',
-      img: img
+      img: img,
+      sign:img[0]['sign']
 
     });
   }).catch(function (err) {
@@ -52,7 +53,12 @@ router.post('/update', function (req, res, next) {
       update.imgUrl = req.body.imgUrl
     }
     if (req.body.sign) {
-      update.sign = req.body.sign
+      var sign=req.body.sign;
+      if(sign.indexOf('.')){
+        update.sign=sign.split(".");
+      }else{
+        update.sign = req.body.sign;
+      }
     }
     if (req.body.introduction) {
       req.checkBody('introduction', '简介不能为空').notEmpty();

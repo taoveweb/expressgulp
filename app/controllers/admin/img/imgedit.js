@@ -10,11 +10,11 @@ var express = require('express'),
 
 
 module.exports = function (app) {
-  app.use('/admin/img', auth.adminLogin,router);
+  app.use('/admin/img', auth.adminLogin, router);
 };
 
 //图片表单
-router.get('/edit',  function (req, res, next) {
+router.get('/edit', function (req, res, next) {
 
   co(function *() {
     var id = req.query.id || "";
@@ -31,11 +31,11 @@ router.get('/edit',  function (req, res, next) {
 
     });
   }).catch(function (err) {
-    console.log('出错文件'+ __filename + "出错方法：edit 具体内容", err)
+    console.log('出错文件' + __filename + "出错方法：edit 具体内容", err)
   });
 });
 
-router.post('/update',  function (req, res, next) {
+router.post('/update', function (req, res, next) {
 
   co(function *() {
     var update = {};
@@ -52,7 +52,7 @@ router.post('/update',  function (req, res, next) {
       update.imgUrl = req.body.imgUrl
     }
     if (req.body.introduction) {
-          req.checkBody('introduction', '简介不能为空').isNull();
+      req.checkBody('introduction', '简介不能为空').isNull();
       update.introduction = req.body.introduction
     }
 
@@ -84,9 +84,43 @@ router.post('/update',  function (req, res, next) {
       success: !errors.length
     });
   }).catch(function (err) {
-    console.log('出错文件'+ __filename + "出错方法：update 具体内容", err)
+    console.log('出错文件' + __filename + "出错方法：update 具体内容", err)
   });
 });
+
+
+router.get('/delete', function (req, res, next) {
+
+  co(function *() {
+    var id = req.query.id || "";
+    var state = false;
+    var img = yield new Promise(function (resolve, reject) {
+      Image.findOneAndRemove({'_id': id}, function (err, img) {
+        if (err) {
+          reject(err)
+        } else {
+          resolve(img)
+        }
+      });
+    });
+
+    if(img){
+      state = true;
+    }
+
+
+    res.json({
+      state: state
+    })
+
+  }).catch(function (err) {
+    console.log('出错文件' + __filename + "出错方法：edit 具体内容", err)
+  });
+
+});
+
+
+
 
 
 

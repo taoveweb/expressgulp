@@ -1,3 +1,28 @@
+{{#extend "script"}}
+  <script>
+      $(function(){
+          var obj={};
+          $('#tableList').on('click',".btn-danger",function(e){
+              $('#myModal').modal();
+              e.preventDefault();
+              obj=this;
+              return false;
+          });
+
+          $('#deletebtn').click(function(){
+              var _this=obj;
+              var url=$(_this).attr('href');
+              $.get(url,function(data){
+                  if(data.state){
+                      $('#myModal').modal("hide");
+                      $(_this).parents('tr').remove();
+                  }
+              })
+          })
+
+      })
+  </script>
+{{/extend}}
 {{>admin_navbarHeader}}
 <div class="container-fluid">
     <div class="row">
@@ -24,8 +49,9 @@
                     </li>
                 </ul>
             </nav>
-            <table class="table table-hover">
+            <table id="tableList" class="table table-hover">
                 <thead>
+                <th>id</th>
                 <th>简介</th>
                 <th>图片</th>
                 <th>作者</th>
@@ -53,6 +79,7 @@
                 <tbody>
                 {{#forEach imgs}}
                     <tr>
+                        <td>{{_id}}</td>
                         <td>{{introduction}}</td>
                         <td><img style="width: 30px; height: 30px;" src="{{imgUrl}}" alt=""/></td>
                         <td>{{author}}</td>
@@ -71,9 +98,9 @@
                             <a href="/admin/img/edit?id={{_id}}" class="btn btn-primary"><span
                                     class="glyphicon glyphicon-edit"></span>编缉
                             </a>
-                            <a href="/admin/img/edit?id={{_id}}" class="btn btn-danger"><span
+                            <button href="/admin/img/delete?id={{_id}}"    class="btn btn-danger " data-toggle="modal" data-target="#myModal"><span
                                     class="glyphicon glyphicon-remove"></span>删除
-                            </a>
+                            </button>
                         </td>
                     </tr>
                 {{/forEach}}
@@ -84,19 +111,22 @@
     </div>
 </div>
 
-{{#extend "script"}}
-    <script>
-        $(function () {
-//            $('.table thead').on('click', 'a', function (e) {
-//                e.preventDefault();
-//                var sort = '1';
-//                if ($(this).find('span').hasClass('glyphicon-arrow-down')) {
-//                    sort = '-1'
-//                    $(this).find('span').removeClass('glyphicon-arrow-down').addClass('glyphicon-arrow-up')
-//                }
-//
-//                window.location.href = window.location.href.split("?")[0] + $(this).attr('href') + sort
-//            })
-        })
-    </script>
-{{/extend}}
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">删除图片</h4>
+            </div>
+            <div class="modal-body">
+               确定要删除图片
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="deletebtn" type="button" class="btn btn-primary">确定删除</button>
+            </div>
+        </div>
+    </div>
+</div>

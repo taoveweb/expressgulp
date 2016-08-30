@@ -10,7 +10,7 @@ var mongoose = require('mongoose'),
   gm = require('gm'),
   crypto = require('crypto'),
   _ = require('lodash'),
-  config = require('../../config/config');
+  config = require('../../../config/config');
 formidable.IncomingForm.prototype._uploadPath = function (filename) {
   var name = 'hp_';
   var buf = crypto.randomBytes(16);
@@ -28,6 +28,7 @@ formidable.IncomingForm.prototype._uploadPath = function (filename) {
   return path.join(this.uploadDir, name);
 };
 module.exports=function(req,res,next){
+  console.log('bbb')
   co(function *() {
     var form = new formidable.IncomingForm();
     var dir = config.root + "/upload/images/" + new Date().getFullYear() + (new Date().getMonth() + 1) + '/';

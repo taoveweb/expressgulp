@@ -35,24 +35,16 @@
     <script src="/components/jquery-validation/dist/jquery.validate.min.js"></script>
     <script>
         $(function () {
-            jQuery.validator.addMethod("isMobile", function (value, element) {
-                var length = value.length;
-                return this.optional(element) || (length == 11 && /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/.test(value));
-            }, "请正确填写您的手机号码。");
-
             $().ready(function () {
                 $("#postEdit").validate({
                     rules: {
-                        email: {
-                            email: true
-                        },
-                        phone: {
-                            isMobile: true
+                        introduction: {
+                            required: true,
+                            minlength: 5
                         }
                     },
                     messages: {
-                        email: "请输入正确的邮箱格式如: example@oldku.com",
-                        phoneUK: "请输入正确的邮箱格式如: 18059178863"
+                        introduction: "至少5个字的简介"
                     },
                     submitHandler: function (form) {
                         // some other code
@@ -72,7 +64,6 @@
     <div class="row">
       {{>admin_navSidebar}}
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-
           {{#each err}}
               <div class="alert alert-warning alert-dismissible fade in" role="alert">
                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -83,20 +74,15 @@
           {{#if success}}
               <div class="alert alert-success" role="alert">提交成功</div>
           {{/if}}
-            <form id="postEdit" class="form-horizontal" action="/admin/img/update" method="post">
-                <input name="_id" value="{{_id}}" type="hidden"/>
-
+            <form id="postEdit" class="form-horizontal" action="/admin/img/add" method="post">
                 <div class="form-group">
                     <label class="col-sm-2 control-label">精选</label>
-
                     <div class="col-sm-10">
                         <label class="radio-inline">
-                            <input type="radio" name="excellent" id="inlineRadio1" {{#eq excellent 0}}checked{{/eq}}
-                                   value="0"> 普通
+                            <input type="radio" name="excellent" id="inlineRadio1" checked  value="0"> 普通
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" name="excellent" id="inlineRadio2" {{#eq excellent 1}}checked{{/eq}}
-                                   value="1"> 加精
+                            <input type="radio" name="excellent" id="inlineRadio2"  value="1"> 加精
                         </label>
 
                     </div>
@@ -106,14 +92,12 @@
 
                     <div class="col-sm-10">
                         <label class="checkbox-inline">
-                            <input type="checkbox" name="published" id="inlineRadio1" {{#eq published 1}}checked{{/eq}}
-                                   value="0"> 发布
+                            <input type="checkbox" checked name="published" id="inlineRadio1" value="1"> 发布
                         </label>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">添加关建字</label>
-
                     <div class="col-sm-10">
                         <div class="input-group">
                             <select class="form-control">
@@ -137,6 +121,7 @@
                               <button class="btn btn-default" type="button">添加</button>
                             </span>
                         </div>
+                        <input id="sign" name="sign" type="hidden"/>
                       <div class="bj">
 <!--
                         <span  class=" label label-primary" >手机摄影<em aria-hidden="true">&times;</em></span>
@@ -148,8 +133,7 @@
                     <label for="introduction" class="col-sm-2 control-label">简介</label>
 
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="introduction" name="introduction"
-                               placeholder="{{introduction}}">
+                        <input type="text" class="form-control" id="introduction" name="introduction" >
                     </div>
                 </div>
 

@@ -73,7 +73,6 @@ router.post('/update',  function (req, res, next) {
         });
       })
     }
-    console.log(img)
 
     img['imgUrl'] = img['imgUrl'] == "" ? "/common/uploadheaderimg/logo.jpg" : img['imgUrl'];
 
@@ -90,10 +89,6 @@ router.post('/update',  function (req, res, next) {
 });
 
 
-//提交图片
-router.post('/edit/postimg',function(req,res,next){
-  require('../../../function/uploadimg')(req, res, next)
-})
 
 
 

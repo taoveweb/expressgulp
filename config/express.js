@@ -100,10 +100,11 @@ module.exports = function (app, config,connection) {
   app.use(express.static(config.root + '/upload'));
   app.use(methodOverride());
 
-  var controllers = glob.sync(config.root + '/app/controllers/**/*.js');
+  var controllers = glob.sync(config.root + '/app/controllers/**/*.js',{ignore:config.root + '/app/controllers/function/*.js'});
   controllers.forEach(function (controller) {
     require(controller)(app);
   });
+
 
   app.use(function (req, res, next) {
     var err = new Error('Not Found');

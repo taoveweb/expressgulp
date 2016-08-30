@@ -34,16 +34,29 @@
                 <th>精选</th>
                 <th>被赞</th>
                 <th>评论</th>
-                <th>创建时间</th>
+                <th>
+                  {{#eq sortby 'created'}}
+
+                    {{#eq sortdir 'desc'}}
+                        <a href="?page={{currentPage}}&sortby=created&sortdir=asc">创建时间 <span
+                                class="glyphicon glyphicon-arrow-down"></span></a>
+                    {{else}}
+                        <a href="?page={{currentPage}}&sortby=created&sortdir=desc">创建时间 <span
+                                class="glyphicon glyphicon-arrow-up"></span></a>
+                    {{/eq}}
+                  {{else}}
+                      <a href="?page={{currentPage}}&sortby=created&sortdir=desc">创建时间 </a>
+                  {{/eq}}
+                </th>
                 <th>操作</th>
                 </thead>
                 <tbody>
                 {{#forEach imgs}}
                     <tr>
                         <td>{{introduction}}</td>
-                        <td>{{sex}}</td>
                         <td><img style="width: 30px; height: 30px;" src="{{imgUrl}}" alt=""/></td>
                         <td>{{author}}</td>
+                        <td>{{published}}</td>
                         <td>{{#each sign}}{{this}}{{/each}}</td>
                         <td>{{excellent}}</td>
                         <td>

@@ -2,7 +2,7 @@ var express = require('express'),
   router = express.Router(),
   auth = require('../../mobile/user/user'),
   mongoose = require('mongoose'),
-  Image = mongoose.model('Image'),
+  Activity = mongoose.model('Activity'),
   co = require('co'),
   path = require('path'),
   fs = require('fs'),
@@ -10,17 +10,17 @@ var express = require('express'),
 
 
 module.exports = function (app) {
-  app.use('/admin/img', auth.adminLogin, router);
+  app.use('/admin/activity', auth.adminLogin, router);
 };
 
 //图片表单
 router.get('/edit', function (req, res, next) {
   co(function *() {
     var id = req.query.id || "";
-    var img = {};
+    var activities = {};
     if (id) {
-      img = yield new Promise(function(resolve,reject){
-        Image.find({"_id": id}).exec(function(err,doc){
+      activities = yield new Promise(function(resolve,reject){
+        Activity.find({"_id": id}).exec(function(err,doc){
           if(err){
             reject(err);
           }else{
@@ -28,14 +28,14 @@ router.get('/edit', function (req, res, next) {
           }
         });
       });
-      img[0]['headPicture'] = img[0]['headPicture'] == "" ? "/common/uploadheaderimg/logo.jpg" : img[0]['headPicture'];
     }
-    res.render('admin/img/imgedit', {
-      title: '图片编缉',
-      router: 'imglist',
-      img: img,
-      sign:img[0]['sign']
 
+    activities['imgUrl'] = activities['imgUrl'] == "" ? "/common/uploadheaderimg/logo.jpg" : activities['imgUrl'];
+    console.log(activities)
+    res.render('admin/activity/activityEdit', {
+      title: '图片编缉',
+      router: 'activityList',
+      activities: activities
     });
   }).catch(function (err) {
     console.log('出错文件' + __filename + "出错方法：edit 具体内容", err)
@@ -47,54 +47,61 @@ router.post('/update', function (req, res, next) {
   co(function *() {
     var update = {};
     var oldImg = "";
-    if (req.body.excellent) {
-      req.checkBody('excellent', '不是数字').isInt();
-      update.excellent = req.body.excellent;
-    }
     if (req.body.published) {
       req.checkBody('published', '不是数字').isInt();
       update.published = req.body.published
+    }else{
+      update.published =0;
     }
-    if (req.body.imgUrl) {
-      update.imgUrl = req.body.imgUrl
+
+    if (req.body.activitiesUrl) {
+      update.activitiesUrl = req.body.activitiesUrl
     }
+
     if (req.body.sign) {
+
       var sign=req.body.sign;
-      if(sign.indexOf('.') !== -1){
+      if(sign.indexOf('.')!==-1){
         update.sign=sign.split(".");
       }else{
         update.sign = req.body.sign;
       }
     }
-    if (req.body.introduction) {
-      req.checkBody('introduction', '简介不能为空').notEmpty();
-      update.introduction = req.body.introduction
+    if (req.body.title) {
+      req.checkBody('title', '简介不能为空').notEmpty();
+      update.title = req.body.title
     }
-
+    if (req.body.content) {
+      req.checkBody('content', '主要内容不能为空').notEmpty();
+      update.content = req.body.content
+    }
+    if (req.body.imgUrl) {
+      update.imgUrl = req.body.imgUrl
+    }
     var errors = req.validationErrors();
     if (errors) {
       console.log(errors);
     }
     var id = req.body['_id'] || "";
-    var img = {};
+    var activities = {};
     if (update) {
-      img = yield new Promise(function (resolve, reject) {
-        Image.findOneAndUpdate({"_id": id}, update, {new: true}, function (err, img) {
+      activities = yield new Promise(function (resolve, reject) {
+        Activity.findOneAndUpdate({"_id": id}, update, {new: true}, function (err, activities) {
           if (err) {
             reject(err)
           } else {
-            resolve(img)
+            resolve(activities)
           }
         });
       })
     }
 
-    img['imgUrl'] = img['imgUrl'] == "" ? "/common/uploadheaderimg/logo.jpg" : img['imgUrl'];
 
-    res.render('admin/img/imgedit', {
+    activities['imgUrl'] = activities['imgUrl'] == "" ? "/common/uploadheaderimg/logo.jpg" : activities['imgUrl'];
+    res.render('admin/activity/activityEdit', {
       title: '图片编缉',
-      router: 'imgedit',
-      img: [img],
+      router: 'activitiesedit',
+      activities: [activities],
       err: errors,
       success: !errors.length
     });
@@ -109,17 +116,17 @@ router.get('/delete', function (req, res, next) {
   co(function *() {
     var id = req.query.id || "";
     var state = false;
-    var img = yield new Promise(function (resolve, reject) {
-      Image.findOneAndRemove({'_id': id}, function (err, img) {
+    var activities = yield new Promise(function (resolve, reject) {
+      Activity.findOneAndRemove({'_id': id}, function (err, activities) {
         if (err) {
           reject(err)
         } else {
-          resolve(img)
+          resolve(activities)
         }
       });
     });
 
-    if(img){
+    if(activities){
       state = true;
     }
 

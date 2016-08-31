@@ -6,7 +6,17 @@ var express = require('express'),
 
 module.exports = function (app) {
   app.use('/admin', router);
+
 };
+router.get('/', function (req, res, next) {
+  if (req.user) {
+    res.redirect('/admin/user/list');
+  } else {
+    res.render('admin/login', {
+      title: '后台登录'
+    });
+  }
+});
 
 router.get('/login', function (req, res, next) {
   if (req.user) {

@@ -1,29 +1,44 @@
+{{#extend "style"}}
+    <link href="/components/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+{{/extend}}
+{{#extend "script"}}
+    <script src="/common/js/moment.min.js"></script>
+    <script src="/components/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('input[name="daterange"]').daterangepicker({
+                timePicker: true,
+                locale: {
+                    format: 'YYYY/MM/DD HH.mm.ss'
+                }
+            });
+        });
+    </script>
+{{/extend}}
 {{>admin_navbarHeader}}
 <div class="container-fluid">
     <div class="row">
       {{>admin_navSidebar}}
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <nav>
-                <ul class="pagination">
-                    <li>
-                        <a href="?page={{prePage}}&sortby={{../sortby}}&sortdir={{../sortdir}}" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-
-                  {{#for starPage endPage  1}}
-                      <li class="{{#is   this  ../currentPage }} active{{/is}}">
-                          <a href="?page={{this}}&sortby={{../sortby}}&sortdir={{../sortdir}}">{{this}}</a></li>
-                  {{/for}}
-                    <li><a href="?page={{pageCount}}&sortby={{../sortby}}&sortdir={{../sortdir}}">总共{{pageCount}}页</a>
-                    </li>
-                    <li>
-                        <a href="?page={{nextPage}}&sortby={{../sortby}}&sortdir={{../sortdir}}" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+            <form class="form-inline">
+                <div class="form-group">
+                    <label class="sr-only" for="email">邮箱</label>
+                    <input type="email" class="form-control" id="email" placeholder="邮箱">
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="name">Password</label>
+                    <input type="text" class="form-control" id="name" placeholder="昵称">
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="phone">手机号码</label>
+                    <input type="tel" class="form-control" id="phone" placeholder="手机号码">
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="phone">时间段</label>
+                    <input type="text"  style="width: 308px;" class="form-control" name="daterange" value="01/01/2015 1:30 PM - 01/01/2015 2:00 PM"/>
+                </div>
+                <button type="submit" class="btn btn-default">搜索</button>
+            </form>
             <table class="table table-hover">
                 <thead>
                 <th>昵称</th>
@@ -103,7 +118,7 @@
                 <th>操作</th>
                 </thead>
                 <tbody>
-                {{#forEach users}}
+                {{#forEach docs}}
                     <tr>
                         <td>{{name}}</td>
                         <td>{{sex}}</td>
@@ -130,7 +145,29 @@
                 {{/forEach}}
                 </tbody>
             </table>
+          {{#gt pageCount 1}}
+              <nav>
+                  <ul class="pagination">
+                      <li>
+                          <a href="?page={{prePage}}&sortby={{../sortby}}&sortdir={{../sortdir}}" aria-label="Previous">
+                              <span aria-hidden="true">&laquo;</span>
+                          </a>
+                      </li>
 
+                    {{#for starPage endPage  1}}
+                        <li class="{{#is   this  ../currentPage }} active{{/is}}">
+                            <a href="?page={{this}}&sortby={{../sortby}}&sortdir={{../sortdir}}">{{this}}</a></li>
+                    {{/for}}
+                      <li><a href="?page={{pageCount}}&sortby={{../sortby}}&sortdir={{../sortdir}}">总共{{pageCount}}页</a>
+                      </li>
+                      <li>
+                          <a href="?page={{nextPage}}&sortby={{../sortby}}&sortdir={{../sortdir}}" aria-label="Next">
+                              <span aria-hidden="true">&raquo;</span>
+                          </a>
+                      </li>
+                  </ul>
+              </nav>
+          {{/gt}}
         </div>
     </div>
 </div>

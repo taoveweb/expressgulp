@@ -1,65 +1,64 @@
 {{#extend "script"}}
-  <script>
-      $(function(){
-          var obj={};
-          $('#tableList').on('click',".btn-danger",function(e){
-              $('#myModal').modal();
-              e.preventDefault();
-              obj=this;
-              return false;
-          });
+    <script>
+        $(function () {
+            var obj = {};
+            $('#tableList').on('click', ".btn-danger", function (e) {
+                $('#myModal').modal();
+                e.preventDefault();
+                obj = this;
+                return false;
+            });
 
-          $('#deletebtn').click(function(){
-              var _this=obj;
-              var url=$(_this).attr('href');
-              $.get(url,function(data){
-                  if(data.state){
-                      $('#myModal').modal("hide");
-                      $(_this).parents('tr').remove();
-                  }
-              })
-          })
+            $('#deletebtn').click(function () {
+                var _this = obj;
+                var url = $(_this).attr('href');
+                $.get(url, function (data) {
+                    if (data.state) {
+                        $('#myModal').modal("hide");
+                        $(_this).parents('tr').remove();
+                    }
+                })
+            })
 
-      })
-  </script>
+        })
+    </script>
 {{/extend}}
 {{>admin_navbarHeader}}
 <div class="container-fluid">
     <div class="row">
       {{>admin_navSidebar}}
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <nav>
-                <ul class="pagination">
-                    <li>
-                        <a href="?page={{prePage}}&sortby={{../sortby}}&sortdir={{../sortdir}}" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
+          {{#gt pageCount 1}}
+              <nav>
+                  <ul class="pagination">
+                      <li>
+                          <a href="?page={{prePage}}&sortby={{../sortby}}&sortdir={{../sortdir}}" aria-label="Previous">
+                              <span aria-hidden="true">&laquo;</span>
+                          </a>
+                      </li>
 
-                  {{#for starPage endPage  1}}
-                      <li class="{{#is   this  ../currentPage }} active{{/is}}">
-                          <a href="?page={{this}}&sortby={{../sortby}}&sortdir={{../sortdir}}">{{this}}</a></li>
-                  {{/for}}
-                    <li><a href="?page={{pageCount}}&sortby={{../sortby}}&sortdir={{../sortdir}}">总共{{pageCount}}页</a>
-                    </li>
-                    <li>
-                        <a href="?page={{nextPage}}&sortby={{../sortby}}&sortdir={{../sortdir}}" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+                    {{#for starPage endPage  1}}
+                        <li class="{{#is   this  ../currentPage }} active{{/is}}">
+                            <a href="?page={{this}}&sortby={{../sortby}}&sortdir={{../sortdir}}">{{this}}</a></li>
+                    {{/for}}
+                      <li><a href="?page={{pageCount}}&sortby={{../sortby}}&sortdir={{../sortdir}}">总共{{pageCount}}页</a>
+                      </li>
+                      <li>
+                          <a href="?page={{nextPage}}&sortby={{../sortby}}&sortdir={{../sortdir}}" aria-label="Next">
+                              <span aria-hidden="true">&raquo;</span>
+                          </a>
+                      </li>
+                  </ul>
+              </nav>
+          {{/gt}}
             <table id="tableList" class="table table-hover">
                 <thead>
                 <th>id</th>
-                <th>简介</th>
+                <th>标题</th>
                 <th>图片</th>
                 <th>作者</th>
                 <th>发布</th>
-                <th>签名</th>
-                <th>精选</th>
-                <th>被赞</th>
-                <th>评论</th>
+                <th>内容</th>
                 <th>
                   {{#eq sortby 'created'}}
 
@@ -77,28 +76,24 @@
                 <th>操作</th>
                 </thead>
                 <tbody>
-                {{#forEach imgs}}
+                {{#forEach docs}}
                     <tr>
                         <td>{{_id}}</td>
-                        <td>{{introduction}}</td>
+                        <td>{{title}}</td>
                         <td><img style="width: 30px; height: 30px;" src="{{imgUrl}}" alt=""/></td>
-                        <td>{{author.name}}</td>
+                        <td>{{author}}</td>
                         <td>{{published}}</td>
-                        <td>{{#each sign}}{{this}}{{/each}}</td>
-                        <td>{{excellent}}</td>
-                        <td>
-                         {{meta.favourates}}
-                        </td>
-                        <td>{{length comments}}</td>
+                        <td>{{content}}</td>
                         <td>{{moment created "YYYY-MM-DD HH.mm.ss"}}</td>
                         <td>
-                            <a href="/admin/img/edit?id={{_id}}" class="btn btn-primary"><span
+                            <a href="/admin/activity/edit?id={{_id}}" class="btn btn-primary"><span
                                     class="glyphicon glyphicon-play-circle"></span>查看
                             </a>
-                            <a href="/admin/img/edit?id={{_id}}" class="btn btn-primary"><span
+                            <a href="/admin/activity/edit?id={{_id}}" class="btn btn-primary"><span
                                     class="glyphicon glyphicon-edit"></span>编缉
                             </a>
-                            <button href="/admin/img/delete?id={{_id}}"    class="btn btn-danger " data-toggle="modal" data-target="#myModal"><span
+                            <button href="/admin/activity/delete?id={{_id}}" class="btn btn-danger " data-toggle="modal"
+                                    data-target="#myModal"><span
                                     class="glyphicon glyphicon-remove"></span>删除
                             </button>
                         </td>
@@ -117,11 +112,12 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">删除图片</h4>
             </div>
             <div class="modal-body">
-               确定要删除图片
+                确定要删除图片
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

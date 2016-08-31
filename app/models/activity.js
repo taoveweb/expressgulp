@@ -5,7 +5,9 @@ var mongoose = require('mongoose'),
 
 var ActivitySchema = new Schema({
   title: {type: String, required: true},
-  imgurl: {type: String, required: true},
+  imgUrl: {type: String, default :''},
+  published: {type: Number, default: 0},
+  sign:[Schema.Types.Mixed],//关健字
   author: {type: Schema.Types.ObjectId, ref: "User"},
   content: {type: String, required: true},
   created: {type: Date}

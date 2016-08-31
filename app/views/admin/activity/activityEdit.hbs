@@ -1,0 +1,223 @@
+{{#extend "style"}}
+    <link href="{{STATIC}}/common/uploadheaderimg/cropper.min.css" rel="stylesheet">
+    <link href="/common/uploadheaderimg/sitelogo.css" rel="stylesheet">
+    <style>
+        label.error {
+            color: red;
+        }
+
+        .input-group {
+            width: 300px;
+        }
+
+        .label-primary {
+            position: relative;
+            padding-right: 0;
+            margin-right: 5px;
+            margin-top: 5px;
+        }
+
+        .label-primary em {
+            position: relative;
+            top: 2px;
+            display: inline-block;
+            width: 21px;
+            height: 21px;
+            text-align: center;
+            line-height: 21px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .label-primary em:hover {
+            color: #ffdc1e;
+        }
+    </style>
+{{/extend}}
+
+{{#extend "script"}}
+    <script src="/common/uploadheaderimg/cropper.min.js"></script>
+    <script src="/common/uploadheaderimg/siteimage.js"></script>
+    <script src="/components/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="/components/ckeditor/ckeditor.js"></script>
+    <script>
+        $(function () {
+            $("#postEdit").validate({
+                rules: {
+                    introduction: {
+                        required: true,
+                        minlength: 5
+                    },
+                    sign: {
+                        required: true
+                    }
+                },
+                messages: {
+                    introduction: "至少5个字的简介",
+                    required: "没有设置签名"
+                },
+                submitHandler: function (form) {
+                    return true;
+                }
+            });
+            var val=$('#sign').val()
+            var sign = val.split(',');
+            setsign();
+            Array.prototype.indexOf = function (val) {
+                for (var i = 0; i < this.length; i++) {
+                    if (this[i] == val) return i;
+                }
+                return -1;
+            };
+
+            Array.prototype.remove = function (val) {
+                var index = this.indexOf(val);
+                if (index > -1) {
+                    this.splice(index, 1);
+                }
+            };
+
+            $('#addSign').click(function () {
+                var val = $(".form-control  option:selected").val();
+                if (sign.indexOf(val) === -1) {
+                    sign.push(val);
+                    $('.bj').append('<span  class=" label label-primary" >' + val + '<em class="delsign" aria-hidden="true">&times;</em></span>')
+                    setsign();
+                }
+            });
+
+            $('.bj').on('click', '.delsign', function () {
+                var parent = $(this).parent();
+                parent.find('em').remove();
+                var val = parent.html();
+                parent.remove();
+                sign.remove(val);
+                setsign();
+            })
+
+            function setsign() {
+                $('#sign').val(sign.join('.'));
+            }
+            //文本编缉器
+            CKEDITOR.replace( 'content' );
+        })
+    </script>
+{{/extend}}
+{{>admin_navbarHeader}}
+<div class="container-fluid">
+    <div class="row">
+      {{>admin_navSidebar}}
+        <ol class="breadcrumb col-md-offset-2">
+            <li><a href="/admin/img/list">图片列表</a></li>
+            <li class="active">编辑图片</li>
+        </ol>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+          {{#each err}}
+              <div class="alert alert-warning alert-dismissible fade in" role="alert">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">×</span></button>
+                {{msg}}
+              </div>
+          {{/each}}
+          {{#if success}}
+              <div class="alert alert-success" role="alert">提交成功</div>
+          {{/if}}
+          {{#each activities}}
+              <form id="postEdit" class="form-horizontal" action="/admin/activity/update" method="post">
+                  <input name="_id" value="{{_id}}" type="hidden"/>
+                  <div class="form-group">
+                      <label class="col-sm-2 control-label">发布状态</label>
+
+                      <div class="col-sm-10">
+                          <label class="checkbox-inline">
+                              <input type="checkbox" name="published" id="published"
+                                     {{#eq published 1}}checked{{/eq}}
+                                     value="1"> 发布
+                          </label>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label for="title" class="col-sm-2 control-label">简介</label>
+                      <div class="col-sm-10">
+                          <input type="text" class="form-control" id="title" name="title"
+                                 value="{{title}}">
+                      </div>
+                  </div>
+
+                  <div class="form-group">
+                      <label class="col-sm-2 control-label">添加关建字</label>
+                      <div class="col-sm-10">
+                          <div class="input-group">
+                              <select class="form-control">
+                                  <option>手机摄影</option>
+                                  <option>风光</option>
+                                  <option>纪实</option>
+                                  <option>人像</option>
+                                  <option>摄影</option>
+                                  <option>城市</option>
+                                  <option>黑白</option>
+                                  <option>生活方式</option>
+                                  <option>静物</option>
+                                  <option>建筑</option>
+                                  <option>美食</option>
+                                  <option>儿童摄影</option>
+                                  <option>婚纱摄影</option>
+                                  <option>旅行摄影</option>
+                                  <option>未分类</option>
+                              </select>
+                            <span class="input-group-btn">
+                              <button id="addSign" class="btn btn-default" type="button">添加</button>
+                            </span>
+                          </div>
+                          <input id="sign" name="sign" value="{{sign}}" type="hidden"/>
+
+                          <div class="bj">
+
+                            {{#each sign}}
+                                <span class=" label label-primary">{{this}}<em class="delsign" aria-hidden="true">&times;</em></span>
+                            {{/each}}
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="form-group">
+                      <label for="imgUrl" class="col-sm-2 control-label">图片</label>
+
+                      <div class="col-sm-10">
+                          <div class="ibox-content">
+                              <div class="row">
+                                  <div id="crop-avatar" class="col-md-6">
+                                      <div class="avatar-view" title="Change Logo Picture">
+                                          <img src="{{imgUrl}}" alt="Logo">
+                                          <input id="imgUrl" name="imgUrl" type="hidden"/>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <p class="help-block">提交新的图片</p>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label for="content" class="col-sm-2 control-label">发布内容</label>
+
+                      <div class="col-sm-10">
+                          <textarea type="text" class="form-control" id="content" name="content">
+                            {{content}}
+                          </textarea>
+                      </div>
+                  </div>
+
+                  <div class="form-group">
+                      <div class="col-sm-offset-2 col-sm-10">
+                          <button type="submit" class="btn btn-primary btn-lg">提交</button>
+                      </div>
+                  </div>
+              </form>
+          {{/each}}
+        </div>
+    </div>
+</div>
+{{>admin_img_upload}}
+<div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
+

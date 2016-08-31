@@ -74,13 +74,7 @@ router.post('/add', function (req, res, next) {
         success: !errors.length
       });
     }else{
-      res.render('admin/img/imgedit', {
-        title: '厍图片',
-        router: 'imgedit',
-        img:[add],
-        err: errors,
-        success: !errors.length
-      });
+      res.redirect("/admin/img/edit?id="+add["_id"]);
     }
 
 

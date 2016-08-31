@@ -13,7 +13,16 @@ module.exports = function (app) {
 
 //会员列表
 router.get('/list',  function (req, res, next) {
-  co(function *() {
+  var search={};
+  var option={
+    Model:Image,
+    routerClass:'imglist',
+    hbsTemplate:'admin/img/imglist',
+    sortArray:['created', 'sex', 'fans', 'concern'],
+    search:search
+  };
+  require('../../function/pagelist')(req, res, next,option);
+  /*co(function *() {
     var pageSize = 18;
     var count = yield Image.count({});
     var pageNum = req.query.page || 1;
@@ -75,7 +84,7 @@ router.get('/list',  function (req, res, next) {
     });
   }).catch(function (err) {
     console.log('出错文件'+ __filename + "出错方法：list 具体内容", err)
-  });
+  });*/
 });
 
 

@@ -50,7 +50,7 @@ router.get('/list',  function (req, res, next) {
     var prePage = starPage - pageSize <= 0 ? 1 : starPage - pageSize;
     var nextPage = starPage + pageSize >= pageCount ? pageCount : starPage + pageSize;
     var imgs = yield new Promise(function (resolve, reject) {
-      Image.find().sort(sortObj).skip((pageNum - 1) * pageSize).limit(pageSize).exec(function (err, imgs) {
+      Image.find().populate('author').sort(sortObj).skip((pageNum - 1) * pageSize).limit(pageSize).exec(function (err, imgs) {
         if (err) {
           reject(err);
         } else {

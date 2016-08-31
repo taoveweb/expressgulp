@@ -4,33 +4,22 @@ var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
 var ActivitySchema = new Schema({
-  title: {type:String,required:true},
-  imgurl: {type:String,required:true},
-  content: {type:String,required:true},
-  created: {type:Date}
+  title: {type: String, required: true},
+  imgurl: {type: String, required: true},
+  author: {type: Schema.Types.ObjectId, ref: "User"},
+  content: {type: String, required: true},
+  created: {type: Date}
 });
 
 mongoose.model('Activity', ActivitySchema);
 
-//db.categorys.insert([
-//  {
-//    title:"javascript",
-//    slug:"javascript",
-//    created:new Date()
-//  },
-//  {
-//    title:"css",
-//    slug:"css",
-//    created:new Date()
-//  },
-//  {
-//    title:"html",
-//    slug:"html",
-//    created:new Date()
-//  },
-//  {
-//    title:"Tools",
-//    slug:"Tools",
-//    created:new Date()
-//  }
-//])
+/*for (var i = 0; i < 1000; i++) {
+  db.activitys.insert(
+    {
+      title: "我要驾车去旅行",
+      imgurl: "",
+      author: ObjectId("57c12c1c6b4fcbbaf0f7a8dc"),
+      content: "我要驾车去旅行这是一个文本内容",
+      created: new Date()
+    });
+}*/

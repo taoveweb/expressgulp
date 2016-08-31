@@ -29,6 +29,8 @@ router.get('/add', function (req, res, next) {
 router.post('/add', function (req, res, next) {
   co(function *() {
     var add = {};
+    var user=req.user;
+
     req.checkBody('excellent', '不是数字').isInt();
     req.checkBody('published', '不是数字').isInt();
     req.checkBody('imgUrl', '图片不能为空').notEmpty();
@@ -37,6 +39,7 @@ router.post('/add', function (req, res, next) {
     add.introduction = req.body.introduction;
     add.published = req.body.published;
     add.imgUrl = req.body.imgUrl;
+    add.author=user['_id'];
     var sign=req.body.sign;
     if(sign.indexOf('.')){
       add.sign=sign.split(".");

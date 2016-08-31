@@ -15,15 +15,21 @@ module.exports = function (app) {
 
 //图片表单
 router.get('/edit', function (req, res, next) {
-
   co(function *() {
     var id = req.query.id || "";
     var img = {};
     if (id) {
-      img = yield Image.find({"_id": id});
+      img = yield new Promise(function(resolve,reject){
+        Image.find({"_id": id}).exec(function(err,doc){
+          if(err){
+            reject(err);
+          }else{
+            resolve(doc)
+          }
+        });
+      });
       img[0]['headPicture'] = img[0]['headPicture'] == "" ? "/common/uploadheaderimg/logo.jpg" : img[0]['headPicture'];
     }
-    console.log(img[0]);
     res.render('admin/img/imgedit', {
       title: '图片编缉',
       router: 'imgedit',

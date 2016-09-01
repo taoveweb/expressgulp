@@ -9,7 +9,7 @@ module.exports = function (app) {
 
 };
 router.get('/', function (req, res, next) {
-  if (req.user) {
+  if (req.user && req.user.admin == 3) {
     res.redirect('/admin/user/list');
   } else {
     res.render('admin/login', {
@@ -19,7 +19,7 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/login', function (req, res, next) {
-  if (req.user) {
+  if (req.user && req.user.admin == 3) {
     res.redirect('/admin/user/list');
   } else {
     res.render('admin/login', {

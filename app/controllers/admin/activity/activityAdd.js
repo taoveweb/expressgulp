@@ -56,6 +56,7 @@ router.post('/add', function (req, res, next) {
       add.sign = req.body.sign;
     }
     add.excellent = req.body.excellent;
+    add.created=new Date();
 
 
     var errors = req.validationErrors();

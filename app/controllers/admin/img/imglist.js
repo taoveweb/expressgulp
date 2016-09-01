@@ -30,6 +30,7 @@ router.get('/list', function (req, res, next) {
     originSearch.daterange=req.query.daterange;
     var dataArr = req.query.daterange.split('+/+');
     search.created = {$lte: new Date(dataArr[1].replace("+"," ")),$gte:new Date(dataArr[0].replace("+"," "))};
+    console.log(search.created )
   }
 
 

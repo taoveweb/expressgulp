@@ -41,26 +41,44 @@
     <script src="/components/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="/components/ckeditor/ckeditor.js"></script>
     <script>
+        // 匹配汉字
+        jQuery.validator.addMethod("isChinese", function(value, element) {
+            return this.optional(element) || /^[\u4e00-\u9fa5]+$/.test(value);
+        }, "匹配汉字");
         $(function () {
             $("#postEdit").validate({
+                ignore: "",
                 rules: {
-                    introduction: {
+                    title: {
+                        required: true,
+                        minlength: 5,
+                        isChinese:true
+                    },
+                    imgUrl: {
                         required: true,
                         minlength: 5
                     },
                     sign: {
-                        required: true
+                        required: true,
+                        minlength: 2
+                    },
+                    content: {
+                        required: true,
+                        minlength: 20,
+                        maxlength:20000
                     }
                 },
                 messages: {
-                    introduction: "至少5个字的简介",
-                    required: "没有设置签名"
+                    title: "标题到少数4个字中文字",
+                    sign: "标签最少2个字",
+                    imgUrl: "图片还提交",
+                    content: '活动内容为到少女20字'
                 },
                 submitHandler: function (form) {
                     return true;
                 }
             });
-            var val=$('#sign').val()
+            var val = $('#sign').val();
             var sign = val.split(',');
             setsign();
             Array.prototype.indexOf = function (val) {
@@ -78,8 +96,8 @@
             };
 
             $('#addSign').click(function () {
-                var val = $(".form-control  option:selected").val();
-                if (sign.indexOf(val) === -1) {
+                var val = $(".signval").val().trim();
+                if (sign.indexOf(val) === -1 && val!="") {
                     sign.push(val);
                     $('.bj').append('<span  class=" label label-primary" >' + val + '<em class="delsign" aria-hidden="true">&times;</em></span>')
                     setsign();
@@ -98,8 +116,9 @@
             function setsign() {
                 $('#sign').val(sign.join('.'));
             }
+
             //文本编缉器
-            CKEDITOR.replace( 'content' );
+            CKEDITOR.replace('content');
         })
     </script>
 {{/extend}}
@@ -123,6 +142,7 @@
           {{#each activities}}
               <form id="postEdit" class="form-horizontal" action="/admin/activity/add" method="post">
                   <input name="_id" value="{{_id}}" type="hidden"/>
+
                   <div class="form-group">
                       <label class="col-sm-2 control-label">发布状态</label>
 
@@ -135,7 +155,8 @@
                       </div>
                   </div>
                   <div class="form-group">
-                      <label for="title" class="col-sm-2 control-label">简介</label>
+                      <label for="title" class="col-sm-2 control-label">活动标题</label>
+
                       <div class="col-sm-10">
                           <input type="text" class="form-control" id="title" name="title"
                                  value="{{title}}">
@@ -144,25 +165,10 @@
 
                   <div class="form-group">
                       <label class="col-sm-2 control-label">添加关建字</label>
+
                       <div class="col-sm-10">
                           <div class="input-group">
-                              <select class="form-control">
-                                  <option>手机摄影</option>
-                                  <option>风光</option>
-                                  <option>纪实</option>
-                                  <option>人像</option>
-                                  <option>摄影</option>
-                                  <option>城市</option>
-                                  <option>黑白</option>
-                                  <option>生活方式</option>
-                                  <option>静物</option>
-                                  <option>建筑</option>
-                                  <option>美食</option>
-                                  <option>儿童摄影</option>
-                                  <option>婚纱摄影</option>
-                                  <option>旅行摄影</option>
-                                  <option>未分类</option>
-                              </select>
+                              <input class="form-control signval" placeholder="自定议标签" type="text"/>
                             <span class="input-group-btn">
                               <button id="addSign" class="btn btn-default" type="button">添加</button>
                             </span>
@@ -172,7 +178,8 @@
                           <div class="bj">
 
                             {{#each sign}}
-                                <span class=" label label-primary">{{this}}<em class="delsign" aria-hidden="true">&times;</em></span>
+                                <span class=" label label-primary">{{this}}<em class="delsign"
+                                                                               aria-hidden="true">&times;</em></span>
                             {{/each}}
                           </div>
                       </div>
@@ -187,8 +194,8 @@
                                   <div id="crop-avatar" class="col-md-6">
                                       <div class="avatar-view" title="Change Logo Picture">
                                           <img src="{{imgUrl}}" alt="Logo">
-                                          <input id="imgUrl" name="imgUrl" value="{{imgUrl}}" type="hidden"/>
                                       </div>
+                                      <input id="imgUrl" name="imgUrl" value="" type="hidden"/>
                                   </div>
                               </div>
                           </div>

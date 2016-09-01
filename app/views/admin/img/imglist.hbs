@@ -160,6 +160,7 @@
                       <a href="?page={{currentPage}}&sortby=created&sortdir=desc&{{search}}">创建时间 </a>
                   {{/eq}}
                 </th>
+                <th>更新时间</th>
                 <th>操作</th>
                 </thead>
                 <tbody>
@@ -177,6 +178,7 @@
                         </td>
                         <td>{{length comments}}</td>
                         <td>{{moment created "YYYY-MM-DD HH.mm.ss"}}</td>
+                        <td>{{moment updated "YYYY-MM-DD HH.mm.ss"}}</td>
                         <td>
                             <a href="/admin/img/edit?id={{_id}}" class="btn btn-primary"><span
                                     class="glyphicon glyphicon-play-circle"></span>查看

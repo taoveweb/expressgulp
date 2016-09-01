@@ -10,7 +10,8 @@ var ActivitySchema = new Schema({
   sign:[Schema.Types.Mixed],//关健字
   author: {type: Schema.Types.ObjectId, ref: "User"},
   content: {type: String, required: true},
-  created: {type: Date}
+  created: {type: Date,default :new Date()},
+  updateby: {type: Date,default :new Date()}
 });
 
 mongoose.model('Activity', ActivitySchema);

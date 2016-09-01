@@ -78,6 +78,7 @@ router.post('/update', function (req, res, next) {
     var id = req.body['_id'] || "";
     var img = {};
     if (update) {
+      update.updateby=new Date();
       img = yield new Promise(function (resolve, reject) {
         Image.findOneAndUpdate({"_id": id}, update, {new: true}, function (err, img) {
           if (err) {

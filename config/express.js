@@ -35,7 +35,7 @@ module.exports = function (app, config,connection) {
   app.set('views', config.root + '/app/views');
   app.set('view engine', '.hbs');
 
-  // app.use(favicon(config.root + '/public/img/favicon.ico'));
+  app.use(favicon(config.root + '/public/favicon.ico'));
   app.use(logger('dev'));
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({
@@ -46,8 +46,8 @@ module.exports = function (app, config,connection) {
     secret: 'nodeblog',
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: false },
-    store: new MongoStore({ mongooseConnection: connection })
+    cookie: { secure: false},
+    store: new MongoStore({ mongooseConnection: connection,ttl:12 * 60 * 60 })
   }));
   app.use(require('connect-flash')());
   app.use(function (req, res, next) {

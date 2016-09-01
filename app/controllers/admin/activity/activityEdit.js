@@ -85,6 +85,7 @@ router.post('/update', function (req, res, next) {
     var id = req.body['_id'] || "";
     var activities = {};
     if (update) {
+      update.updateby=new Date();
       activities = yield new Promise(function (resolve, reject) {
         Activity.findOneAndUpdate({"_id": id}, update, {new: true}, function (err, activities) {
           if (err) {

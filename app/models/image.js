@@ -12,7 +12,8 @@ var ImageSchema = new Schema({
   meta: {type: Schema.Types.Mixed},//被赞
   excellent:{type:Number,default :0},//是否精选
   comments: [Schema.Types.Mixed],
-  created: {type: Date}
+  created: {type: Date,default :new Date()},
+  updateby: {type: Date,default :new Date()}
 });
 
 mongoose.model('Image', ImageSchema);

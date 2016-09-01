@@ -93,6 +93,7 @@ router.post('/update', function (req, res, next) {
     var id = req.body['_id'] || "";
     var user = {};
     if (update) {
+      update.updateby=new Date();
       user = yield new Promise(function (resolve, reject) {
         User.findOneAndUpdate({"_id": id}, update, {new: true}, function (err, user) {
           if (err) {

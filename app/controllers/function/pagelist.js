@@ -5,6 +5,7 @@ var mongoose = require('mongoose'),
   co = require('co'),
   path = require('path'),
   fs = require('fs'),
+  qs = require('qs'),
   crypto = require('crypto'),
   _ = require('lodash'),
   config = require('../../../config/config');
@@ -14,15 +15,12 @@ module.exports = function (req, res, next, option) {
     sortArray = option.sortArray,
     routerClass = option.routerClass,
     hbsTemplate = option.hbsTemplate,
-    search=option.search
+    search = option.search;
   co(function *() {
     var pageSize = 14;
-    var count = yield Model.count({});
+    var count = yield Model.count(search);
     var pageNum = req.query.page || 1;
     var pageCount = Math.ceil(count / pageSize);
-    if (pageNum > pageCount) {
-      pageNum = pageCount
-    }
     var starPage = 1;
     var sortby = req.query.sortby ? req.query.sortby : 'created';
     var sortdir = req.query.sortdir ? req.query.sortdir : 'desc';
@@ -42,8 +40,11 @@ module.exports = function (req, res, next, option) {
     var endPage = starPage + pageSize >= pageCount ? pageCount + 1 : starPage + pageSize;
     var prePage = starPage - pageSize <= 0 ? 1 : starPage - pageSize;
     var nextPage = starPage + pageSize >= pageCount ? pageCount : starPage + pageSize;
-    var docs = yield new Promise(function (resolve, reject) {
-      Model.find(search).sort(sortObj).skip((pageNum - 1) * pageSize).limit(pageSize).exec(function (err, docs) {
+    var docs = {};
+
+    docs = yield new Promise(function (resolve, reject) {
+      var skip=((pageNum - 1) * pageSize);
+      Model.find(search).sort(sortObj).skip(skip).limit(pageSize).exec(function (err, docs) {
         if (err) {
           reject(err);
         } else {
@@ -51,6 +52,7 @@ module.exports = function (req, res, next, option) {
         }
       });
     });
+
 
     res.render(hbsTemplate, {
       title: '会员列表',
@@ -64,6 +66,7 @@ module.exports = function (req, res, next, option) {
       sortdir: sortdir,
       sortby: sortby,
       router: routerClass,
+      search:qs.stringify(option.originSearch),
       currentPage: parseInt(pageNum)
     });
   }).catch(function (err) {

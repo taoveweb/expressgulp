@@ -4,14 +4,16 @@
 {{#extend "script"}}
     <script src="/common/js/moment.min.js"></script>
     <script src="/components/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="/common/js/jquery.querystring.js"></script>
     <script type="text/javascript">
         $(function () {
             var start = moment().subtract(1, 'days');
             var end = moment();
             $('input[name="daterange"]').daterangepicker({
-                startDate:start,
-                endDate:end,
-                maxDate:end,
+                autoUpdateInput: false,
+                startDate: start,
+                endDate: end,
+                maxDate: end,
                 ranges: {
                     '今天': [moment(), moment()],
                     '昨天': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
@@ -21,8 +23,8 @@
                     '上个月': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
                 },
                 "locale": {
-                    "format": "YYYY/MM/DD HH.mm.ss",
-                    "separator": " - ",
+                    "format": "YYYY-MM-DD HH:mm:ss",
+                    "separator": " / ",
                     "applyLabel": "确定",
                     "cancelLabel": "取消",
                     "fromLabel": "从",
@@ -54,8 +56,41 @@
                     ],
                     "firstDay": 1
                 }
+            }, function (start, end, label) {
+                var val = start.format('YYYY-MM-DD HH:mm:ss') + ' / ' + end.format('YYYY-MM-DD HH:mm:ss');
+                $('[name="daterange"]').val(val);
             });
+
+
+            $('#submit').click(function (e) {
+                e.preventDefault();
+                var action = $('#form').attr('action');
+                var actionSeach = $.querystring(action);
+                var serialize = $('#form').serialize();
+                var strObj = $.querystring(serialize);
+                $.extend(strObj,actionSeach);
+                console.log(strObj);
+                if (!strObj.email) {
+                    delete strObj.email;
+                }
+                if (!strObj.name) {
+                    delete strObj.name;
+                }
+                if (!strObj.phone) {
+                    delete strObj.phone;
+                }
+                if (!strObj.daterange) {
+                    delete strObj.daterange;
+                }
+                strObj = $.querystring(strObj);
+                var url = location.origin + location.pathname;
+                if(strObj){
+                    var url = url+"?"+strObj;
+                }
+               window.location.href = url;
+            })
         });
+
     </script>
 {{/extend}}
 {{>admin_navbarHeader}}
@@ -63,24 +98,27 @@
     <div class="row">
       {{>admin_navSidebar}}
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <form class="form-inline">
-                <div class="form-group">
-                    <label class="sr-only" for="email">邮箱</label>
-                    <input type="email" class="form-control" id="email" placeholder="邮箱">
-                </div>
+            <form class="form-inline" id="form"
+                  action="/admin/user/list?page={{currentPage}}&sortby={{sortby}}&sortdir={{sortdir}}&{{../search}}">
                 <div class="form-group">
                     <label class="sr-only" for="name">Password</label>
-                    <input type="text" class="form-control" id="name" placeholder="昵称">
+                    <input type="text" class="form-control" name="name" id="name" placeholder="昵称">
                 </div>
                 <div class="form-group">
+                    <label class="sr-only" for="email">邮箱</label>
+                    <input type="email" class="form-control" name="email" id="email" placeholder="邮箱">
+                </div>
+
+                <div class="form-group">
                     <label class="sr-only" for="phone">手机号码</label>
-                    <input type="tel" class="form-control" id="phone" placeholder="手机号码">
+                    <input type="tel" class="form-control" name="phone" id="phone" placeholder="手机号码">
                 </div>
                 <div class="form-group">
                     <label class="sr-only" for="phone">时间段</label>
-                    <input type="text"  style="width: 308px;" class="form-control" name="daterange" value="01/01/2015 1:30 PM - 01/01/2015 2:00 PM"/>
+                    <input placeholder="时间段" type="text" style="width: 305px;" class="form-control" name="daterange"
+                           value=""/>
                 </div>
-                <button type="submit" class="btn btn-default">搜索</button>
+                <button id="submit" type="submit" class="btn btn-default">搜索</button>
             </form>
             <table class="table table-hover">
                 <thead>
@@ -89,14 +127,14 @@
                   {{#eq sortby 'sex'}}
 
                     {{#eq sortdir 'desc'}}
-                        <a href="?page={{currentPage}}&sortby=sex&sortdir=asc">性别 <span
+                        <a href="?page={{currentPage}}&sortby=sex&sortdir=asc&{{search}}">性别 <span
                                 class="glyphicon glyphicon-arrow-down"></span></a>
                     {{else}}
-                        <a href="?page={{currentPage}}&sortby=sex&sortdir=desc">性别 <span
+                        <a href="?page={{currentPage}}&sortby=sex&sortdir=desc&{{search}}">性别 <span
                                 class="glyphicon glyphicon-arrow-up"></span></a>
                     {{/eq}}
                   {{else}}
-                      <a href="?page={{currentPage}}&sortby=sex&sortdir=desc">性别 </a>
+                      <a href="?page={{currentPage}}&sortby=sex&sortdir=desc&{{search}}">性别 </a>
                   {{/eq}}
                 </th>
                 <th>邮箱</th>
@@ -106,55 +144,55 @@
                   {{#eq sortby 'concern'}}
 
                     {{#eq sortdir 'desc'}}
-                        <a href="?page={{currentPage}}&sortby=concern&sortdir=asc">关注数 <span
+                        <a href="?page={{currentPage}}&sortby=concern&sortdir=asc&{{search}}">关注数 <span
                                 class="glyphicon glyphicon-arrow-down"></span></a>
                     {{else}}
-                        <a href="?page={{currentPage}}&sortby=concern&sortdir=desc">关注数 <span
+                        <a href="?page={{currentPage}}&sortby=concern&sortdir=desc&{{search}}">关注数 <span
                                 class="glyphicon glyphicon-arrow-up"></span></a>
                     {{/eq}}
                   {{else}}
-                      <a href="?page={{currentPage}}&sortby=concern&sortdir=desc">关注数 </a>
+                      <a href="?page={{currentPage}}&sortby=concern&sortdir=desc&{{search}}">关注数 </a>
                   {{/eq}}
                 </th>
                 <th>
                   {{#eq sortby 'fans'}}
 
                     {{#eq sortdir 'desc'}}
-                        <a href="?page={{currentPage}}&sortby=fans&sortdir=asc">粉丝数 <span
+                        <a href="?page={{currentPage}}&sortby=fans&sortdir=asc&{{search}}">粉丝数 <span
                                 class="glyphicon glyphicon-arrow-down"></span></a>
                     {{else}}
-                        <a href="?page={{currentPage}}&sortby=fans&sortdir=desc">粉丝数 <span
+                        <a href="?page={{currentPage}}&sortby=fans&sortdir=desc&{{search}}">粉丝数 <span
                                 class="glyphicon glyphicon-arrow-up"></span></a>
                     {{/eq}}
                   {{else}}
-                      <a href="?page={{currentPage}}&sortby=fans&sortdir=desc">粉丝数 </a>
+                      <a href="?page={{currentPage}}&sortby=fans&sortdir=desc&{{search}}">粉丝数 </a>
                   {{/eq}}
                 </th>
                 <th>
                   {{#eq sortby 'disable'}}
                     {{#eq sortdir 'desc'}}
-                        <a href="?page={{currentPage}}&sortby=disable&sortdir=asc">用户状态 <span
+                        <a href="?page={{currentPage}}&sortby=disable&sortdir=asc&{{search}}">用户状态 <span
                                 class="glyphicon glyphicon-arrow-down"></span></a>
                     {{else}}
-                        <a href="?page={{currentPage}}&sortby=disable&sortdir=desc">用户状态 <span
+                        <a href="?page={{currentPage}}&sortby=disable&sortdir=desc&{{search}}">用户状态 <span
                                 class="glyphicon glyphicon-arrow-up"></span></a>
                     {{/eq}}
                   {{else}}
-                      <a href="?page={{currentPage}}&sortby=disable&sortdir=desc">用户状态 </a>
+                      <a href="?page={{currentPage}}&sortby=disable&sortdir=desc&{{search}}">用户状态 </a>
                   {{/eq}}
                 </th>
                 <th>
                   {{#eq sortby 'created'}}
 
                     {{#eq sortdir 'desc'}}
-                        <a href="?page={{currentPage}}&sortby=created&sortdir=asc">创建时间 <span
+                        <a href="?page={{currentPage}}&sortby=created&sortdir=asc&{{search}}">创建时间 <span
                                 class="glyphicon glyphicon-arrow-down"></span></a>
                     {{else}}
-                        <a href="?page={{currentPage}}&sortby=created&sortdir=desc">创建时间 <span
+                        <a href="?page={{currentPage}}&sortby=created&sortdir=desc&{{search}}">创建时间 <span
                                 class="glyphicon glyphicon-arrow-up"></span></a>
                     {{/eq}}
                   {{else}}
-                      <a href="?page={{currentPage}}&sortby=created&sortdir=desc">创建时间 </a>
+                      <a href="?page={{currentPage}}&sortby=created&sortdir=desc&{{search}}">创建时间 </a>
                   {{/eq}}
                 </th>
                 <th>摄影师级别</th>
@@ -188,23 +226,24 @@
                 {{/forEach}}
                 </tbody>
             </table>
+
           {{#gt pageCount 1}}
               <nav>
                   <ul class="pagination">
                       <li>
-                          <a href="?page={{prePage}}&sortby={{../sortby}}&sortdir={{../sortdir}}" aria-label="Previous">
+                          <a href="?page={{prePage}}&sortby={{../sortby}}&sortdir={{../sortdir}}&{{../search}}" aria-label="Previous">
                               <span aria-hidden="true">&laquo;</span>
                           </a>
                       </li>
 
                     {{#for starPage endPage  1}}
                         <li class="{{#is   this  ../currentPage }} active{{/is}}">
-                            <a href="?page={{this}}&sortby={{../sortby}}&sortdir={{../sortdir}}">{{this}}</a></li>
+                            <a href="?page={{this}}&sortby={{../sortby}}&sortdir={{../sortdir}}&{{../search}}">{{this}}</a></li>
                     {{/for}}
-                      <li><a href="?page={{pageCount}}&sortby={{../sortby}}&sortdir={{../sortdir}}">总共{{pageCount}}页</a>
+                      <li><a href="?page={{pageCount}}&sortby={{../sortby}}&sortdir={{../sortdir}}&{{../search}}">总共{{pageCount}}页</a>
                       </li>
                       <li>
-                          <a href="?page={{nextPage}}&sortby={{../sortby}}&sortdir={{../sortdir}}" aria-label="Next">
+                          <a href="?page={{nextPage}}&sortby={{../sortby}}&sortdir={{../sortdir}}&{{../search}}" aria-label="Next">
                               <span aria-hidden="true">&raquo;</span>
                           </a>
                       </li>

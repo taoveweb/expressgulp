@@ -1,7 +1,7 @@
 {
   "apps": [
     {
-      "name": "worker",
+      "name": "oldku",
       "script": "./app.js",
       "watch": true,
       "ignore_watch" : ["[\\/\\\\]\\./",".git/FETCH_HEAD",".idea", "node_modules"],

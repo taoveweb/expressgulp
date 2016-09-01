@@ -24,10 +24,10 @@ var config = {
   production: {
     root: rootPath,
     app: {
-      name: 'expressblog'
+      name: 'oldku'
     },
-    port: process.env.PORT || 3000,
-    db: 'mongodb://localhost/nodeblogs'
+    port: process.env.PORT || 8083,
+    db: 'mongodb://localhost/oldku'
   }
 };
 

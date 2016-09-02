@@ -5,7 +5,8 @@ var mongoose = require('mongoose'),
   md5 = require('md5');
 
 var UserSchema = new Schema({
-  name: {type:String,required:true},
+  nic: {type:String,default :''},
+  name: {type:String,default :''},
   sex:{type:Number,default :0},
   admin: {type:Number,default:0},
   email: {type:String,required:true},

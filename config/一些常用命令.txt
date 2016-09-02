@@ -1,0 +1,8 @@
+window查看端品9999对应的进程杀死进程
+netstat -aon | find "9999"
+taskkill -F /pid 3080
+
+
+linux
+ps -ax |grep 3000
+kill -9 进程id

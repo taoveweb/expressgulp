@@ -50,11 +50,12 @@ router.post('/add', function (req, res, next) {
     add.content = req.body.content.trim();
     add.author=ObjectId(user['_id']);
     var sign=req.body.sign;
-    if(sign.indexOf('.')){
+    if(sign.indexOf('.')!=-1){
       add.sign=sign.split(".");
     }else{
       add.sign = req.body.sign;
     }
+
     add.excellent = req.body.excellent;
     add.created=new Date();
 

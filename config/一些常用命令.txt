@@ -20,3 +20,11 @@ db.createUser({ user: "oldku",
           writeConcern: { w: "majority" , wtimeout: 5000 }
  })
 
+
+
+安装
+npm install
+bower install
+yum install ImageMagick
+yum install GraphicsMagick
+

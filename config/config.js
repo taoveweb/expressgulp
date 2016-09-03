@@ -27,7 +27,7 @@ var config = {
       name: 'oldku'
     },
     port: process.env.PORT || 8083,
-    db: 'mongodb://localhost/oldku'
+    db: 'mongodb://oldku:oldku@localhost/oldku'
   }
 };
 

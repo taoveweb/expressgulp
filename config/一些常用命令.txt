@@ -6,3 +6,17 @@ taskkill -F /pid 3080
 linux
 ps -ax |grep 3000
 kill -9 进程id
+
+mongodb
+建立权限
+
+db.createUser({ user: "oldku",
+  pwd: "oldku",
+  roles: [
+            { role: "clusterAdmin", db: "admin" },
+             { role: "readAnyDatabase", db: "admin" },
+            "readWrite"
+          ],
+          writeConcern: { w: "majority" , wtimeout: 5000 }
+ })
+

@@ -39,7 +39,7 @@ router.post('/add', function (req, res, next) {
     add.introduction = req.body.introduction;
     add.published = req.body.published;
     add.imgUrl = req.body.imgUrl;
-    add.author=user['_id'];
+    add.author=ObjectId(user['_id']);
     add.created=new Date();
     var sign=req.body.sign;
     if(sign.indexOf('.')){

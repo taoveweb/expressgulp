@@ -117,6 +117,7 @@
     flex-wrap: wrap;
     -webkit-flex-wrap: wrap;
     overflow: auto;
+    -webkit-overflow-scrolling : touch;
 }
 .list a{
     display: block;

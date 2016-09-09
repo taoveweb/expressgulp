@@ -7,87 +7,86 @@
         <a class="fa fa-search" href=""></a>
         <span>{{title}}</span>
     </div>
-    <div class="tui-user">
-        <h2>推荐用户 <a>全部</a></h2>
-        <div class="tui-user-list">
-            <div class="user-item">
-                <span class="close">关闭</span>
-                <img src="" alt="头像"/>
-                <p>名字</p>
-                <p>你可能感兴趣的人</p>
-                <span class="guanzhu-btn">关注按钮</span>
-            </div>
-            <div class="user-item">
-                <span class="close">关闭</span>
-                <img src="" alt="头像"/>
-                <p>名字</p>
-                <p>你可能感兴趣的人</p>
-                <span class="guanzhu-btn">关注按钮</span>
-            </div>
-            <div class="user-item">
-                <span class="close">关闭</span>
-                <img src="" alt="头像"/>
-                <p>名字</p>
-                <p>你可能感兴趣的人</p>
-                <span class="guanzhu-btn">关注按钮</span>
+    <div class="main-box">
+        <div class="tui-user">
+            <h2 class="tu-h">推荐用户 <a>全部</a></h2>
+
+            <div class="tui-user-list">
+                <div class="user-item">
+                    <span class="close fa fa-times"></span>
+                    <img src="/mobile/images/discovery/headerpic.png" alt="头像"/>
+
+                    <p>名字</p>
+
+                    <p class="gray">你可能感兴趣的人</p>
+                    <span class="guanzhu-btn"> + 按钮</span>
+                </div>
+                <div class="user-item">
+                    <span class="close fa fa-times"></span>
+                    <img src="/mobile/images/discovery/headerpic.png" alt="头像"/>
+
+                    <p>名字</p>
+
+                    <p class="gray">你可能感兴趣的人</p>
+                    <span class="guanzhu-btn"> + 按钮</span>
+                </div>
+                <div class="user-item">
+                    <span class="close fa fa-times"></span>
+                    <img src="/mobile/images/discovery/headerpic.png" alt="头像"/>
+
+                    <p>名字</p>
+
+                    <p class="gray">你可能感兴趣的人</p>
+                    <span class="guanzhu-btn"> + 按钮</span>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="zhuti">
-        <h2>主题</h2>
-        <div class="zhuti-list">
-            <a href="/m/category">
-                <img src="" alt="主题封面"/>
-                <h3>手机摄影</h3>
-            </a>
-            <a href="">
-                <img src="" alt="主题封面"/>
-                <h3>风光</h3>
-            </a>
-            <a href="">
-                <img src="" alt="主题封面"/>
-                <h3>纪实</h3>
-            </a>
-            <a href="">
-                <img src="" alt="主题封面"/>
-                <h3>人像</h3>
-            </a>
-            <a href="">
-                <img src="" alt="主题封面"/>
-                <h3>摄影</h3>
-            </a>
-            <a href="">
-                <img src="" alt="主题封面"/>
-                <h3>城市</h3>
-            </a>
-            <a href="">
-                <img src="" alt="主题封面"/>
-                <h3>黑白</h3>
-            </a>
-            <a href="">
-                <img src="" alt="主题封面"/>
-                <h3>生活方式</h3>
-            </a>
-            <a href="">
-                <img src="" alt="主题封面"/>
-                <h3>静物</h3>
-            </a>
-            <a href="">
-                <img src="" alt="主题封面"/>
-                <h3>建筑</h3>
-            </a>
-            <a href="">
-                <img src="" alt="主题封面"/>
-                <h3>美食</h3>
-            </a>
-            <a href="">
-                <img src="" alt="主题封面"/>
-                <h3>未分类</h3>
-            </a>
-           </div>
-    </div>
-    <div class="list">
-        {{>three_column}}
+        <div class="zhuti">
+            <h2>主题</h2>
+
+            <div class="zhuti-list clearfix  ">
+                <a style="background:url('/mobile/images/activity/1.png') center ;-webkit-background-size: cover;background-size: cover;" href="/m/category">
+                    <h3>手机摄影</h3>
+                </a>
+                <a style="background:url('/mobile/images/activity/2.png') center ;-webkit-background-size: cover;background-size: cover;"  href="">
+                    <h3>风光</h3>
+                </a>
+                <a style="background:url('/mobile/images/activity/3.png') center ;-webkit-background-size: cover;background-size: cover;"  href="">
+                    <h3>纪实</h3>
+                </a>
+                <a style="background:url('/mobile/images/activity/4.png') center ;-webkit-background-size: cover;background-size: cover;"  href="">
+                    <h3>人像</h3>
+                </a>
+                <a style="background:url('/mobile/images/activity/5.png') center ;-webkit-background-size: cover;background-size: cover;"  href="">
+                    <h3>摄影</h3>
+                </a>
+                <a style="background:url('/mobile/images/activity/6.png') center ;-webkit-background-size: cover;background-size: cover;"  href="">
+                    <h3>城市</h3>
+                </a>
+                <a style="background:url('/mobile/images/activity/7.png') center ;-webkit-background-size: cover;background-size: cover;"  href="">
+                    <h3>黑白</h3>
+                </a>
+                <a style="background:url('/mobile/images/activity/8.png') center ;-webkit-background-size: cover;background-size: cover;"  href="">
+                    <h3>生活方式</h3>
+                </a>
+                <a style="background:url('/mobile/images/activity/9.png') center ;-webkit-background-size: cover;background-size: cover;"  href="">
+                    <h3>静物</h3>
+                </a>
+                <a style="background:url('/mobile/images/activity/1.png') center ;-webkit-background-size: cover;background-size: cover;"  href="">
+                    <h3>建筑</h3>
+                </a>
+                <a style="background:url('/mobile/images/activity/2.png') center ;-webkit-background-size: cover;background-size: cover;"  href="">
+                    <h3>美食</h3>
+                </a>
+                <a style="background:url('/mobile/images/activity/3.png') center ;-webkit-background-size: cover;background-size: cover;"  href="">
+                    <h3>未分类</h3>
+                </a>
+            </div>
+        </div>
+        <div class="bjtj">编辑推荐</div>
+        <div class="list">
+            {{>three_column}}
+        </div>
     </div>
 </div>
 

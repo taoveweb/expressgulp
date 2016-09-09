@@ -49,10 +49,17 @@
   flex-direction: row;
   flex-wrap: wrap;
   -webkit-flex-wrap: wrap;
-  overflow: auto;
-  -webkit-overflow-scrolling : touch;
+  background: #fff;
 }
-
+.bjtj {
+  flex-shrink: 0;
+  -webkit-flex-shrink: 0;
+  padding: 5px;
+  font-size: 12px;
+  margin: 0;
+  background: #fff;
+  margin-top: 20px;
+}
 .list a {
   display: block;
   width: 33.3%;
@@ -67,4 +74,112 @@
 .list a:nth-child(3n-1) {
   border: 1px solid #fff;
   border-top: 0;
+}
+
+.tu-h {
+  height: 30px;
+  position: relative;
+  font-size: 12px;
+  margin: 0px;
+  line-height: 35px;
+  overflow: hidden;
+  flex-shrink: 0;
+  -webkit-flex-shrink: 0;
+}
+.tu-h a{
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 30px;
+  line-height: 35px;
+  color: #4198cc;
+  width: 40px;
+  text-align: center;
+}
+
+.tui-user-list{
+  display: flex;
+  flex-direction: row;
+  -webkit-flex-direction: row;
+}
+.tui-user-list .user-item {
+  flex: 1;
+  text-align: center;
+  font-size: 12px;
+  background: #fff;
+  position: relative;
+  padding-bottom: 8px;
+}
+.tui-user-list .user-item:nth-child(2) {
+  margin: 0 4px;
+}
+.user-item img {
+  display: block;
+  width: 60%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  margin: 8px auto;
+}
+.user-item .close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 8px;
+}
+.user-item .gray{
+  color: #bcbcbc;
+}
+
+.user-item  .guanzhu-btn {
+  color: #329bcc;
+  font-size: 12px;
+  display: inline-block;
+  border: 1px solid #329bcc;
+  line-height: 12px;
+  padding: 3px;
+  font-size: 12px;
+  margin: 0 auto;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+.zhuti h2 {
+  padding-top: 30px;
+  text-align: center;
+  font-size: 12px;
+  padding-bottom: 10px;
+  margin: 0px;
+  color: #858585;
+  font-weight: normal;
+}
+.zhuti-list{
+  margin: 0 7px;
+}
+.zhuti-list a{
+  display: block;
+  position: relative;
+  width: 50%;
+  float: left;
+  text-align: center;
+  border: 7px solid #fff;
+  margin-bottom: 7px;
+  height: 0;
+  padding-bottom: 48%;
+}
+.zhuti-list a h3 {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  top: 0;
+  bottom: 0px;
+  line-height: 100%;
+  text-align: center;
+  color: #fff;
+  font-size: 16px;
+}
+.main-box {
+  flex: 1;
+  overflow: auto;
+  -webkit-overflow-scrolling : touch;
 }

@@ -1,13 +1,25 @@
 {{#extend "style"}}
     <link href="/mobile/css/activity.css" rel="stylesheet">
 {{/extend}}
-<div class="header"><a class="glyphicon  glyphicon-chevron-left" href="/m/activity"></a>{{title}}<a
-        class="glyphicon glyphicon-share"></a></div>
+{{#extend "script"}}
+    <script src="/mobile/js/jquery.touch.min.js"></script>
+    <script>
+        $(function(){
+            $('.openall').on('touchstart',function(e){
+                e.preventDefault();
+                e.stopPropagation();
+                $('.de-box').toggleClass('h110')
+            })
+        })
+    </script>
+{{/extend}}
+<div class="header"><a class="fa fa-angle-left" href="/m/activity"></a>{{title}}<a
+        class="fa fa-share-square-o"></a></div>
 <div class="main">
     <img src="/mobile/images/activity/1.png" alt=""/>
 
     <div class="detail">
-        <div class="de-box">
+        <div class="de-box h110">
             <h2>感觉光美丽，发布你的光影大作 <span>16年06月15日-16年07月15日</span></h2>
 
             <p>
@@ -37,5 +49,3 @@
 
 </div>
 
-{{#extend "script"}}
-{{/extend}}

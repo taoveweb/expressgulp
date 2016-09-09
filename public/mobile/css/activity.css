@@ -37,20 +37,21 @@
 .header a{
     text-decoration: none;
 }
-.header .glyphicon-chevron-left{
+.header .fa-angle-left{
     float: left;
     height: 40px;
     width: 40px;
-    padding-top: 12px;
-    font-size: 16px;
+    padding-top: 6px;
+    font-size: 24px;
 }
 
-.header  .glyphicon-share{
+.header  .fa-share-square-o{
     float: right; height: 40px;
     width: 40px;
-    padding-top: 12px;
-    font-size: 16px;
-    color: #000;
+    padding-top: 10px;
+    font-size: 20px;
+    color: #858585;
+    font-weight: normal;
 }
 .detail {
     padding: 10px 20px;
@@ -58,9 +59,11 @@
     position: relative;
 }
 .de-box{
-    height: 110px;
     overflow: hidden;
     margin-bottom: 15px;
+}
+.h110{
+    height: 110px;
 }
 .openall {
     position: absolute;

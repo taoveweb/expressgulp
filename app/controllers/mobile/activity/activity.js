@@ -10,6 +10,7 @@ module.exports = function (app) {
 router.get('/', function (req, res, next) {
   res.render('mobile/activity/activity', {
     title: '活动',
+    layout:'main_m'
   });
 });
 

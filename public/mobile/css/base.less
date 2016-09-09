@@ -1,9 +1,59 @@
 body {
-  padding: 60px;
+
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+html,body{
+  height: 100%;
+  width: 100%;
 }
 
 
 a {
   color: #00B7FF;
+}
+
+
+.sharelist{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  height: 30%;
+  z-index: 10;
+  background: #fff;
+  text-align: center;
+  display: none;
+}
+.sharelist h3{
+  font-size: 12px;
+  color: #dddddd;
+  font-weight: normal;
+}
+.fx-list{
+  display: flex;
+  flex-direction: row;
+  padding: 30px 30px;
+
+}
+.sharelist .cancel {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 30px 30px;
+  font-size: 12px;
+  color: #dddddd;
+}
+.fx-list i{
+
+  font-size: 30px;
+  display: block;
+  color: #35cc5a;
+  margin-bottom: 10px;
+}
+.fx-list a{
+  flex: 1;
+  font-size: 12px;
+  color: #bcbcbc;
 }

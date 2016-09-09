@@ -1,21 +1,19 @@
 {{#extend "style"}}
-    <style>
-        body {
-            background: #fff;
-        }
-    </style>
+    <link href="/mobile/css/personal.css" rel="stylesheet">
 {{/extend}}
 <div class="header">
-    <a href="/m/addfriend">加好友</a>
+    <a class="fa fa-user-plus" aria-hidden="true" href="/m/addfriend"></a>
     {{title}}
-    <a href="/m/acountset" class="setting">设置按钮</a>
-    <a class="setting">享享按钮</a>
+    <a class="setting glyphicon glyphicon-share"></a>
+    <a href="/m/acountset" class="setting glyphicon glyphicon-cog"></a>
+
 </div>
+
 <div class="main">
     <div class="main-head">
-        <a href="/m/personalset"><img src="" alt="头像"/></a>
+        <a class="header-pic" href="/m/personalset"><img src="/mobile/images/personal/headerpic.png" alt="头像"/></a>
 
-        <p>名称 <span>男</span></p>
+        <p>名称 <i class="fa fa-mars" aria-hidden="true"></i></p>
         <div class="tongji">
             <span>照片2</span>
             <span>粉丝1</span>
@@ -23,28 +21,14 @@
         </div>
     </div>
     <div class="liulan">
-        <span class="threeclunt">三列按钮</span>
-        <span class="oneclunt">一列按钮</span>
-        <span class="like-btn">喜欢按钮</span>
+        <i class="fa fa-th active" aria-hidden="true"></i>
+        <i class="fa fa-bars" aria-hidden="true"></i>
+        <i class="fa fa-heart-o" aria-hidden="true"></i>
     </div>
     <div class="list">
-        <a href=""><img src="" alt="图片"/></a>
-        <a href=""><img src="" alt="图片"/></a>
-        <a href=""><img src="" alt="图片"/></a>
-        <a href=""><img src="" alt="图片"/></a>
-        <a href=""><img src="" alt="图片"/></a>
-        <a href=""><img src="" alt="图片"/></a>
-        <a href=""><img src="" alt="图片"/></a>
-        <a href=""><img src="" alt="图片"/></a>
-        <a href=""><img src="" alt="图片"/></a>
-        <a href=""><img src="" alt="图片"/></a>
-        <a href=""><img src="" alt="图片"/></a>
-        <a href=""><img src="" alt="图片"/></a>
-        <a href=""><img src="" alt="图片"/></a>
-        <a href=""><img src="" alt="图片"/></a>
+        {{>three_column}}
     </div>
 </div>
-{{>layout_m_footer}}
 {{>shareList}}
 
 {{#extend "script"}}

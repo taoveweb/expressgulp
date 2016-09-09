@@ -10,6 +10,7 @@ module.exports = function (app) {
 router.get('/', function (req, res, next) {
   res.render('mobile/personal/personal', {
     title: '个人主页',
+    layout:'main_m'
   });
 });
 

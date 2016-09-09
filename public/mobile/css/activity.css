@@ -1,0 +1,110 @@
+.header {
+    height: 40px;
+    border-bottom: 1px solid #f4f4f4;
+    line-height: 40px;
+    text-align: center;
+    font-size: 12px;
+}
+.main{
+    display: -webkit-flex; /* Safari */
+    display: flex;
+    flex-direction: column;
+    flex:1;
+}
+.prior {
+    padding: 10px 15px 5px;
+    color: #1fa5e3;
+    font-size: 12px;
+    margin: 0;
+    box-sizing: content-box;
+}
+.prior-list {
+    display: -webkit-flex; /* Safari */
+    display: flex;
+    overflow: scroll;
+    flex-direction: column;
+}
+.prior-list a {
+    display: block;
+    width: 100%;
+    border-left:5px solid #fff;
+    border-right:5px solid #fff;
+
+}
+.prior-list a img{
+    width: 100%;
+}
+.header a{
+    text-decoration: none;
+}
+.header .glyphicon-chevron-left{
+    float: left;
+    height: 40px;
+    width: 40px;
+    padding-top: 12px;
+    font-size: 16px;
+}
+
+.header  .glyphicon-share{
+    float: right; height: 40px;
+    width: 40px;
+    padding-top: 12px;
+    font-size: 16px;
+    color: #000;
+}
+.detail {
+    padding: 10px 20px;
+}
+.detail h2{
+    font-size: 16px;
+    margin: 0;
+    line-height: 20px;
+    padding-bottom: 10px;
+    
+}
+.detail h2 span {
+    font-size: 12px;
+    display: block;
+}
+.detail p{
+    font-size: 12px;
+
+}
+.tab{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+}
+.tab span {
+    height: 30px;
+    line-height: 30px;
+    background: #f1f1f1;
+    flex: 1;
+    color: #858585;
+    cursor: pointer;
+}
+.tab .active{
+    color: #000;
+}
+.list {
+    flex: 1;
+    display: flex;;
+    flex-direction: row;
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    overflow: auto;
+}
+.list a{
+    display: block;
+    width: 33.3%;
+    height: 0;
+    padding-bottom: 33.3%;
+    border-bottom: 1px solid #fff;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.list a:nth-child(3n-1){
+    border: 1px solid #fff;
+    border-top: 0;
+}

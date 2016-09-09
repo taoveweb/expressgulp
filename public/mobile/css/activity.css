@@ -26,8 +26,8 @@
     -webkit-overflow-scrolling : touch;
 }
 .prior-list a {
-    flex-shrink: 1;
-    -webkit-flex-shrink: 1;
+    flex-shrink: 0;
+    -webkit-flex-shrink: 0;
     display: block;
     width: 100%;
     border-left:5px solid #fff;

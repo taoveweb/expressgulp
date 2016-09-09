@@ -1,0 +1,70 @@
+.header {
+  height: 40px;
+  border-bottom: 1px solid #f4f4f4;
+  line-height: 40px;
+  text-align: center;
+  font-size: 12px;
+  position: relative;
+  flex-shrink: 1;
+  -webkit-flex-shrink: 1;
+  background: #fff;
+}
+.header span{
+  position: absolute;
+  left: 30%;
+  right: 30%;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+}
+
+.header .fa-search {
+  float: left;
+  height: 40px;
+  width: 40px;
+  padding-top: 10px;
+  font-size: 16px;
+  color: #bcbcbc;
+}
+
+.header .glyphicon-cog,
+.header .glyphicon-share {
+  float: right;
+  height: 40px;
+  width: 40px;
+  padding-top: 10px;
+  font-size: 16px;
+  color: #bcbcbc;
+}
+
+
+.main{
+  display: flex;
+  flex-direction: column;
+  background: #e7e7e7;
+}
+.list {
+  flex: 1;
+  display: flex;;
+  flex-direction: row;
+  flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  overflow: auto;
+  -webkit-overflow-scrolling : touch;
+}
+
+.list a {
+  display: block;
+  width: 33.3%;
+  height: 0;
+  padding-bottom: 33.3%;
+  border-bottom: 1px solid #fff;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.list a:nth-child(3n-1) {
+  border: 1px solid #fff;
+  border-top: 0;
+}

@@ -10,6 +10,7 @@ module.exports = function (app) {
 router.get('/', function (req, res, next) {
   res.render('mobile/discovery/discovery', {
     title: '发现',
+    layout:"main_m"
   });
 });
 

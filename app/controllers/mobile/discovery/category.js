@@ -10,6 +10,7 @@ module.exports = function (app) {
 router.get('/', function (req, res, next) {
   res.render('mobile/discovery/category', {
     title: '分类',
+    layout:"main_m"
   });
 });
 

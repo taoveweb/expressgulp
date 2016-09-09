@@ -1,16 +1,12 @@
 {{#extend "style"}}
-    <style>
-        body {
-            background: #fff;
-        }
-    </style>
+    <link href="/mobile/css/discovery.css" rel="stylesheet">
 {{/extend}}
-<div class="header">
-    <a href="">搜索</a>
 
-    {{title}}
-</div>
 <div class="main">
+    <div class="header">
+        <a class="fa fa-search" href=""></a>
+        <span>{{title}}</span>
+    </div>
     <div class="tui-user">
         <h2>推荐用户 <a>全部</a></h2>
         <div class="tui-user-list">
@@ -90,51 +86,12 @@
             </a>
            </div>
     </div>
-    <div class="editer-tuijian">
-        <a href=""><img src="" alt="编辑推荐"/></a>
-        <a href=""><img src="" alt="编辑推荐"/></a>
-        <a href=""><img src="" alt="编辑推荐"/></a>
-        <a href=""><img src="" alt="编辑推荐"/></a>
-        <a href=""><img src="" alt="编辑推荐"/></a>
-        <a href=""><img src="" alt="编辑推荐"/></a>
-        <a href=""><img src="" alt="编辑推荐"/></a>
-        <a href=""><img src="" alt="编辑推荐"/></a>
-        <a href=""><img src="" alt="编辑推荐"/></a>
-        <a href=""><img src="" alt="编辑推荐"/></a>
-        <a href=""><img src="" alt="编辑推荐"/></a>
-        <a href=""><img src="" alt="编辑推荐"/></a>
-        <a href=""><img src="" alt="编辑推荐"/></a>
-        <a href=""><img src="" alt="编辑推荐"/></a>
-        <a href=""><img src="" alt="编辑推荐"/></a>
-        <a href=""><img src="" alt="编辑推荐"/></a>
-        <a href=""><img src="" alt="编辑推荐"/></a>
-        <a href=""><img src="" alt="编辑推荐"/></a>
-        <a href=""><img src="" alt="编辑推荐"/></a>
-        <a href=""><img src="" alt="编辑推荐"/></a>
-        <a href=""><img src="" alt="编辑推荐"/></a>
-        <a href=""><img src="" alt="编辑推荐"/></a>
-        <a href=""><img src="" alt="编辑推荐"/></a>
-        <a href=""><img src="" alt="编辑推荐"/></a>
-        <a href=""><img src="" alt="编辑推荐"/></a>
-        <a href=""><img src="" alt="编辑推荐"/></a>
-        <a href=""><img src="" alt="编辑推荐"/></a>
-        <a href=""><img src="" alt="编辑推荐"/></a>
-        <a href=""><img src="" alt="编辑推荐"/></a>
-        <a href=""><img src="" alt="编辑推荐"/></a>
-        <a href=""><img src="" alt="编辑推荐"/></a>
-        <a href=""><img src="" alt="编辑推荐"/></a>
-        <a href=""><img src="" alt="编辑推荐"/></a>
-        <a href=""><img src="" alt="编辑推荐"/></a>
-        <a href=""><img src="" alt="编辑推荐"/></a>
-        <a href=""><img src="" alt="编辑推荐"/></a>
-        <a href=""><img src="" alt="编辑推荐"/></a>
-        <a href=""><img src="" alt="编辑推荐"/></a>
-        <a href=""><img src="" alt="编辑推荐"/></a>
-        <a href=""><img src="" alt="编辑推荐"/></a>
+    <div class="list">
+        {{>three_column}}
     </div>
 </div>
 
-{{>layout_m_footer}}
+<!--{--{>layout_m_footer}}-->
 
 {{#extend "script"}}
 {{/extend}}

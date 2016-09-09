@@ -17,6 +17,8 @@
     font-size: 12px;
     margin: 0;
     box-sizing: content-box;
+    flex-shrink: 0;
+    -webkit-flex-shrink: 0;
 }
 .prior-list {
     display: -webkit-flex; /* Safari */

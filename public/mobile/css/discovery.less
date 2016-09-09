@@ -56,9 +56,8 @@
   -webkit-flex-shrink: 0;
   padding: 5px;
   font-size: 12px;
-  margin: 0;
   background: #fff;
-  margin-top: 20px;
+  margin: 20px 10px 0;
 }
 .list a {
   display: block;
@@ -154,18 +153,22 @@
   font-weight: normal;
 }
 .zhuti-list{
-  margin: 0 7px;
+  margin: 0 10px;
+  position: relative;
+}
+.zhuti-list a:nth-child(2n-1){
+  margin-right: 2%;
 }
 .zhuti-list a{
   display: block;
   position: relative;
-  width: 50%;
+  width: 49%;
   float: left;
   text-align: center;
   border: 7px solid #fff;
   margin-bottom: 7px;
   height: 0;
-  padding-bottom: 48%;
+  padding-bottom: 46%;
 }
 .zhuti-list a h3 {
   position: absolute;
@@ -180,6 +183,7 @@
   margin: 0;
   vertical-align: middle;
   background: rgba(0, 0, 0, 0.5);
+  font-weight: normal;
 }
 .main-box {
   flex: 1;

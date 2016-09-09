@@ -54,6 +54,29 @@
 }
 .detail {
     padding: 10px 20px;
+
+    position: relative;
+}
+.de-box{
+    height: 110px;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+.openall {
+    position: absolute;
+    padding: 5px 15px;
+    color: #8f8f8f;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    border: 1px solid #f4f4f4;
+    font-size: 12px;
+    line-height: 12px;
+
+    right: 10px;
+    bottom: 10px;
+    background: #fff;
+
 }
 .detail h2{
     font-size: 16px;
@@ -68,6 +91,7 @@
 }
 .detail p{
     font-size: 12px;
+
 
 }
 .tab{

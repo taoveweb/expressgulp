@@ -30,6 +30,23 @@
                                     <button class="btn" data-method="reset"  type="button"
                                             ><i class="fa fa-undo"></i> 重置
                                     </button>
+                                  {{#eq router "imgadd"}}
+                                    <button class="btn" data-method="setAspectRatio" data-option="1.7777777777777777"  type="button"
+                                            ><i class="fa fa-undo"></i>16:9
+                                    </button>
+                                    <button class="btn" data-method="setAspectRatio" data-option="1.3333333333333333"  type="button"
+                                            ><i class="fa fa-undo"></i>4:3
+                                    </button>
+                                    <button class="btn" data-method="setAspectRatio" data-option="1"  type="button"
+                                            ><i class="fa fa-undo"></i>1:1
+                                    </button>
+                                    <button class="btn" data-method="setAspectRatio" data-option="0.6666666666666666"  type="button"
+                                            ><i class="fa fa-undo"></i>3
+                                    </button>
+                                    <button class="btn" data-method="setAspectRatio" data-option="NaN"  type="button"
+                                            ><i class="fa fa-undo"></i>Free
+                                    </button>
+                                    {{/eq}}
                                 </div>
                             </div>
                             <div class="col-md-3">

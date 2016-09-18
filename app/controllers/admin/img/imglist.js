@@ -11,7 +11,7 @@ module.exports = function (app) {
 };
 
 
-//会员列表
+//图片列表
 router.get('/list', function (req, res, next) {
 
   var search = {};

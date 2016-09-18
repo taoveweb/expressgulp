@@ -6,6 +6,7 @@ var express = require('express'),
   co = require('co'),
   path = require('path'),
   fs = require('fs'),
+  ObjectId = mongoose.Types.ObjectId,
   _ = require('lodash');
 
 
@@ -17,7 +18,7 @@ module.exports = function (app) {
 router.get('/add', function (req, res, next) {
   co(function *() {
     res.render('admin/img/imgadd', {
-      title: '图片编缉',
+      title: '添加图片',
       router: 'imgadd',
       imgUrl: "/common/uploadheaderimg/logo.jpg"
     });
@@ -39,7 +40,10 @@ router.post('/add', function (req, res, next) {
     add.introduction = req.body.introduction;
     add.published = req.body.published;
     add.imgUrl = req.body.imgUrl;
+    add.width=req.body.width;
+    add.height=req.body.height;
     add.author=ObjectId(user['_id']);
+    console.log(add.author)
     add.created=new Date();
     var sign=req.body.sign;
     if(sign.indexOf('.')){
@@ -81,7 +85,7 @@ router.post('/add', function (req, res, next) {
 
 
   }).catch(function (err) {
-    console.log('出错文件' + __filename + "出错方法：update 具体内容", err)
+    console.log('出错文件' + __filename + "出错方法：add 具体内容", err)
   });
 });
 

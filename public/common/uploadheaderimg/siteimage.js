@@ -12,6 +12,7 @@
   'use strict';
 
   var console = window.console || { log: function () {} };
+  var croper;
 
   function CropAvatar($element) {
     this.$container = $element;
@@ -168,13 +169,13 @@
 
     rotate: function (e) {
       var data;
-
       if (this.active) {
         data = $(e.target).data();
-
         if (data.method) {
           this.$img.cropper(data.method, data.option);
         }
+
+
       }
     },
 
@@ -194,9 +195,10 @@
       } else {
         this.$img = $('<img src="' + this.url + '">');
         this.$avatarWrapper.empty().html(this.$img);
-        this.$img.cropper({
-          aspectRatio: 1,
+        croper=this.$img.cropper({
+          aspectRatio: NaN,
           autoCropArea:1,
+          center:false,
           preview: this.$avatarPreview,
           strict: false,
           crop: function (data) {
@@ -243,6 +245,10 @@
           if(data.path){
             $('.avatar-view').find('img').attr('src',data.path);
             $('#imgUrl').val(data.path);
+            if($('#width').length){
+              $('#width').val(data.width);
+              $('#height').val(data.height);
+            }
             _this.$avatarModal.modal('hide');
           }
           _this.submitDone(data);

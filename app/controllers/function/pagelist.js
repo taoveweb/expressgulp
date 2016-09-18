@@ -44,7 +44,7 @@ module.exports = function (req, res, next, option) {
 
     docs = yield new Promise(function (resolve, reject) {
       var skip=((pageNum - 1) * pageSize);
-      Model.find(search).sort(sortObj).skip(skip).limit(pageSize).exec(function (err, docs) {
+      Model.find(search).populate('author').sort(sortObj).skip(skip).limit(pageSize).exec(function (err, docs) {
         if (err) {
           reject(err);
         } else {
@@ -52,6 +52,12 @@ module.exports = function (req, res, next, option) {
         }
       });
     });
+
+
+    if(option.api){
+      return res.json(docs)
+    }
+
 
 
     res.render(hbsTemplate, {

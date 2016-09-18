@@ -60,7 +60,7 @@ module.exports=function(req,res,next){
         });
       })
 
-      res.json({path: ptah.split('upload')[1]});
+      res.json({path: ptah.split('upload')[1],width:crop.width,height:crop.height});
     }
 
 

@@ -28,7 +28,8 @@ module.exports = function (app, config,connection) {
     partialsDir: [
       config.root + '/app/views/partials/',
       config.root + '/app/views/partials/mobile/',
-      config.root + '/app/views/partials/admin/'
+      config.root + '/app/views/partials/admin/',
+      config.root + '/app/views/partials/pc/',
     ],
     helpers:myhelper
   }));
@@ -50,6 +51,10 @@ module.exports = function (app, config,connection) {
     store: new MongoStore({ mongooseConnection: connection,ttl:12 * 60 * 60 })
   }));
   app.use(require('connect-flash')());
+  app.use(function (req, res, next) {
+    res.locals.host = 'http://'+req.headers.host;
+    next();
+  });
   app.use(function (req, res, next) {
     res.locals.messages = require('express-messages')(req, res);
     next();

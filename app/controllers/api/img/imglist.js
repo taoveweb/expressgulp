@@ -1,6 +1,5 @@
 var express = require('express'),
   router = express.Router(),
-  auth = require('../../mobile/user/user'),
   mongoose = require('mongoose'),
   Image = mongoose.model('Image'),
   co = require('co'),

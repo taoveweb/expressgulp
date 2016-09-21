@@ -28,7 +28,7 @@ formidable.IncomingForm.prototype._uploadPath = function (filename) {
   return path.join(this.uploadDir, name);
 };
 module.exports=function(req,res,next){
-  console.log('bbb')
+
   co(function *() {
     var form = new formidable.IncomingForm();
     var dir = config.root + "/upload/images/" + new Date().getFullYear() + (new Date().getMonth() + 1) + '/';

@@ -1,6 +1,6 @@
 var express = require('express'),
   router = express.Router(),
-  auth = require('../../mobile/user/user'),
+  auth = require('../../front/user/user'),
   mongoose = require('mongoose'),
   Activity = mongoose.model('Activity'),
   co = require('co');

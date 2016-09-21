@@ -8,8 +8,8 @@ var config = {
     app: {
       name: 'expressblog'
     },
-    port: process.env.PORT || 3000,
-    db: 'mongodb://localhost/nodeblogs'
+    port: process.env.PORT || 8083,
+    db: 'mongodb://oldku:oldku@localhost/oldku'
   },
 
   test: {
@@ -17,8 +17,8 @@ var config = {
     app: {
       name: 'expressblog'
     },
-    port: process.env.PORT || 3000,
-    db: 'mongodb://localhost/nodeblogs'
+    port: process.env.PORT || 8083,
+    db: 'mongodb://oldku:oldku@localhost/oldku'
   },
 
   production: {

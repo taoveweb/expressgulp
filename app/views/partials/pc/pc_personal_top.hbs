@@ -15,11 +15,11 @@
                     </div>
                     <!--个人信息-->
                     <ul class="site-nav">
-                        <li class=" active"><a href="{{host}}/1551288/">图博</a></li>
-                        <li class=""><a href="{{host}}/1551288/favorites/">分享</a></li>
-                        <li class=""><a href="{{host}}/1551288/albums/">相册</a></li>
-                        <li class=""><a href="{{host}}/1551288/profile/">资料</a></li>
-                        <li class=""><a href="{{host}}/1551288/collections/">收藏夹</a></li>
+                        <li {{#eq route "home"}} class="active"{{/eq}} ><a href="{{host}}/1551288/">图博</a></li>
+                        <li {{#eq route "favorites"}} class="active"{{/eq}} class=""><a href="{{host}}/1551288/favorites/">分享</a></li>
+                        <li {{#eq route "albums"}} class="active"{{/eq}} class=""><a href="{{host}}/1551288/albums/">相册</a></li>
+                        <li {{#eq route "profile"}} class="active"{{/eq}} class=""><a href="{{host}}/1551288/profile/">资料</a></li>
+                        <li {{#eq route "collections"}} class="active"{{/eq}} class=""><a href="{{host}}/1551288/collections/">收藏夹</a></li>
                     </ul>
                 </div>
                 <div class="profile-meta">

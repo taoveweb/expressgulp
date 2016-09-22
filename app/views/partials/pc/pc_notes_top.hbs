@@ -1,2 +1,15 @@
-
-<div class="notify-bar card" style="display: none;"><ul class="notify-list"></ul><div class="read-all"><a href="javascript:void(0)" class="btn btn-sm btn-default">知道了</a></div></div>
+<div class="notify-bar card" style="display: none;">
+    <ul class="notify-list"></ul>
+    <div class="read-all"><a href="javascript:void(0)" class="btn btn-sm btn-default">知道了</a></div>
+</div>
+<div class="navbar-secondary pc-navbar">
+    <nav class="navbar container">
+        <ul class="navbar-subnav">
+            <li {{#eq route "comments"}} class="active"{{/eq}} ><a href="{{host}}/notes/comments/">被回复</a></li>
+            <li  {{#eq route "likes"}} class="active"{{/eq}} ><a href="{{host}}/notes/likes/">被赞同</a></li>
+            <li  {{#eq route "favorites"}} class="active"{{/eq}}><a href="{{host}}/notes/favorites/">被分享</a></li>
+            <li {{#eq route "collections"}} class="active"{{/eq}}><a href="{{host}}/notifications/collections/">被收藏</a></li>
+            <li {{#eq route "reposts"}} class="active"{{/eq}}><a href="{{host}}/notifications/reposts/">被转发</a></li>
+        </ul>
+    </nav>
+</div>

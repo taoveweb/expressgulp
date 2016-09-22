@@ -4,23 +4,21 @@ var express = require('express'),
   User = mongoose.model('User');
 
 module.exports = function (app) {
-  app.use('/discovery', router);
+  app.use('/photos', router);
 };
 
-router.get('/', function (req, res, next) {
-
+router.get('/recent', function (req, res, next) {
 
   if(req.headers["user-agent"].toLowerCase().indexOf('mobile')!==-1){
-    res.render('mobile/discovery/discovery', {
+    res.render('mobile/photos/recent', {
       title: '热门标签 - 偶酷网 - 最好的摄影师都在这',
       layout:"main_m",
-      route:'discovery'
+      route:"recent",
     });
   }else {
-    res.render('pc/discovery/discoveryMain', {
+    res.render('pc/photos/recent', {
       title: '热门标签 - 偶酷网 - 最好的摄影师都在这',
-      route:'discovery'
-
+      route:"recent",
     });
   }
 

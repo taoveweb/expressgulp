@@ -52,7 +52,7 @@ module.exports = function (app, config,connection) {
   }));
   app.use(require('connect-flash')());
   app.use(function (req, res, next) {
-    res.locals.host = 'http://'+req.headers.host;
+    res.locals.host = req.protocol+'://'+req.headers.host;
     next();
   });
   app.use(function (req, res, next) {

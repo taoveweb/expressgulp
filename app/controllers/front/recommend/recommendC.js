@@ -5,21 +5,20 @@ var express = require('express'),
   auth = require('../user/user') ;
 
 module.exports = function (app) {
-  app.use('/',router);
+  app.use('/recommend',router);
 };
 
 router.get('/' , function (req, res, next) {
   if(req.headers["user-agent"].toLowerCase().indexOf('mobile')!==-1){
-    res.render('mobile/home/homeMain', {
+    res.render('mobile/recommend/recommend', {
       layout:"main_m",
       title: '首页 - 偶酷网 - 最好的摄影师都在这',
-      route:"动态",
+      route:"recommend",
     });
   }else {
-    console.log('abc')
-    res.render('pc/home/homeMain', {
+    res.render('pc/recommend/recommend', {
       title: '首页 - 偶酷网 - 最好的摄影师都在这',
-      route:"动态",
+      route:"recommend",
     });
   }
 

@@ -4,23 +4,22 @@ var express = require('express'),
   User = mongoose.model('User');
 
 module.exports = function (app) {
-  app.use('/discovery', router);
+  app.use('/categories', router);
 };
 
-router.get('/', function (req, res, next) {
+router.get('/:category', function (req, res, next) {
 
-
+  var category=req.param('category');
   if(req.headers["user-agent"].toLowerCase().indexOf('mobile')!==-1){
-    res.render('mobile/discovery/discovery', {
+    res.render('mobile/categories/categories', {
       title: '热门标签 - 偶酷网 - 最好的摄影师都在这',
       layout:"main_m",
-      route:'discovery'
+      route:category,
     });
   }else {
-    res.render('pc/discovery/discoveryMain', {
+    res.render('pc/categories/categories', {
       title: '热门标签 - 偶酷网 - 最好的摄影师都在这',
-      route:'discovery'
-
+      route:category,
     });
   }
 

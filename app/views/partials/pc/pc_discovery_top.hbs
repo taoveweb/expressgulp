@@ -1,0 +1,13 @@
+<div class="navbar-secondary pc-navbar">
+    <nav class="navbar container">
+        <ul class="navbar-subnav">
+            <li {{#eq route "discovery"}}class="active" {{/eq}}><a href="{{host}}/discovery/">所有</a></li>
+            <li {{#eq route "subject"}}class="active" {{/eq}}><a href="{{host}}/categories/subject/">题材</a></li>
+            <li {{#eq route "style"}}class="active" {{/eq}}><a href="{{host}}/categories/style/">风格</a></li>
+            <li {{#eq route "location"}}class="active" {{/eq}}><a href="{{host}}/categories/location/">地区</a></li>
+            <li {{#eq route "equipment"}}class="active" {{/eq}}><a href="{{host}}/categories/equipment/">器材</a></li>
+            <li {{#eq route "recent"}}class="active" {{/eq}}><a href="{{host}}/photos/recent/">最新</a></li>
+            <li {{#eq route "contacts"}}class="active" {{/eq}}><a href="{{host}}/contacts/">分类排行</a></li>
+        </ul>
+    </nav>
+</div>

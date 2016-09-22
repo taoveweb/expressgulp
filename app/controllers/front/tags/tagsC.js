@@ -5,21 +5,21 @@ var express = require('express'),
   auth = require('../user/user') ;
 
 module.exports = function (app) {
-  app.use('/',router);
+  app.use('/tags',router);
 };
 
-router.get('/' , function (req, res, next) {
+router.get('/:sign' , function (req, res, next) {
+  sign=req.param('sign');
   if(req.headers["user-agent"].toLowerCase().indexOf('mobile')!==-1){
-    res.render('mobile/home/homeMain', {
+    res.render('mobile/tags/tags', {
       layout:"main_m",
       title: '首页 - 偶酷网 - 最好的摄影师都在这',
-      route:"动态",
+      route:sign,
     });
   }else {
-    console.log('abc')
-    res.render('pc/home/homeMain', {
+    res.render('pc/tags/tags', {
       title: '首页 - 偶酷网 - 最好的摄影师都在这',
-      route:"动态",
+      route:sign,
     });
   }
 

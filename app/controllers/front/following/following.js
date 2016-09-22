@@ -5,19 +5,18 @@ var express = require('express'),
   auth = require('../user/user') ;
 
 module.exports = function (app) {
-  app.use('/',router);
+  app.use('/following',router);
 };
 
 router.get('/' , function (req, res, next) {
   if(req.headers["user-agent"].toLowerCase().indexOf('mobile')!==-1){
-    res.render('mobile/home/homeMain', {
+    res.render('mobile/following/following', {
       layout:"main_m",
       title: '首页 - 偶酷网 - 最好的摄影师都在这',
       route:"动态",
     });
   }else {
-    console.log('abc')
-    res.render('pc/home/homeMain', {
+    res.render('pc/following/following', {
       title: '首页 - 偶酷网 - 最好的摄影师都在这',
       route:"动态",
     });

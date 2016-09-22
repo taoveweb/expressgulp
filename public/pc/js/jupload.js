@@ -61,7 +61,7 @@ var uploadController = {
 	},
 	checkMultiPhotos : function(){
 		var imageCount = $('.uploader-queue-item').length + $('#fileList .file, #fileList .post').length;
-		$('.form-group-content')[imageCount > 1 ? 'show' : 'hide']();
+		$('.form-groups-content')[imageCount > 1 ? 'show' : 'hide']();
 		$('.upload-prompt')[imageCount == 0 ? 'show' : 'hide']();
 	}
 };

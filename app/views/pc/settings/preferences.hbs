@@ -1,0 +1,50 @@
+{{#extend "style"}}
+    <link href="/pc/css/all.css" rel="stylesheet">
+{{/extend}}
+
+
+
+{{#extend "script"}}
+
+{{/extend}}
+
+{{>pc_settings_top}}
+
+<div class="container container-default">
+    <main role="main" class="col-main col-xs-12">
+        <section class="card inner">
+            <form class="form-horizontal" method="patch" style="margin:10px 0" action="/rest/users/self/preferences" onsubmit="$(this).ajaxsubmit();return false;">
+                <input type="hidden" name="nonce" value="09f5b1782ead0392">
+                <div class="form-group">
+                    <label class="control-label col-xs-2">首页动态</label>
+                    <div class="col-xs-6">
+                        <div class="checkbox"><input type="checkbox" name="flags[]" value="default-follow" checked="checked">如果你关注的人较少，首页动态将会出现我们帮你默认关注的一批用户内容</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-2">邮件提醒</label>
+                    <div class="col-xs-6">
+                        <div class="checkbox"><input type="checkbox" name="flags[]" value="notify-message" checked="checked">当有人发站内信时，发邮件通知我</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-2">关注提醒</label>
+                    <div class="col-xs-6">
+                        <div class="checkbox"><input type="checkbox" name="flags[]" value="notify-follow" checked="checked">当有人关注我时，发邮件通知我</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-2">曝光</label>
+                    <div class="col-xs-6">
+                        <div><span class="help-block">图虫与国内主流分发平台拥有深度合作关系，能帮摄影师实现更多的作品曝光。如果您放弃额外曝光的机会，请在选框打勾</span>
+                            <input type="checkbox" name="flags[]" value="toutiao-publish">我放弃作品在第三方平台展示曝光的机会</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-offset-2 col-xs-6">
+                        <button type="submit" class="btn btn-sm btn-primary">保存</button>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </main>	</div>

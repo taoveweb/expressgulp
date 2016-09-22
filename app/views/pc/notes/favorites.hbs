@@ -1,0 +1,35 @@
+{{#extend "style"}}
+    <link href="/pc/css/all.css" rel="stylesheet">
+{{/extend}}
+{{#extend 'bodyAttr'}}
+    class="home-p has-subnav no-touch"
+{{/extend}}
+
+
+{{#extend "script"}}
+
+{{/extend}}
+<div class="navbar-secondary pc-navbar">
+    <nav class="navbar container">
+        <ul class="navbar-subnav">
+            <li><a href="{{host}}/notes/comments/">被回复</a></li>
+            <li ><a href="{{host}}/notes/likes/">被赞同</a></li>
+            <li  class="active"><a href="{{host}}/notes/favorites/">被分享</a></li>
+            <li><a href="{{host}}/notifications/collections/">被收藏</a></li>
+            <li><a href="{{host}}/notifications/reposts/">被转发</a></li>
+        </ul>
+    </nav>
+</div>
+{{>pc_notes_top}}
+<div class="container container-default">
+    <h1>我被分享的图博</h1>
+    <main role="main" class="col-main">
+        <section class="with-bg">
+            <ul class="notification-list">
+            </ul>
+            <div class="pagebar"></div>
+        </section>
+    </main>
+    <aside id="side" class="col-side">
+    </aside>
+</div>

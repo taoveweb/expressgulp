@@ -1,7 +1,9 @@
 {{#extend "style"}}
-    <link href="/pc/css/groups.css" rel="stylesheet">
+    <link href="/pc/css/all.css" rel="stylesheet">
 {{/extend}}
-
+{{#extend 'bodyAttr'}}
+    class="default-p has-subnav no-touch"
+{{/extend}}
 
 
 {{#extend "script"}}
@@ -12,8 +14,8 @@
 <div class="navbar-secondary pc-navbar">
     <nav class="navbar container">
         <ul class="navbar-subnav">
-            <li><a href="https://tuchong.com/groups/">我的小组</a></li>
-            <li class="active"><a href="https://tuchong.com/groups/all/">所有小组</a></li>
+            <li><a href="{{host}}/groups/">我的小组</a></li>
+            <li class="active"><a href="{{host}}/groups/all/">所有小组</a></li>
         </ul>
     </nav>
 </div>
@@ -23,84 +25,84 @@
     <h1>所有小组</h1>
     <main role="main" class="col-main">
         <section class="with-bg">
-            <h2 class="card-header"><a href="https://tuchong.com/groups/all/">按地区检索</a></h2>
+            <h2 class="card-header"><a href="{{host}}/groups/all/">按地区检索</a></h2>
             <ul class="inner">
                 <li style="width:50%;float:left;">
                     <span>华北</span>
-                    <a href="https://tuchong.com/groups/all/?location=北京" style="font-size:12px;margin:0 3px;">北京</a>
-                    <a href="https://tuchong.com/groups/all/?location=天津" style="font-size:12px;margin:0 3px;">天津</a>
-                    <a href="https://tuchong.com/groups/all/?location=河北" style="font-size:12px;margin:0 3px;">河北</a>
-                    <a href="https://tuchong.com/groups/all/?location=山西" style="font-size:12px;margin:0 3px;">山西</a>
-                    <a href="https://tuchong.com/groups/all/?location=内蒙古" style="font-size:12px;margin:0 3px;">内蒙古</a>
+                    <a href="{{host}}/groups/all/?location=北京" style="font-size:12px;margin:0 3px;">北京</a>
+                    <a href="{{host}}/groups/all/?location=天津" style="font-size:12px;margin:0 3px;">天津</a>
+                    <a href="{{host}}/groups/all/?location=河北" style="font-size:12px;margin:0 3px;">河北</a>
+                    <a href="{{host}}/groups/all/?location=山西" style="font-size:12px;margin:0 3px;">山西</a>
+                    <a href="{{host}}/groups/all/?location=内蒙古" style="font-size:12px;margin:0 3px;">内蒙古</a>
                 </li>
                 <li style="width:50%;float:left;">
                     <span>华东</span>
-                    <a href="https://tuchong.com/groups/all/?location=上海" style="font-size:12px;margin:0 3px;">上海</a>
-                    <a href="https://tuchong.com/groups/all/?location=山东" style="font-size:12px;margin:0 3px;">山东</a>
-                    <a href="https://tuchong.com/groups/all/?location=江苏" style="font-size:12px;margin:0 3px;">江苏</a>
-                    <a href="https://tuchong.com/groups/all/?location=安徽" style="font-size:12px;margin:0 3px;">安徽</a>
-                    <a href="https://tuchong.com/groups/all/?location=浙江" style="font-size:12px;margin:0 3px;">浙江</a>
-                    <a href="https://tuchong.com/groups/all/?location=福建" style="font-size:12px;margin:0 3px;">福建</a>
-                    <a href="https://tuchong.com/groups/all/?location=江西" style="font-size:12px;margin:0 3px;">江西</a>
+                    <a href="{{host}}/groups/all/?location=上海" style="font-size:12px;margin:0 3px;">上海</a>
+                    <a href="{{host}}/groups/all/?location=山东" style="font-size:12px;margin:0 3px;">山东</a>
+                    <a href="{{host}}/groups/all/?location=江苏" style="font-size:12px;margin:0 3px;">江苏</a>
+                    <a href="{{host}}/groups/all/?location=安徽" style="font-size:12px;margin:0 3px;">安徽</a>
+                    <a href="{{host}}/groups/all/?location=浙江" style="font-size:12px;margin:0 3px;">浙江</a>
+                    <a href="{{host}}/groups/all/?location=福建" style="font-size:12px;margin:0 3px;">福建</a>
+                    <a href="{{host}}/groups/all/?location=江西" style="font-size:12px;margin:0 3px;">江西</a>
                 </li>
                 <li style="width:50%;float:left;">
                     <span>华南</span>
-                    <a href="https://tuchong.com/groups/all/?location=广东" style="font-size:12px;margin:0 3px;">广东</a>
-                    <a href="https://tuchong.com/groups/all/?location=广西" style="font-size:12px;margin:0 3px;">广西</a>
-                    <a href="https://tuchong.com/groups/all/?location=海南" style="font-size:12px;margin:0 3px;">海南</a>
-                    <a href="https://tuchong.com/groups/all/?location=香港" style="font-size:12px;margin:0 3px;">香港</a>
-                    <a href="https://tuchong.com/groups/all/?location=澳门" style="font-size:12px;margin:0 3px;">澳门</a>
-                    <a href="https://tuchong.com/groups/all/?location=台湾" style="font-size:12px;margin:0 3px;">台湾</a>
+                    <a href="{{host}}/groups/all/?location=广东" style="font-size:12px;margin:0 3px;">广东</a>
+                    <a href="{{host}}/groups/all/?location=广西" style="font-size:12px;margin:0 3px;">广西</a>
+                    <a href="{{host}}/groups/all/?location=海南" style="font-size:12px;margin:0 3px;">海南</a>
+                    <a href="{{host}}/groups/all/?location=香港" style="font-size:12px;margin:0 3px;">香港</a>
+                    <a href="{{host}}/groups/all/?location=澳门" style="font-size:12px;margin:0 3px;">澳门</a>
+                    <a href="{{host}}/groups/all/?location=台湾" style="font-size:12px;margin:0 3px;">台湾</a>
                 </li>
                 <li style="width:50%;float:left;">
                     <span>华中</span>
-                    <a href="https://tuchong.com/groups/all/?location=湖北" style="font-size:12px;margin:0 3px;">湖北</a>
-                    <a href="https://tuchong.com/groups/all/?location=湖南" style="font-size:12px;margin:0 3px;">湖南</a>
-                    <a href="https://tuchong.com/groups/all/?location=河南" style="font-size:12px;margin:0 3px;">河南</a>
+                    <a href="{{host}}/groups/all/?location=湖北" style="font-size:12px;margin:0 3px;">湖北</a>
+                    <a href="{{host}}/groups/all/?location=湖南" style="font-size:12px;margin:0 3px;">湖南</a>
+                    <a href="{{host}}/groups/all/?location=河南" style="font-size:12px;margin:0 3px;">河南</a>
                 </li>
                 <li style="width:50%;float:left;">
                     <span>东北</span>
-                    <a href="https://tuchong.com/groups/all/?location=辽宁" style="font-size:12px;margin:0 3px;">辽宁</a>
-                    <a href="https://tuchong.com/groups/all/?location=吉林" style="font-size:12px;margin:0 3px;">吉林</a>
-                    <a href="https://tuchong.com/groups/all/?location=黑龙江" style="font-size:12px;margin:0 3px;">黑龙江</a>
+                    <a href="{{host}}/groups/all/?location=辽宁" style="font-size:12px;margin:0 3px;">辽宁</a>
+                    <a href="{{host}}/groups/all/?location=吉林" style="font-size:12px;margin:0 3px;">吉林</a>
+                    <a href="{{host}}/groups/all/?location=黑龙江" style="font-size:12px;margin:0 3px;">黑龙江</a>
                 </li>
                 <li style="width:50%;float:left;">
                     <span>西北</span>
-                    <a href="https://tuchong.com/groups/all/?location=陕西" style="font-size:12px;margin:0 3px;">陕西</a>
-                    <a href="https://tuchong.com/groups/all/?location=宁夏" style="font-size:12px;margin:0 3px;">宁夏</a>
-                    <a href="https://tuchong.com/groups/all/?location=新疆" style="font-size:12px;margin:0 3px;">新疆</a>
-                    <a href="https://tuchong.com/groups/all/?location=青海" style="font-size:12px;margin:0 3px;">青海</a>
-                    <a href="https://tuchong.com/groups/all/?location=甘肃" style="font-size:12px;margin:0 3px;">甘肃</a>
+                    <a href="{{host}}/groups/all/?location=陕西" style="font-size:12px;margin:0 3px;">陕西</a>
+                    <a href="{{host}}/groups/all/?location=宁夏" style="font-size:12px;margin:0 3px;">宁夏</a>
+                    <a href="{{host}}/groups/all/?location=新疆" style="font-size:12px;margin:0 3px;">新疆</a>
+                    <a href="{{host}}/groups/all/?location=青海" style="font-size:12px;margin:0 3px;">青海</a>
+                    <a href="{{host}}/groups/all/?location=甘肃" style="font-size:12px;margin:0 3px;">甘肃</a>
                 </li>
                 <li style="width:50%;float:left;">
                     <span>西南</span>
-                    <a href="https://tuchong.com/groups/all/?location=四川" style="font-size:12px;margin:0 3px;">四川</a>
-                    <a href="https://tuchong.com/groups/all/?location=云南" style="font-size:12px;margin:0 3px;">云南</a>
-                    <a href="https://tuchong.com/groups/all/?location=贵州" style="font-size:12px;margin:0 3px;">贵州</a>
-                    <a href="https://tuchong.com/groups/all/?location=西藏" style="font-size:12px;margin:0 3px;">西藏</a>
-                    <a href="https://tuchong.com/groups/all/?location=重庆" style="font-size:12px;margin:0 3px;">重庆</a>
+                    <a href="{{host}}/groups/all/?location=四川" style="font-size:12px;margin:0 3px;">四川</a>
+                    <a href="{{host}}/groups/all/?location=云南" style="font-size:12px;margin:0 3px;">云南</a>
+                    <a href="{{host}}/groups/all/?location=贵州" style="font-size:12px;margin:0 3px;">贵州</a>
+                    <a href="{{host}}/groups/all/?location=西藏" style="font-size:12px;margin:0 3px;">西藏</a>
+                    <a href="{{host}}/groups/all/?location=重庆" style="font-size:12px;margin:0 3px;">重庆</a>
                 </li>
                 <li style="width:50%;float:left;">
                     <span>亚太</span>
-                    <a href="https://tuchong.com/groups/all/?location=日本" style="font-size:12px;margin:0 3px;">日本</a>
-                    <a href="https://tuchong.com/groups/all/?location=马来西亚" style="font-size:12px;margin:0 3px;">马来西亚</a>
-                    <a href="https://tuchong.com/groups/all/?location=新加坡" style="font-size:12px;margin:0 3px;">新加坡</a>
-                    <a href="https://tuchong.com/groups/all/?location=澳大利亚" style="font-size:12px;margin:0 3px;">澳大利亚</a>
-                    <a href="https://tuchong.com/groups/all/?location=新西兰" style="font-size:12px;margin:0 3px;">新西兰</a>
+                    <a href="{{host}}/groups/all/?location=日本" style="font-size:12px;margin:0 3px;">日本</a>
+                    <a href="{{host}}/groups/all/?location=马来西亚" style="font-size:12px;margin:0 3px;">马来西亚</a>
+                    <a href="{{host}}/groups/all/?location=新加坡" style="font-size:12px;margin:0 3px;">新加坡</a>
+                    <a href="{{host}}/groups/all/?location=澳大利亚" style="font-size:12px;margin:0 3px;">澳大利亚</a>
+                    <a href="{{host}}/groups/all/?location=新西兰" style="font-size:12px;margin:0 3px;">新西兰</a>
                 </li>
                 <li style="width:50%;float:left;">
                     <span>欧洲</span>
-                    <a href="https://tuchong.com/groups/all/?location=德国" style="font-size:12px;margin:0 3px;">德国</a>
-                    <a href="https://tuchong.com/groups/all/?location=英国" style="font-size:12px;margin:0 3px;">英国</a>
-                    <a href="https://tuchong.com/groups/all/?location=法国" style="font-size:12px;margin:0 3px;">法国</a>
-                    <a href="https://tuchong.com/groups/all/?location=瑞士" style="font-size:12px;margin:0 3px;">瑞士</a>
-                    <a href="https://tuchong.com/groups/all/?location=捷克" style="font-size:12px;margin:0 3px;">捷克</a>
-                    <a href="https://tuchong.com/groups/all/?location=俄罗斯" style="font-size:12px;margin:0 3px;">俄罗斯</a>
+                    <a href="{{host}}/groups/all/?location=德国" style="font-size:12px;margin:0 3px;">德国</a>
+                    <a href="{{host}}/groups/all/?location=英国" style="font-size:12px;margin:0 3px;">英国</a>
+                    <a href="{{host}}/groups/all/?location=法国" style="font-size:12px;margin:0 3px;">法国</a>
+                    <a href="{{host}}/groups/all/?location=瑞士" style="font-size:12px;margin:0 3px;">瑞士</a>
+                    <a href="{{host}}/groups/all/?location=捷克" style="font-size:12px;margin:0 3px;">捷克</a>
+                    <a href="{{host}}/groups/all/?location=俄罗斯" style="font-size:12px;margin:0 3px;">俄罗斯</a>
                 </li>
                 <li style="width:50%;float:left;">
                     <span>美洲</span>
-                    <a href="https://tuchong.com/groups/all/?location=美国" style="font-size:12px;margin:0 3px;">美国</a>
-                    <a href="https://tuchong.com/groups/all/?location=加拿大" style="font-size:12px;margin:0 3px;">加拿大</a>
+                    <a href="{{host}}/groups/all/?location=美国" style="font-size:12px;margin:0 3px;">美国</a>
+                    <a href="{{host}}/groups/all/?location=加拿大" style="font-size:12px;margin:0 3px;">加拿大</a>
                 </li>
                 <li class="clearfix"></li>
             </ul>
@@ -109,8 +111,8 @@
         <section>
             <ul class="group-list row">  <li data-site-id="1104964" class="col-sm-6 col-xs-12">
                 <div class="group">
-                    <a href="https://tuchong.com/1104964/" title="說故事的人" rel="author" class="site-icon " data-site-id="1104964" target="_blank"><img src="https://s1.tuchong.com/sites/110/1104964/logo_small.jpg?1" alt="說故事的人"></a>
-                    <h3 class="name"><a class="site-anchor" title="說故事的人" rel="author" href="https://tuchong.com/1104964/" data-site-id="1104964" target="_blank">說故事的人</a></h3>
+                    <a href="{{host}}/1104964/" title="說故事的人" rel="author" class="site-icon " data-site-id="1104964" target="_blank"><img src="https://s1.tuchong.com/sites/110/1104964/logo_small.jpg?1" alt="說故事的人"></a>
+                    <h3 class="name"><a class="site-anchor" title="說故事的人" rel="author" href="{{host}}/1104964/" data-site-id="1104964" target="_blank">說故事的人</a></h3>
                     <span class="member-count">14成员</span>
                     <p class="desc">街头 纪实 摄影</p>
                 </div>
@@ -125,8 +127,8 @@
                 </li>
                 <li data-site-id="1167677" class="col-sm-6 col-xs-12">
                     <div class="group">
-                        <a href="https://tuchong.com/1167677/" title="街事" rel="author" class="site-icon " data-site-id="1167677" target="_blank"><img src="https://s1.tuchong.com/sites/116/1167677/logo_small.jpg?2" alt="街事"></a>
-                        <h3 class="name"><a class="site-anchor" title="街事" rel="author" href="https://tuchong.com/1167677/" data-site-id="1167677" target="_blank">街事</a></h3>
+                        <a href="{{host}}/1167677/" title="街事" rel="author" class="site-icon " data-site-id="1167677" target="_blank"><img src="https://s1.tuchong.com/sites/116/1167677/logo_small.jpg?2" alt="街事"></a>
+                        <h3 class="name"><a class="site-anchor" title="街事" rel="author" href="{{host}}/1167677/" data-site-id="1167677" target="_blank">街事</a></h3>
                         <span class="member-count">150成员</span>
                         <p class="desc">街拍，欢迎加小组QQ群（529403605） 交流！
                             本小组已满，欢迎加入“街事 II”</p>
@@ -134,8 +136,8 @@
                 </li>
                 <li data-site-id="1167678" class="col-sm-6 col-xs-12">
                     <div class="group">
-                        <a href="https://tuchong.com/1167678/" title="街事 II" rel="author" class="site-icon " data-site-id="1167678" target="_blank"><img src="https://s1.tuchong.com/sites/116/1167678/logo_small.jpg?1" alt="街事 II"></a>
-                        <h3 class="name"><a class="site-anchor" title="街事 II" rel="author" href="https://tuchong.com/1167678/" data-site-id="1167678" target="_blank">街事 II</a></h3>
+                        <a href="{{host}}/1167678/" title="街事 II" rel="author" class="site-icon " data-site-id="1167678" target="_blank"><img src="https://s1.tuchong.com/sites/116/1167678/logo_small.jpg?1" alt="街事 II"></a>
+                        <h3 class="name"><a class="site-anchor" title="街事 II" rel="author" href="{{host}}/1167678/" data-site-id="1167678" target="_blank">街事 II</a></h3>
                         <span class="member-count">118成员</span>
                         <p class="desc">一组已经满了，欢迎大家加入二组！小组QQ群： 529403605，劳烦各位加下！</p>
                     </div>
@@ -150,8 +152,8 @@
                 </li>
                 <li data-site-id="961170" class="col-sm-6 col-xs-12">
                     <div class="group">
-                        <a href="https://tuchong.com/961170/" title="「行摄间」2组" rel="author" class="site-icon " data-site-id="961170" target="_blank"><img src="https://s1.tuchong.com/sites/961/961170/logo_small.jpg?1" alt="「行摄间」2组"></a>
-                        <h3 class="name"><a class="site-anchor" title="「行摄间」2组" rel="author" href="https://tuchong.com/961170/" data-site-id="961170" target="_blank">「行摄间」2组</a></h3>
+                        <a href="{{host}}/961170/" title="「行摄间」2组" rel="author" class="site-icon " data-site-id="961170" target="_blank"><img src="https://s1.tuchong.com/sites/961/961170/logo_small.jpg?1" alt="「行摄间」2组"></a>
+                        <h3 class="name"><a class="site-anchor" title="「行摄间」2组" rel="author" href="{{host}}/961170/" data-site-id="961170" target="_blank">「行摄间」2组</a></h3>
                         <span class="member-count">159成员</span>
                         <p class="desc">人文、纪实、街拍
                             微信公众号：摄影与诗歌（微信号：zzw-1028）</p>
@@ -159,40 +161,40 @@
                 </li>
                 <li data-site-id="390306" class="col-sm-6 col-xs-12">
                     <div class="group">
-                        <a href="https://tuchong.com/390306/" title="辽宁人文摄影" rel="author" class="site-icon " data-site-id="390306" target="_blank"><img src="https://s1.tuchong.com/sites/390/390306/logo_small.jpg?1" alt="辽宁人文摄影"></a>
-                        <h3 class="name"><a class="site-anchor" title="辽宁人文摄影" rel="author" href="https://tuchong.com/390306/" data-site-id="390306" target="_blank">辽宁人文摄影</a></h3>
+                        <a href="{{host}}/390306/" title="辽宁人文摄影" rel="author" class="site-icon " data-site-id="390306" target="_blank"><img src="https://s1.tuchong.com/sites/390/390306/logo_small.jpg?1" alt="辽宁人文摄影"></a>
+                        <h3 class="name"><a class="site-anchor" title="辽宁人文摄影" rel="author" href="{{host}}/390306/" data-site-id="390306" target="_blank">辽宁人文摄影</a></h3>
                         <span class="member-count">42成员</span>
                         <p class="desc">人文摄影</p>
                     </div>
                 </li>
                 <li data-site-id="980178" class="col-sm-6 col-xs-12">
                     <div class="group">
-                        <a href="https://tuchong.com/980178/" title="大连边走边拍" rel="author" class="site-icon " data-site-id="980178" target="_blank"><img src="https://s1.tuchong.com/sites/980/980178/logo_small.jpg?1" alt="大连边走边拍"></a>
-                        <h3 class="name"><a class="site-anchor" title="大连边走边拍" rel="author" href="https://tuchong.com/980178/" data-site-id="980178" target="_blank">大连边走边拍</a></h3>
+                        <a href="{{host}}/980178/" title="大连边走边拍" rel="author" class="site-icon " data-site-id="980178" target="_blank"><img src="https://s1.tuchong.com/sites/980/980178/logo_small.jpg?1" alt="大连边走边拍"></a>
+                        <h3 class="name"><a class="site-anchor" title="大连边走边拍" rel="author" href="{{host}}/980178/" data-site-id="980178" target="_blank">大连边走边拍</a></h3>
                         <span class="member-count">9成员</span>
                         <p class="desc">纪实、街拍、人文</p>
                     </div>
                 </li>
                 <li data-site-id="1186729" class="col-sm-6 col-xs-12">
                     <div class="group">
-                        <a href="https://tuchong.com/1186729/" title="胖电塔与街头摄影精进组" rel="author" class="site-icon " data-site-id="1186729" target="_blank"><img src="https://s1.tuchong.com/sites/118/1186729/logo_small.jpg?1" alt="胖电塔与街头摄影精进组"></a>
-                        <h3 class="name"><a class="site-anchor" title="胖电塔与街头摄影精进组" rel="author" href="https://tuchong.com/1186729/" data-site-id="1186729" target="_blank">胖电塔与街头摄影精进组</a></h3>
+                        <a href="{{host}}/1186729/" title="胖电塔与街头摄影精进组" rel="author" class="site-icon " data-site-id="1186729" target="_blank"><img src="https://s1.tuchong.com/sites/118/1186729/logo_small.jpg?1" alt="胖电塔与街头摄影精进组"></a>
+                        <h3 class="name"><a class="site-anchor" title="胖电塔与街头摄影精进组" rel="author" href="{{host}}/1186729/" data-site-id="1186729" target="_blank">胖电塔与街头摄影精进组</a></h3>
                         <span class="member-count">24成员</span>
                         <p class="desc">街头摄影，纪实人文</p>
                     </div>
                 </li>
                 <li data-site-id="998693" class="col-sm-6 col-xs-12">
                     <div class="group">
-                        <a href="https://tuchong.com/998693/" title="北京Height摄影" rel="author" class="site-icon " data-site-id="998693" target="_blank"><img src="https://s1.tuchong.com/sites/998/998693/logo_small.jpg?1" alt="北京Height摄影"></a>
-                        <h3 class="name"><a class="site-anchor" title="北京Height摄影" rel="author" href="https://tuchong.com/998693/" data-site-id="998693" target="_blank">北京Height摄影</a></h3>
+                        <a href="{{host}}/998693/" title="北京Height摄影" rel="author" class="site-icon " data-site-id="998693" target="_blank"><img src="https://s1.tuchong.com/sites/998/998693/logo_small.jpg?1" alt="北京Height摄影"></a>
+                        <h3 class="name"><a class="site-anchor" title="北京Height摄影" rel="author" href="{{host}}/998693/" data-site-id="998693" target="_blank">北京Height摄影</a></h3>
                         <span class="member-count">58成员</span>
                         <p class="desc">北京Height摄影，摄影兴趣小组。摄影题材不限，禁到此一游照。</p>
                     </div>
                 </li>
                 <li data-site-id="1156410" class="col-sm-6 col-xs-12">
                     <div class="group">
-                        <a href="https://tuchong.com/1156410/" title="镜头背后" rel="author" class="site-icon " data-site-id="1156410" target="_blank"><img src="https://s1.tuchong.com/sites/115/1156410/logo_small.jpg?3" alt="镜头背后"></a>
-                        <h3 class="name"><a class="site-anchor" title="镜头背后" rel="author" href="https://tuchong.com/1156410/" data-site-id="1156410" target="_blank">镜头背后</a></h3>
+                        <a href="{{host}}/1156410/" title="镜头背后" rel="author" class="site-icon " data-site-id="1156410" target="_blank"><img src="https://s1.tuchong.com/sites/115/1156410/logo_small.jpg?3" alt="镜头背后"></a>
+                        <h3 class="name"><a class="site-anchor" title="镜头背后" rel="author" href="{{host}}/1156410/" data-site-id="1156410" target="_blank">镜头背后</a></h3>
                         <span class="member-count">423成员</span>
                         <p class="desc">热爱摄影 乐于分享</p>
                     </div>
@@ -207,8 +209,8 @@
                 </li>
                 <li data-site-id="1132459" class="col-sm-6 col-xs-12">
                     <div class="group">
-                        <a href="https://tuchong.com/1132459/" title="中国爬楼联盟" rel="author" class="site-icon " data-site-id="1132459" target="_blank"><img src="https://s1.tuchong.com/sites/113/1132459/logo_small.jpg?1" alt="中国爬楼联盟"></a>
-                        <h3 class="name"><a class="site-anchor" title="中国爬楼联盟" rel="author" href="https://tuchong.com/1132459/" data-site-id="1132459" target="_blank">中国爬楼联盟</a></h3>
+                        <a href="{{host}}/1132459/" title="中国爬楼联盟" rel="author" class="site-icon " data-site-id="1132459" target="_blank"><img src="https://s1.tuchong.com/sites/113/1132459/logo_small.jpg?1" alt="中国爬楼联盟"></a>
+                        <h3 class="name"><a class="site-anchor" title="中国爬楼联盟" rel="author" href="{{host}}/1132459/" data-site-id="1132459" target="_blank">中国爬楼联盟</a></h3>
                         <span class="member-count">500成员</span>
                         <p class="desc">拍出一个新中国，城市上空的风景</p>
                     </div>
@@ -223,8 +225,8 @@
                 </li>
                 <li data-site-id="1369432" class="col-sm-6 col-xs-12">
                     <div class="group">
-                        <a href="https://tuchong.com/1369432/" title="环巢湖小组" rel="author" class="site-icon " data-site-id="1369432" target="_blank"><img src="https://s1.tuchong.com/sites/136/1369432/logo_small.jpg?2" alt="环巢湖小组"></a>
-                        <h3 class="name"><a class="site-anchor" title="环巢湖小组" rel="author" href="https://tuchong.com/1369432/" data-site-id="1369432" target="_blank">环巢湖小组</a></h3>
+                        <a href="{{host}}/1369432/" title="环巢湖小组" rel="author" class="site-icon " data-site-id="1369432" target="_blank"><img src="https://s1.tuchong.com/sites/136/1369432/logo_small.jpg?2" alt="环巢湖小组"></a>
+                        <h3 class="name"><a class="site-anchor" title="环巢湖小组" rel="author" href="{{host}}/1369432/" data-site-id="1369432" target="_blank">环巢湖小组</a></h3>
                         <span class="member-count">10成员</span>
                         <p class="desc">欢迎加入交流学习围观</p>
                     </div>
@@ -255,8 +257,8 @@
                 </li>
                 <li data-site-id="388156" class="col-sm-6 col-xs-12">
                     <div class="group">
-                        <a href="https://tuchong.com/388156/" title="冰城行摄组" rel="author" class="site-icon " data-site-id="388156" target="_blank"><img src="https://s1.tuchong.com/sites/388/388156/logo_small.jpg?1" alt="冰城行摄组"></a>
-                        <h3 class="name"><a class="site-anchor" title="冰城行摄组" rel="author" href="https://tuchong.com/388156/" data-site-id="388156" target="_blank">冰城行摄组</a></h3>
+                        <a href="{{host}}/388156/" title="冰城行摄组" rel="author" class="site-icon " data-site-id="388156" target="_blank"><img src="https://s1.tuchong.com/sites/388/388156/logo_small.jpg?1" alt="冰城行摄组"></a>
+                        <h3 class="name"><a class="site-anchor" title="冰城行摄组" rel="author" href="{{host}}/388156/" data-site-id="388156" target="_blank">冰城行摄组</a></h3>
                         <span class="member-count">101成员</span>
                         <p class="desc">任何题材</p>
                     </div>
@@ -287,32 +289,32 @@
                 </li>
                 <li data-site-id="1094653" class="col-sm-6 col-xs-12">
                     <div class="group">
-                        <a href="https://tuchong.com/1094653/" title="自然摄影小组" rel="author" class="site-icon " data-site-id="1094653" target="_blank"><img src="https://s1.tuchong.com/sites/109/1094653/logo_small.jpg?32" alt="自然摄影小组"></a>
-                        <h3 class="name"><a class="site-anchor" title="自然摄影小组" rel="author" href="https://tuchong.com/1094653/" data-site-id="1094653" target="_blank">自然摄影小组</a></h3>
+                        <a href="{{host}}/1094653/" title="自然摄影小组" rel="author" class="site-icon " data-site-id="1094653" target="_blank"><img src="https://s1.tuchong.com/sites/109/1094653/logo_small.jpg?32" alt="自然摄影小组"></a>
+                        <h3 class="name"><a class="site-anchor" title="自然摄影小组" rel="author" href="{{host}}/1094653/" data-site-id="1094653" target="_blank">自然摄影小组</a></h3>
                         <span class="member-count">64成员</span>
                         <p class="desc">欢迎野生动植物摄影师进入小组交流，用影像推动自然保护。</p>
                     </div>
                 </li>
                 <li data-site-id="1025030" class="col-sm-6 col-xs-12">
                     <div class="group">
-                        <a href="https://tuchong.com/1025030/" title="昆明小清新人像摄影" rel="author" class="site-icon " data-site-id="1025030" target="_blank"><img src="https://s1.tuchong.com/sites/102/1025030/logo_small.jpg?2" alt="昆明小清新人像摄影"></a>
-                        <h3 class="name"><a class="site-anchor" title="昆明小清新人像摄影" rel="author" href="https://tuchong.com/1025030/" data-site-id="1025030" target="_blank">昆明小清新人像摄影</a></h3>
+                        <a href="{{host}}/1025030/" title="昆明小清新人像摄影" rel="author" class="site-icon " data-site-id="1025030" target="_blank"><img src="https://s1.tuchong.com/sites/102/1025030/logo_small.jpg?2" alt="昆明小清新人像摄影"></a>
+                        <h3 class="name"><a class="site-anchor" title="昆明小清新人像摄影" rel="author" href="{{host}}/1025030/" data-site-id="1025030" target="_blank">昆明小清新人像摄影</a></h3>
                         <span class="member-count">103成员</span>
                         <p class="desc">日系文艺小清新系</p>
                     </div>
                 </li>
                 <li data-site-id="1025028" class="col-sm-6 col-xs-12">
                     <div class="group">
-                        <a href="https://tuchong.com/1025028/" title="上海爬楼摄影小组" rel="author" class="site-icon " data-site-id="1025028" target="_blank"><img src="https://s1.tuchong.com/sites/102/1025028/logo_small.jpg?3" alt="上海爬楼摄影小组"></a>
-                        <h3 class="name"><a class="site-anchor" title="上海爬楼摄影小组" rel="author" href="https://tuchong.com/1025028/" data-site-id="1025028" target="_blank">上海爬楼摄影小组</a></h3>
+                        <a href="{{host}}/1025028/" title="上海爬楼摄影小组" rel="author" class="site-icon " data-site-id="1025028" target="_blank"><img src="https://s1.tuchong.com/sites/102/1025028/logo_small.jpg?3" alt="上海爬楼摄影小组"></a>
+                        <h3 class="name"><a class="site-anchor" title="上海爬楼摄影小组" rel="author" href="{{host}}/1025028/" data-site-id="1025028" target="_blank">上海爬楼摄影小组</a></h3>
                         <span class="member-count">150成员</span>
                         <p class="desc">爬楼，建筑，城市风光，</p>
                     </div>
                 </li>
                 <li data-site-id="989567" class="col-sm-6 col-xs-12">
                     <div class="group">
-                        <a href="https://tuchong.com/989567/" title="图虫城市建筑" rel="author" class="site-icon " data-site-id="989567" target="_blank"><img src="https://s1.tuchong.com/sites/989/989567/logo_small.jpg?1" alt="图虫城市建筑"></a>
-                        <h3 class="name"><a class="site-anchor" title="图虫城市建筑" rel="author" href="https://tuchong.com/989567/" data-site-id="989567" target="_blank">图虫城市建筑</a></h3>
+                        <a href="{{host}}/989567/" title="图虫城市建筑" rel="author" class="site-icon " data-site-id="989567" target="_blank"><img src="https://s1.tuchong.com/sites/989/989567/logo_small.jpg?1" alt="图虫城市建筑"></a>
+                        <h3 class="name"><a class="site-anchor" title="图虫城市建筑" rel="author" href="{{host}}/989567/" data-site-id="989567" target="_blank">图虫城市建筑</a></h3>
                         <span class="member-count">150成员</span>
                         <p class="desc">任何地方的城市风光都可以发来交流，加微信gmzlper拉你进微信群交流。</p>
                     </div>
@@ -336,8 +338,8 @@
                 </li>
                 <li data-site-id="1282620" class="col-sm-6 col-xs-12">
                     <div class="group">
-                        <a href="https://tuchong.com/1282620/" title="风光人文地理" rel="author" class="site-icon " data-site-id="1282620" target="_blank"><img src="https://s1.tuchong.com/sites/128/1282620/logo_small.jpg?4" alt="风光人文地理"></a>
-                        <h3 class="name"><a class="site-anchor" title="风光人文地理" rel="author" href="https://tuchong.com/1282620/" data-site-id="1282620" target="_blank">风光人文地理</a></h3>
+                        <a href="{{host}}/1282620/" title="风光人文地理" rel="author" class="site-icon " data-site-id="1282620" target="_blank"><img src="https://s1.tuchong.com/sites/128/1282620/logo_small.jpg?4" alt="风光人文地理"></a>
+                        <h3 class="name"><a class="site-anchor" title="风光人文地理" rel="author" href="{{host}}/1282620/" data-site-id="1282620" target="_blank">风光人文地理</a></h3>
                         <span class="member-count">150成员</span>
                         <p class="desc">风光人文地理，小组QQ群：8468172</p>
                     </div>
@@ -360,16 +362,16 @@
                 </li>
                 <li data-site-id="376876" class="col-sm-6 col-xs-12">
                     <div class="group">
-                        <a href="https://tuchong.com/376876/" title="极致风光摄影" rel="author" class="site-icon " data-site-id="376876" target="_blank"><img src="https://s1.tuchong.com/sites/376/376876/logo_small.jpg?2" alt="极致风光摄影"></a>
-                        <h3 class="name"><a class="site-anchor" title="极致风光摄影" rel="author" href="https://tuchong.com/376876/" data-site-id="376876" target="_blank">极致风光摄影</a></h3>
+                        <a href="{{host}}/376876/" title="极致风光摄影" rel="author" class="site-icon " data-site-id="376876" target="_blank"><img src="https://s1.tuchong.com/sites/376/376876/logo_small.jpg?2" alt="极致风光摄影"></a>
+                        <h3 class="name"><a class="site-anchor" title="极致风光摄影" rel="author" href="{{host}}/376876/" data-site-id="376876" target="_blank">极致风光摄影</a></h3>
                         <span class="member-count">150成员</span>
                         <p class="desc">追求极致的风光摄影社团</p>
                     </div>
                 </li>
                 <li data-site-id="1386706" class="col-sm-6 col-xs-12">
                     <div class="group">
-                        <a href="https://tuchong.com/1386706/" title="西安爬楼联盟" rel="author" class="site-icon " data-site-id="1386706" target="_blank"><img src="https://s1.tuchong.com/sites/138/1386706/logo_small.jpg?6" alt="西安爬楼联盟"></a>
-                        <h3 class="name"><a class="site-anchor" title="西安爬楼联盟" rel="author" href="https://tuchong.com/1386706/" data-site-id="1386706" target="_blank">西安爬楼联盟</a></h3>
+                        <a href="{{host}}/1386706/" title="西安爬楼联盟" rel="author" class="site-icon " data-site-id="1386706" target="_blank"><img src="https://s1.tuchong.com/sites/138/1386706/logo_small.jpg?6" alt="西安爬楼联盟"></a>
+                        <h3 class="name"><a class="site-anchor" title="西安爬楼联盟" rel="author" href="{{host}}/1386706/" data-site-id="1386706" target="_blank">西安爬楼联盟</a></h3>
                         <span class="member-count">27成员</span>
                         <p class="desc">一个人只拥有此生此世是不够的，他还应该拥有诗意的世界。对我来说，这个世界在长安城里。</p>
                     </div>
@@ -392,8 +394,8 @@
                 </li>
                 <li data-site-id="332408" class="col-sm-6 col-xs-12">
                     <div class="group">
-                        <a href="https://tuchong.com/332408/" title="图虫旅行摄影" rel="author" class="site-icon " data-site-id="332408" target="_blank"><img src="https://s1.tuchong.com/sites/332/332408/logo_small.jpg?2" alt="图虫旅行摄影"></a>
-                        <h3 class="name"><a class="site-anchor" title="图虫旅行摄影" rel="author" href="https://tuchong.com/332408/" data-site-id="332408" target="_blank">图虫旅行摄影</a></h3>
+                        <a href="{{host}}/332408/" title="图虫旅行摄影" rel="author" class="site-icon " data-site-id="332408" target="_blank"><img src="https://s1.tuchong.com/sites/332/332408/logo_small.jpg?2" alt="图虫旅行摄影"></a>
+                        <h3 class="name"><a class="site-anchor" title="图虫旅行摄影" rel="author" href="{{host}}/332408/" data-site-id="332408" target="_blank">图虫旅行摄影</a></h3>
                         <span class="member-count">193成员</span>
                         <p class="desc">旅行拍摄、发片交流地。</p>
                     </div>
@@ -424,8 +426,8 @@
                 </li>
                 <li data-site-id="487614" class="col-sm-6 col-xs-12">
                     <div class="group">
-                        <a href="https://tuchong.com/487614/" title="摄视界" rel="author" class="site-icon " data-site-id="487614" target="_blank"><img src="https://s1.tuchong.com/sites/487/487614/logo_small.jpg?2" alt="摄视界"></a>
-                        <h3 class="name"><a class="site-anchor" title="摄视界" rel="author" href="https://tuchong.com/487614/" data-site-id="487614" target="_blank">摄视界</a></h3>
+                        <a href="{{host}}/487614/" title="摄视界" rel="author" class="site-icon " data-site-id="487614" target="_blank"><img src="https://s1.tuchong.com/sites/487/487614/logo_small.jpg?2" alt="摄视界"></a>
+                        <h3 class="name"><a class="site-anchor" title="摄视界" rel="author" href="{{host}}/487614/" data-site-id="487614" target="_blank">摄视界</a></h3>
                         <span class="member-count">150成员</span>
                         <p class="desc">城市风光</p>
                     </div>
@@ -456,7 +458,7 @@
     <aside id="side" class="col-side">
         <section class="widget">
             <h3 class="card-header">没有适合你的小组？</h3>
-            <p class="inner"><a class="btn btn-primary btn-sm" href="https://tuchong.com/groups/new/">申请创建小组</a></p>
+            <p class="inner"><a class="btn btn-primary btn-sm" href="{{host}}/groups/new/">申请创建小组</a></p>
         </section>
     </aside>
 </div>

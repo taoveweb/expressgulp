@@ -1,0 +1,30 @@
+{{#extend "style"}}
+    <link href="/pc/css/all.css" rel="stylesheet">
+{{/extend}}
+
+
+
+{{#extend "script"}}
+
+{{/extend}}
+
+{{>pc_settings_top}}
+
+<div class="container container-default">
+
+    <main role="main" class="col-main col-xs-12">
+        <section class="card inner">
+            <section class="upload-logo">
+                <h3>上传头像</h3>
+                <form method="patch" enctype="multipart/form-data" action="/rest/sites/1551288/logo" onsubmit="isImage(this.logo) &amp;&amp; generalUpload(this, logoUploadCallback);return false;">
+                    <input type="hidden" name="nonce" value="09f5b1782ead0392">            <input type="hidden" name="site_id" value="1551288">
+                    <input type="hidden" name="MAX_FILE_SIZE" value="4194304">
+                    <p>你当前的头像:</p>
+                    <p><img src="https://s1.tuchong.com/sites/155/1551288/logo_large.jpg?1" id="siteLogoBig" alt="子一824的头像"></p>
+                    <p>从计算机中选择上传一张图像文件（jpg格式,最大 4MB）</p>
+                    <p><input type="file" accept="image/*" name="logo" onchange="this.form.onsubmit(event);"></p>
+                </form>
+            </section>
+        </section>
+    </main>
+</div>

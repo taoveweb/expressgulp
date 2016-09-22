@@ -1,0 +1,47 @@
+{{#extend "style"}}
+    <link href="/pc/css/all.css" rel="stylesheet">
+
+{{/extend}}
+
+{{#extend 'bodyAttr'}}
+     id="tuchong-com" class="message-p has-subnav no-touch"
+{{/extend}}
+
+{{#extend "script"}}
+
+{{/extend}}
+
+
+
+<div class="navbar-secondary pc-navbar">
+    <nav class="navbar container">
+        <ul class="navbar-subnav">
+            <li class="active"><a href="{{host}}/messages/">站内信</a></li>
+            <li><a href="{{host}}/notifications/">通知</a></li>
+            <li><a href="{{host}}/requests/">请求</a></li>
+        </ul>
+    </nav>
+</div>
+<div class="notify-bar card" style="display: none;"><ul class="notify-list"></ul><div class="read-all"><a href="javascript:void(0)" class="btn btn-sm btn-default">知道了</a></div></div>
+<div class="container container-default">
+    <main role="main" class="col-main">
+        <section class="card">
+            <ul class="cvs-list">
+            </ul>
+        </section>
+        <div class="pagebar"></div>
+    </main>
+    <aside id="side" class="col-side">
+        <section class="card conversation" data-conversation-id="">
+            <form id="replyForm" class="inner" action="/rest/conversations//messages" method="post" onsubmit="$(this).ajaxsubmit(local.addMessage(this));return false;">
+                <input type="hidden" name="cnv_id" value="">
+                <input type="hidden" name="nonce" value="09f5b1782ead0392">		<p>回复：</p>
+                <textarea name="content" style="width:97%" rows="5" title="Ctrl+Enter快捷提交" onkeydown="ctrlenterkey(this.form, event)"></textarea>
+                <p><button type="submit" class="btn btn-sm btn-primary">发送</button><button type="button" class="btn btn-sm btn-danger">删除</button></p>
+            </form>
+            <ul class="message-list" id="messageList"></ul>
+            <div id="pagecount" class="inner"></div>
+        </section>
+    </aside>
+
+</div>

@@ -1,0 +1,34 @@
+{{#extend "style"}}
+    <link href="/pc/css/all.css" rel="stylesheet">
+{{/extend}}
+
+{{#extend 'bodyAttr'}}
+     class="home-p has-subnav no-touch"
+{{/extend}}
+
+{{#extend "script"}}
+
+{{/extend}}
+
+
+
+<div class="navbar-secondary pc-navbar">
+    <nav class="navbar container">
+        <ul class="navbar-subnav">
+            <li><a href="{{host}}/messages/">站内信</a></li>
+            <li><a href="{{host}}/notifications/">通知</a></li>
+            <li><a href="{{host}}/requests/">请求</a></li>
+        </ul>
+    </nav>
+</div>
+<div class="notify-bar card" style="display: none;"><ul class="notify-list"></ul><div class="read-all"><a href="javascript:void(0)" class="btn btn-sm btn-default">知道了</a></div></div>
+<div class="container container-default">
+
+    <h1>1个请求等待你处理</h1>
+    <main role="main" class="col-main">
+        <section id="invite" class="card">
+            <ul id="invite-grp" class="dashed-list">
+            </ul>
+        </section>
+    </main>
+</div>

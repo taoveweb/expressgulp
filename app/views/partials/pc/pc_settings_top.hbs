@@ -1,0 +1,15 @@
+<div class="navbar-secondary pc-navbar">
+    <nav class="navbar container">
+        <ul class="navbar-subnav">
+            <li {{#eq route "settings"}} class="active"{{/eq}}><a href="{{host}}/settings/">基本</a></li>
+            <li {{#eq route "account"}} class="active"{{/eq}}><a href="{{host}}/settings/account/">帐号</a></li>
+            <li {{#eq route "domain"}} class="active"{{/eq}}><a href="{{host}}/settings/domain/">域名</a></li>
+            <li {{#eq route "avatar"}} class="active"{{/eq}}><a href="{{host}}/settings/avatar/">头像</a></li>
+            <li {{#eq route "authority"}} class="active"{{/eq}}><a href="{{host}}/settings/authority/">版权</a></li>
+            <li {{#eq route "homepage"}} class="active"{{/eq}}><a href="{{host}}/settings/homepage/">外观</a></li>
+            <li {{#eq route "preferences"}} class="active"{{/eq}}><a href="{{host}}/settings/preferences/">偏好</a></li>
+            <li {{#eq route "connect"}} class="active"{{/eq}}><a href="{{host}}/settings/connect/">社交绑定</a></li>
+            <li {{#eq route "weibo"}} class="active"{{/eq}}><a href="{{host}}/lookup/weibo/">微博好友</a></li>
+        </ul>
+    </nav>
+</div>

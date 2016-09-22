@@ -1,0 +1,31 @@
+{{#extend "style"}}
+    <link href="/pc/css/all.css" rel="stylesheet">
+{{/extend}}
+{{#extend 'bodyAttr'}}
+    class="home-p has-subnav no-touch"
+{{/extend}}
+
+
+{{#extend "script"}}
+
+{{/extend}}
+<div class="navbar-secondary pc-navbar">
+    <nav class="navbar container">
+        <ul class="navbar-subnav">
+            <li class="active"><a href="{{host}}/notes/my-comments/">我发表的评论</a></li>
+            <li><a href="{{host}}/notes/my-likes/">我赞同的评论</a></li>
+        </ul>
+    </nav>
+</div>
+{{>pc_notes_top}}
+<div class="container container-default">
+
+    <h1>我发表的评论</h1>
+    <main role="main" class="col-main">
+        <section class="with-bg">
+            <p class="text-gray-placeholder">你尚未评论过图博。</p>
+        </section>
+    </main>
+    <aside id="side" class="col-side">
+    </aside>
+</div>

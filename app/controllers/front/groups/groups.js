@@ -8,18 +8,26 @@ module.exports = function (app) {
   app.use('/groups',router);
 };
 router.get('/' , function (req, res, next) {
-  console.log('groups')
-  res.redirect("/groups/all")
+  if(req.headers["user-agent"].toLowerCase().indexOf('mobile')!==-1){
+    res.render('mobile/groups/groups', {
+      layout:"main_m",
+      title: '我的小组 - 偶酷网 - 最好的摄影师都在这',
+    });
+  }else {
+    res.render('pc/groups/groups', {
+      title: '我的小组 - 偶酷网 - 最好的摄影师都在这',
+    });
+  }
 })
 router.get('/all' , function (req, res, next) {
   if(req.headers["user-agent"].toLowerCase().indexOf('mobile')!==-1){
-    res.render('mobile/groups/groupsMain', {
+    res.render('mobile/groups/all', {
       layout:"main_m",
-      title: '交流',
+      title: '所有小组 - 偶酷网 - 最好的摄影师都在这',
     });
   }else {
-    res.render('pc/groups/groupsMain', {
-      title: '交流',
+    res.render('pc/groups/all', {
+      title: '所有小组 - 偶酷网 - 最好的摄影师都在这',
     });
   }
 

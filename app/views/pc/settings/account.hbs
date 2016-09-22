@@ -1,0 +1,118 @@
+{{#extend "style"}}
+    <link href="/pc/css/all.css" rel="stylesheet">
+{{/extend}}
+
+
+
+{{#extend "script"}}
+
+{{/extend}}
+
+{{>pc_settings_top}}
+
+<div class="container container-default">
+    <main role="main" class="col-main col-xs-12">
+        <section class="card inner">
+            <h3>用户名和邮箱</h3>
+            <form class="form-horizontal" method="patch" action="/rest/users/self/emailaddress" onsubmit="$(this).ajaxsubmit();return false;">
+                <input type="hidden" name="nonce" value="09f5b1782ead0392">			<input class="form-control" type="hidden" name="section" value="basicinfo">
+                <div class="form-group">
+                    <label class="col-xs-2 control-label">用户名</label>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" name="name" value="子一824">
+                        <span class="help-block">30天之内只能改一次名字</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-2 control-label">Email地址</label>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="email" name="user_email" value="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-offset-2 col-xs-6">
+                        <button type="submit" class="btn btn-sm btn-primary">保存</button>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+        <section class="card inner">
+            <h3>绑定手机号</h3>
+            <form id="bindMobile" class="form-horizontal form-mobile inner" method="patch" action="/rest/users/self/mobile-binding" onsubmit="$(this).ajaxsubmit();return false;">
+                <div class="form-group form-group-mobile">
+                    <label class="col-xs-2 control-label" for="regMobile">手机号码</label>
+                    <div class="col-xs-6">
+                        <select name="zone" class="form-control">
+                            <option value="0086" selected="selected">中国0086</option>
+                            <!--
+                                      <option value="00852">中国香港</option>
+                                      <option value="00853">中国澳门</option>
+                                      <option value="00886">中国台湾</option>
+                                      <option value="001">美国</option>
+                                      <option value="001">加拿大</option>
+                                      <option value="0060">马来西亚</option>
+                                      <option value="0061">澳洲</option>
+                                      <option value="0081">日本</option>
+                                      <option value="0082">韩国</option>
+                                      <option value="0065">新加坡</option>
+                                      <option value="0044">英国</option>
+                                      <option value="0033">法国</option>
+                                      <option value="007">俄罗斯</option>
+                                      <option value="0091">印度</option>
+                                      <option value="0066">泰国</option>
+                                      <option value="0049">德国</option>
+                                      -->
+                        </select>
+                        <input type="text" class="form-control" name="mobile_number" placeholder="请输入你的手机号码" id="regMobile" required="">
+                    </div>
+                </div>
+                <div class="form-group form-group-mobile">
+                    <label class="col-xs-2 control-label" for="regMobileCaptcha">短信验证码</label>
+                    <div class="col-xs-3">
+                        <input type="text" class="form-control" name="sms_captcha" placeholder="请输入短信验证码" required="">
+                    </div>
+                    <div class="col-xs-3">
+                        <button class="btn btn-default btn-block sendSMSBtn" type="button">免费获取短信验证码</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-offset-2 col-xs-6">
+                        <button type="submit" class="btn btn-sm btn-primary">保存</button>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+        <section class="card inner">
+            <h3>密码修改</h3>
+            <form class="form-horizontal" method="patch" action="/rest/password" onsubmit="$(this).ajaxsubmit();return false;">
+                <input type="hidden" name="nonce" value="09f5b1782ead0392">				<div class="form-group">
+                <label class="col-xs-2 control-label"></label>
+                <div class="col-xs-6">
+                    <span class="help-block">你尚未设置登陆密码,请在下方输入框设置</span>
+                </div>
+            </div>
+                <div class="form-group">
+                    <label class="col-xs-2 control-label">新密码</label>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="password" name="newpassword">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-2 control-label">确认新密码</label>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="password" name="newpasswordconfirm">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-offset-2 col-xs-6">
+                        <button type="submit" class="btn btn-sm btn-primary">保存</button>
+                    </div>
+                </div>
+                <em class="settings_tip" style="background-color:red" id="settings_basicinfo_tip_span"></em>
+            </form>
+        </section>
+    </main>
+
+</div>

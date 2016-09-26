@@ -4,16 +4,25 @@
 
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var validator = require('validator');
 var mongoose = require('mongoose'),
   User = mongoose.model('User');
 
 module.exports.init = function () {
   passport.use(new LocalStrategy({
-      usernameField:'email',
+      usernameField:'account',
       passwordField:'password'
     },
-    function (email, password, done) {
-      User.findOne({email: email}, function (err, user) {
+    function (account, password, done) {
+      var search={};
+      if(validator.isEmail(account)){
+        search.email=account;
+      }else if(validator.isMobilePhone(account,'zh-CN')){
+        search.phone=account;
+      }else{
+        search.name=account
+      }
+      User.findOne(search, function (err, user) {
         if (err) {
           return done(err);
         }

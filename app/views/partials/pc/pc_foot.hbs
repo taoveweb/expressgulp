@@ -87,55 +87,48 @@
                 })
             })
         </script>
-      <script>
-          //登录
-          $(function () {
-              $("#login-form").validate({
-                  rules: {
-                      account: {
-                          required: true,
-                          minlength: 5
-                      },
-                      password: {
-                          required: true
-                      }
-                  },
-                  messages: {
-                      account: "格式不正确 请用 邮箱、手机、用户名 登录",
-                      password: "密码不能为空"
-                  },
-                  submitHandler: function (form) {
-                      return true;
-                  }
-              });
+        <script>
+            //登录
+            $(function () {
+                $("#login-form").validate({
+                    rules: {
+                        account: {
+                            required: true,
+                            minlength: 5
+                        },
+                        password: {
+                            minlength: 5,
+                            required: true
+                        }
+                    },
+                    messages: {
+                        account: "格式不正确 请用 邮箱、手机、用户名 登录",
+                        password: "密码不能为空"
+                    },
+                    submitHandler: function (form) {
+                      var params=$('.form').serialize()
+                        console.log(params)
+                        return true;
+                    },
 
 
-              $('.login-btn').click(function (e) {
-                  e.preventDefault();
-                  var action = $('#form').attr('action');
-                  var actionSeach = $.querystring(action);
-                  var serialize = $('#form').serialize();
-                  var strObj = $.querystring(serialize);
-                  $.extend(strObj,actionSeach);
+                });
 
-                  if (!strObj.introduction) {
-                      delete strObj.introduction;
-                  }
-                  if (!strObj.sign) {
-                      delete strObj.sign;
-                  }
-                  if (!strObj.daterange) {
-                      delete strObj.daterange;
-                  }
-                  strObj = $.querystring(strObj);
-                  var url = location.origin + location.pathname;
-                  if(strObj){
-                      var url = url+"?"+strObj;
-                  }
-                  window.location.href = url;
-              })
-
-          })
-      </script>
+            })
+        </script>
     {{/extend}}
+
+    <style>
+        .login-form .login-group label.error {
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 10px;
+            right: 10px;
+            text-align: center;
+            font-weight: normal;
+            color: #ff6600;
+        }
+    </style>
+
 {{/eq}}

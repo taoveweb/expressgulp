@@ -102,49 +102,39 @@
                   },
                   messages: {
                       account: "格式不正确 请用 邮箱、手机、用户名 登录",
-                      password: "密码"
+                      password: "密码不能为空"
                   },
                   submitHandler: function (form) {
                       return true;
                   }
               });
 
-              var sign = [];
-              Array.prototype.indexOf = function (val) {
-                  for (var i = 0; i < this.length; i++) {
-                      if (this[i] == val) return i;
-                  }
-                  return -1;
-              };
 
-              Array.prototype.remove = function (val) {
-                  var index = this.indexOf(val);
-                  if (index > -1) {
-                      this.splice(index, 1);
-                  }
-              };
+              $('.login-btn').click(function (e) {
+                  e.preventDefault();
+                  var action = $('#form').attr('action');
+                  var actionSeach = $.querystring(action);
+                  var serialize = $('#form').serialize();
+                  var strObj = $.querystring(serialize);
+                  $.extend(strObj,actionSeach);
 
-              $('#addSign').click(function () {
-                  var val = $(".form-control  option:selected").val();
-                  if (sign.indexOf(val) === -1) {
-                      sign.push(val);
-                      $('.bj').append('<span  class=" label label-primary" >' + val + '<em class="delsign" aria-hidden="true">&times;</em></span>')
-                      setsign();
+                  if (!strObj.introduction) {
+                      delete strObj.introduction;
                   }
-              });
-
-              $('.bj').on('click', '.delsign', function () {
-                  var parent = $(this).parent();
-                  parent.find('em').remove();
-                  var val = parent.html();
-                  parent.remove();
-                  sign.remove(val);
-                  setsign();
+                  if (!strObj.sign) {
+                      delete strObj.sign;
+                  }
+                  if (!strObj.daterange) {
+                      delete strObj.daterange;
+                  }
+                  strObj = $.querystring(strObj);
+                  var url = location.origin + location.pathname;
+                  if(strObj){
+                      var url = url+"?"+strObj;
+                  }
+                  window.location.href = url;
               })
 
-              function setsign(){
-                  $('#sign').val(sign.join('.'));
-              }
           })
       </script>
     {{/extend}}

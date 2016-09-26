@@ -44,6 +44,7 @@ router.get('/edit',  function (req, res, next) {
     }
 
     res.render('admin/user/useredit', {
+      layout:'main_admin',
       title: '会员编辑',
       router: 'userlist',
       user: user
@@ -108,6 +109,7 @@ router.post('/update', function (req, res, next) {
     user['headPicture'] = user['headPicture'] == "" ? "/common/uploadheaderimg/logo.jpg" : user['headPicture'];
 
     res.render('admin/user/useredit', {
+      layout:'main_admin',
       title: '会员编辑',
       router: 'useredit',
       user: [user],

@@ -18,6 +18,7 @@ module.exports = function (app) {
 router.get('/add', function (req, res, next) {
   co(function *() {
     res.render('admin/img/imgadd', {
+      layout:'main_admin',
       title: '添加图片',
       router: 'imgadd',
       imgUrl: "/common/uploadheaderimg/logo.jpg"
@@ -72,6 +73,7 @@ router.post('/add', function (req, res, next) {
 
     if(errors){
       res.render('admin/img/imgadd', {
+        layout:'main_admin',
         title: '厍图片',
         router: 'imgadd',
         img:[add],

@@ -44,5 +44,16 @@ for(var i=0;i<1000;i++){
 
 */
 
+/*db.users.insert(
+  {
+    name:"admin",
+    email:"admin@oldku.com",
+    password:'96e79218965eb72c92a549dd5a330112',
+    sex:Math.ceil(Math.random()*3),
+    admin:3,
+    phone:18059178863,
+    created:new Date()
+  }
+)*/
 
 

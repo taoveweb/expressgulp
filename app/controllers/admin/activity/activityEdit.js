@@ -33,6 +33,7 @@ router.get('/edit', function (req, res, next) {
     activities['imgUrl'] = activities['imgUrl'] == "" ? "/common/uploadheaderimg/logo.jpg" : activities['imgUrl'];
     console.log(activities)
     res.render('admin/activity/activityEdit', {
+      layout:'main_admin',
       title: '图片编缉',
       router: 'activityList',
       activities: activities
@@ -100,6 +101,7 @@ router.post('/update', function (req, res, next) {
 
     activities['imgUrl'] = activities['imgUrl'] == "" ? "/common/uploadheaderimg/logo.jpg" : activities['imgUrl'];
     res.render('admin/activity/activityEdit', {
+      layout:'main_admin',
       title: '图片编缉',
       router: 'activitiesedit',
       activities: [activities],

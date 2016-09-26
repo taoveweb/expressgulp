@@ -31,6 +31,7 @@ router.get('/edit', function (req, res, next) {
       img[0]['headPicture'] = img[0]['headPicture'] == "" ? "/common/uploadheaderimg/logo.jpg" : img[0]['headPicture'];
     }
     res.render('admin/img/imgedit', {
+      layout:'main_admin',
       title: '图片编缉',
       router: 'imglist',
       img: img,
@@ -93,6 +94,7 @@ router.post('/update', function (req, res, next) {
     img['imgUrl'] = img['imgUrl'] == "" ? "/common/uploadheaderimg/logo.jpg" : img['imgUrl'];
 
     res.render('admin/img/imgedit', {
+      layout:'main_admin',
       title: '图片编缉',
       router: 'imgedit',
       img: [img],

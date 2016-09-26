@@ -18,6 +18,7 @@ module.exports = function (app) {
 router.get('/add', function (req, res, next) {
   co(function *() {
     res.render('admin/activity/activityAdd', {
+      layout:'main_admin',
       title: '添加活动',
       router: 'activityAdd',
       activities:[{ imgUrl: "/common/uploadheaderimg/logo.jpg"}]
@@ -100,6 +101,7 @@ router.post('/add', function (req, res, next) {
 
     if(errors){
       res.render('admin/activity/activityAdd', {
+        layout:'main_admin',
         title: '活动编缉',
         router: 'activityAdd',
         activities:[add],

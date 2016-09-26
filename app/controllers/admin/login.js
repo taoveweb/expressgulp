@@ -38,7 +38,7 @@ router.post('/login', passport.authenticate('local', {failureRedirect: '/admin/l
 router.get('/loginout', function (req, res, next) {
   //todo
   req.logout();
-  res.redirect('/admin/login')
+  res.redirect('/')
 });
 
 

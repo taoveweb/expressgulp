@@ -61,6 +61,7 @@ module.exports = function (req, res, next, option) {
 
 
     res.render(hbsTemplate, {
+      layout:'main_admin',
       title: '会员列表',
       docs: docs,
       pageNum: pageNum,

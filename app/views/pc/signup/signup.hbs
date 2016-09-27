@@ -7,16 +7,75 @@
 
 
 {{#extend "script"}}
+    <script src="/components/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script>
+        $(function () {
+            //弹出登录框
+            $('.login-trigger').click(function () {
+                $('#login-dialog').css('display', 'block');
+            })
+            //关闭弹出框
+            $('.dialog-close').click(function () {
+                $('#login-dialog').css('display', 'none');
+            })
 
+        })
+    </script>
+    <script>
+        //登录
+        $(function () {
+            $("#regForm").validate({
+                rules: {
+                    user_name: {
+                        required: true,
+                        minlength: 5
+                    },
+                    user_password: {
+                        minlength: 6,
+                        required: true
+                    },
+                    user_password2: {
+                        minlength: 6,
+                        required: true
+                    }
+                },
+                messages: {
+                    user_name: "不超过10个汉字或20个英文字符，不允许重名",
+                    user_password: "密码长度至少6位",
+                    user_password2:"两次密码不一样"
+                },
+                submitHandler: function (form) {
+                    var params = $('form').serializeArray();
+                    var data = {};
+                    params.map(function (val, i) {
+                        data[val.name] = val.value;
+                    });
+                    data.type="poplogin";
+                    $.post('{{host}}/admin/login',data,function(data){
+                        if(data.success){
+                            location.reload()
+                        }else{
+                            console.log(data)
+                        }
+
+                    });
+                    return true;
+
+                },
+
+
+            });
+
+        })
+    </script>
 {{/extend}}
-
 
 <div class="container container-default">
 
     <main role="main" class="col-main">
         <section class="with-bg">
             <h1 class="card-header-larger">注册帐号</h1>
-            <form id="regForm" class="form-horizontal form-mobile inner" action="/rest/accounts/register" method="post" novalidate="novalidate">
+            <form id="regForm" class="form-horizontal form-mobile inner" onsubmit="return false;" method="post" novalidate="novalidate">
                 <input type="hidden" name="nonce" value="48d6b46cbe678335">						<div class="form-group form-group-email">
                 <label class="col-xs-2 control-label" for="regEmail">电子邮箱</label>
                 <div class="col-xs-6">
@@ -24,12 +83,12 @@
                     <span class="help-block">没有邮箱？<a href="javascript:;" class="changeRegMethod" data-method="mobile">用手机注册</a></span>
                 </div>
             </div>
-                <div class="form-group form-group-mobile">
+               <!-- <div class="form-group form-group-mobile">
                     <label class="col-xs-2 control-label" for="regMobile">手机号码</label>
                     <div class="col-xs-6">
                         <select name="zone" class="form-control">
                             <option value="0086" selected="selected">中国0086</option>
-                            <!--
+                            &lt;!&ndash;
                                         <option value="00852">中国香港</option>
                                         <option value="00853">中国澳门</option>
                                         <option value="00886">中国台湾</option>
@@ -46,10 +105,10 @@
                                         <option value="0091">印度</option>
                                         <option value="0066">泰国</option>
                                         <option value="0049">德国</option>
-                                        -->
+                                        &ndash;&gt;
                         </select>
                         <input type="text" class="form-control valid" name="mobile_number" placeholder="请输入你的手机号码" id="regMobile" required="" autofocus="" aria-required="true">
-                        <!--<span class="help-block">没有手机？<a href="javascript:;" class="changeRegMethod" data-method="email">用邮箱注册</a></span>-->
+                        &lt;!&ndash;<span class="help-block">没有手机？<a href="javascript:;" class="changeRegMethod" data-method="email">用邮箱注册</a></span>&ndash;&gt;
                     </div>
                 </div>
                 <div class="form-group form-group-mobile">
@@ -60,7 +119,7 @@
                     <div class="col-xs-3">
                         <button class="btn btn-default btn-block sendSMSBtn" type="button">获取短信验证码</button>
                     </div>
-                </div>
+                </div>-->
                 <div class="form-group">
                     <label class="col-xs-2 control-label" for="regNickname">用户名</label>
                     <div class="col-xs-6">
@@ -85,14 +144,14 @@
                 <div class="form-group">
                     <div class="col-xs-offset-2 col-xs-10" style="padding-top:10px">
                         <div class="checkbox">
-                            <label><input type="checkbox" name="accept" value="default-follow" checked="checked">我已经认真阅读并同意接受</label> <a href="https://tuchong.com/info/terms/" target="_blank">用户协议</a>
+                            <label><input type="checkbox" name="accept" value="default-follow" checked="checked">我已经认真阅读并同意接受</label> <a href="{{host}}/info/terms/" target="_blank">用户协议</a>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-xs-offset-2 col-xs-10" style="padding-top:10px">
                         <button type="submit" class="btn btn-sm btn-primary">注册</button>
-                        &nbsp;如果已经注册请&nbsp;<a href="https://tuchong.com/login/" onclick="popLogin();return false;">登录</a>
+                        &nbsp;如果已经注册请&nbsp;<a class="login-trigger" onclick="return false;">登录</a>
                     </div>
                 </div>
             </form>
@@ -102,9 +161,9 @@
         <section class="widget">
             <h3 class="card-header">使用社交帐号登录</h3>
             <div class="inner">
-                <a class="ir weibo-round" href="https://tuchong.com/weibo/auth/">用新浪微博登录</a>
-                <a class="ir qq-round" href="https://tuchong.com/qq/auth/">用QQ登录</a>
-                <a class="ir weixin-round" href="https://tuchong.com/weixin/auth/">用微信登录</a>
+                <a class="ir weibo-round" href="{{host}}/weibo/auth/">用新浪微博登录</a>
+                <a class="ir qq-round" href="{{host}}/qq/auth/">用QQ登录</a>
+                <a class="ir weixin-round" href="{{host}}/weixin/auth/">用微信登录</a>
             </div>
         </section>
         <section class="widget">

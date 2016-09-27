@@ -4,11 +4,12 @@ var express = require('express'),
   User = mongoose.model('User');
 
 module.exports = function (app) {
-  app.use(/^\/[1-9]*/, router);
+  app.use(/^\/([1-9]{1,10})/, router);
 };
 
 
-router.get('/' , function (req, res, next) {
+router.get("/" , function (req, res, next) {
+
   if(req.headers["user-agent"].toLowerCase().indexOf('mobile')!==-1){
     res.render('mobile/personal/personalMain', {
       title: '子一 - 偶酷摄影网',
@@ -25,7 +26,7 @@ router.get('/' , function (req, res, next) {
 
 });
 
-router.get('/^\/[1-9]{5}/' , function (req, res, next) {
+router.get(/^\/([1-9]{1,10})/ , function (req, res, next) {
   if(req.headers["user-agent"].toLowerCase().indexOf('mobile')!==-1){
     res.render('mobile/personal/personalMain', {
       title: '子一 - 偶酷摄影网',

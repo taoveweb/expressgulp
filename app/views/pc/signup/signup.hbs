@@ -8,7 +8,7 @@
 
 {{#extend "script"}}
     <script src="/components/jquery-validation/dist/jquery.validate.min.js"></script>
-
+    <script src="/pc/js/layer.js"></script>
     <script>
 
         $(function () {
@@ -61,9 +61,18 @@
                     data.type="register";
                     $.post('{{host}}/rest/accounts/register',data,function(data){
                         if(data.success){
-                            location.href="{{host}}/"
+                            //正上方
+                            layer.msg('注册成功请登录', {
+                                offset: 0,
+                                shift: 6
+                            });
+
+                            $('.login-trigger').trigger('click')
                         }else{
-                            alert(data.msg)
+                            layer.msg(data.msg, {
+                                offset: 0,
+                                shift: 6
+                            });
                         }
 
                     });

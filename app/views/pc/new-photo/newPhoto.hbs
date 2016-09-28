@@ -341,7 +341,7 @@
   <script type="text/javascript">
       Date.prototype.offset = new Date().getTime() - 1474469616712.1;
       Tuchong.apiPath = '/api/';
-      var app_domain = 'tuchong.com',			web_root = 'https://tuchong.com/', 		media_root = 'https://s1.tuchong.com/', 		js_root = 'https://static.tuchong.net/js/',
+      var app_domain = 'tuchong.com',			web_root = 'https:{{host}}/', 		media_root = 'https://s1.tuchong.com/', 		js_root = 'https://static.tuchong.net/js/',
               style_root = 'https://static.tuchong.net/styles/',
               visitor = {"id":"1551288","name":"\u5b50\u4e00824","domain":"","icon":"https:\/\/s1.tuchong.com\/sites\/155\/1551288\/logo_small.jpg?1","url":"https:\/\/tuchong.com\/1551288\/"},
               weiboAccount = false,
@@ -383,7 +383,7 @@
   </script>
 
   <!--[if lt IE 9]>
-  <iframe class="bc-warn" src="https://tuchong.com/browsercheck.html" frameborder="0"></iframe>
+  <iframe class="bc-warn" src="https:{{host}}/browsercheck.html" frameborder="0"></iframe>
   <div class="bc-screen-lock"></div>
   <link href="https://static.tuchong.net/styles/ie-checker.css?1456660771.css" rel="stylesheet" />
   <![endif]-->
@@ -417,7 +417,7 @@
       googleAnalytics();
       window.HOST_TYPE = 2;
       window.BMap_loadScriptTime = (new Date).getTime();
-      window.androidApk = "https://tuchong.com/rest/android/download";
+      window.androidApk = "https:{{host}}/rest/android/download";
       window.showApkLink = true;
   </script>
 {{/extend}}

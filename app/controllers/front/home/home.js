@@ -20,14 +20,18 @@ router.get('/', function (req, res, next) {
     var template;
     if (req.user) {
       template="pc/home/homeMain";
+      res.render(template, {
+        title: '首页 - 偶酷网 - 最好的摄影师都在这',
+        route: "动态",
+      });
     } else {
       template="pc/home/homeNoLogin";
+      res.render(template, {
+        layout:'mainh5',
+        title: '首页 - 偶酷网 - 最好的摄影师都在这',
+        route: "动态",
+      });
     }
-
-    res.render(template, {
-      title: '首页 - 偶酷网 - 最好的摄影师都在这',
-      route: "动态",
-    });
   }
 
 });

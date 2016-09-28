@@ -8,7 +8,9 @@
 
 {{#extend "script"}}
     <script src="/components/jquery-validation/dist/jquery.validate.min.js"></script>
+
     <script>
+
         $(function () {
             //弹出登录框
             $('.login-trigger').click(function () {
@@ -24,11 +26,16 @@
     <script>
         //登录
         $(function () {
+            jQuery.validator.addMethod("userName", function(value, element) {
+                var username = /^[a-zA-Z\u4e00-\u9fa5]+$/;
+                return this.optional(element) || (username.test(value));
+            }, "输入长度必须介于 5 和 10 之间的字母或汉字");
             $("#regForm").validate({
                 rules: {
                     user_name: {
                         required: true,
-                        minlength: 5
+                        rangelength:[5,10],
+                        userName:true
                     },
                     user_password: {
                         minlength: 6,
@@ -36,13 +43,14 @@
                     },
                     user_password2: {
                         minlength: 6,
-                        required: true
+                        required: true,
+                        equalTo: "#user_password"
                     }
                 },
                 messages: {
-                    user_name: "不超过10个汉字或20个英文字符，不允许重名",
+                    user_name: "输入长度必须介于 5 和 10 之间的字母或汉字",
                     user_password: "密码长度至少6位",
-                    user_password2:"两次密码不一样"
+                    user_password2:"两次密码输入不一致"
                 },
                 submitHandler: function (form) {
                     var params = $('form').serializeArray();
@@ -50,15 +58,16 @@
                     params.map(function (val, i) {
                         data[val.name] = val.value;
                     });
-                    data.type="poplogin";
-                    $.post('{{host}}/admin/login',data,function(data){
+                    data.type="register";
+                    $.post('{{host}}/rest/accounts/register',data,function(data){
                         if(data.success){
-                            location.reload()
+                            alert('注册成功')
                         }else{
                             console.log(data)
                         }
 
                     });
+                    /*$(form).ajaxSubmit();*/
                     return true;
 
                 },
@@ -75,7 +84,7 @@
     <main role="main" class="col-main">
         <section class="with-bg">
             <h1 class="card-header-larger">注册帐号</h1>
-            <form id="regForm" class="form-horizontal form-mobile inner" onsubmit="return false;" method="post" novalidate="novalidate">
+            <form id="regForm" class="form-horizontal form-mobile inner" action="{{host}}/admin/login" onsubmit="return false;" method="post" novalidate="novalidate">
                 <input type="hidden" name="nonce" value="48d6b46cbe678335">						<div class="form-group form-group-email">
                 <label class="col-xs-2 control-label" for="regEmail">电子邮箱</label>
                 <div class="col-xs-6">
@@ -124,13 +133,13 @@
                     <label class="col-xs-2 control-label" for="regNickname">用户名</label>
                     <div class="col-xs-6">
                         <input type="text" name="user_name" class="form-control" placeholder="请输入你的用户名" required="" aria-required="true">
-                        <span class="help-block">不超过10个汉字或20个英文字符，不允许重名</span>
+                        <span class="help-block">输入长度必须介于 5 和 10 之间的字母或汉字</span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-xs-2 control-label" for="regPassword">密码</label>
                     <div class="col-xs-6">
-                        <input type="password" name="user_password" class="form-control" placeholder="请输入密码">
+                        <input type="password" id="user_password" name="user_password" class="form-control" placeholder="请输入密码">
                         <span class="help-block">密码长度至少6位</span>
                     </div>
                 </div>

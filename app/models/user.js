@@ -9,7 +9,7 @@ var UserSchema = new Schema({
   name: {type:String,default :''},
   sex:{type:Number,default :0},
   admin: {type:Number,default:0},
-  email: {type:String,required:true},
+  email: {type:String,default :''},
   phone:{type:String,default:0},
   password: {type:String,required:true},
   disable: {type:Number,default:0},//0激活 1停用

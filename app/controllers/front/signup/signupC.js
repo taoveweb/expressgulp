@@ -12,6 +12,9 @@ module.exports = function (app) {
 };
 
 router.get('/signup', function (req, res, next) {
+  if(req.user){
+   return res.redirect("/")
+  }
   if (req.headers["user-agent"].toLowerCase().indexOf('mobile') !== -1) {
     res.render('mobile/signup/signup', {
       layout: "main_m",

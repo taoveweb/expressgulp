@@ -61,9 +61,9 @@
                     data.type="register";
                     $.post('{{host}}/rest/accounts/register',data,function(data){
                         if(data.success){
-                            alert('注册成功')
+                            location.href="{{host}}/"
                         }else{
-                            console.log(data)
+                            alert(data.msg)
                         }
 
                     });

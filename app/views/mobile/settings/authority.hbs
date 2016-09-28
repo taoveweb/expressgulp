@@ -1,0 +1,70 @@
+{{#extend "style"}}
+    <link href="/pc/css/all.css" rel="stylesheet">
+{{/extend}}
+
+
+
+{{#extend "script"}}
+
+{{/extend}}
+
+{{>pc_settings_top}}
+
+<div class="container container-default">
+    <main role="main" class="col-main col-xs-12">
+        <section class="card inner">
+            <form method="patch" action="/rest/users/self/authority" onsubmit="$(this).ajaxsubmit();return false;">
+                <input type="hidden" name="nonce" value="09f5b1782ead0392">            <!--
+            <h3></h3>
+            <p>允许其他人查看的最大尺寸</p>
+            <p class="radio"><input type="radio" id="img_allow_size_4" value="4" name="img_allowed_size" checked="checked" /><label class="radio" for="img_allow_size_4">600×400</label></p>
+            <p class="radio"><input type="radio" id="img_allow_size_5" value="5" name="img_allowed_size"  /><label class="radio" for="img_allow_size_5">960×640</label></p>
+           	-->
+                <h3>知识共享协议 2.5 (Creative Commons 2.5)</h3>
+                <p>偶酷是一个图片分享及传播的平台，我们尊重和鼓励偶酷用户创作的内容，也认识到保护知识产权对偶酷生存与发展的重要性，承诺将保护知识产权作为偶酷运营的基本原则之一。</p>
+                <p>为了更好地促进合作和知识共享，偶酷用户发布的原创内容（包括图片和文章）均采用 <a href="http://cn.creativecommons.org/licenses/meet-the-licenses/">CC 协议（知识共享许可协议）</a>。您可以通过回答下列 2 个简单的问题来决定您采用的CC协议的级别。</p>
+                <p>1. 您是否允许您的作品用于商业目的？</p>
+                <div class="radio">
+                    <input type="radio" onchange="$('#nc').removeClass().addClass('cc-nc-n');nc=0;updateCcDescription();" id="commercial_y" value="y" name="commercial">
+                    <label for="commercial_y">是</label>
+                </div>
+                <div class="radio">
+                    <input type="radio" onchange="$('#nc').removeClass().addClass('cc-nc-y');nc=2;updateCcDescription();" id="commercial_n" value="n" name="commercial" checked="checked">
+                    <label for="commercial_n">否</label>
+                </div>
+                <p>2. 您是否允许他人改编、演绎您的作品？</p>
+                <div class="radio">
+                    <input type="radio" onchange="$('#sa').removeClass().addClass('cc-sa-n');$('#nd').removeClass().addClass('cc-nd-n');nd=0;sa=0;updateCcDescription();" id="derivatives_y" value="y" name="derivatives">
+                    <label for="derivatives_y">是</label>
+                </div>
+                <div class="radio">
+                    <input type="radio" onchange="$('#nd').removeClass().addClass('cc-nd-n');$('#sa').removeClass().addClass('cc-sa-y');nd=0;sa=4;updateCcDescription();" id="derivatives_sa" value="sa" name="derivatives" checked="checked">
+                    <label for="derivatives_sa">
+                        <span>是, 只要他人以相同方式共享</span>
+                    </label>
+                </div>
+                <div class="radio">
+                    <input type="radio" onchange="$('#sa').removeClass().addClass('cc-sa-n');$('#nd').removeClass().addClass('cc-nd-y');nd=3;sa=0;updateCcDescription();" id="derivatives_n" value="n" name="derivatives">
+                    <label for="derivatives_n">否</label>
+                </div>
+                <p>您选择的CC协议如下: <br>
+                    <a href="http://creativecommons.org/licenses/by-nc-sa/2.5/cn/" id="cc-description-a" target="_blank">
+                        <img id="by" class="cc-by-y" src="https://static.tuchong.net/images/by.png" alt="by">
+                        <img id="nc" class="cc-nc-y" src="https://static.tuchong.net/images/nc.png" alt="nc">
+                        <img id="nd" class="cc-nd-n" src="https://static.tuchong.net/images/nd.png" alt="nd">
+                        <img id="sa" class="cc-sa-y" src="https://static.tuchong.net/images/sa.png" alt="sa">
+                        <span id="cc-description">署名-非商业使用-相同方式共享</span>
+                    </a>
+                </p>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="all-apply" value="yes">保存后将协议设置更改应用到已有原创内容（包括图片和文章）
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-sm btn-primary">保存</button>
+            </form>
+        </section>
+    </main>
+
+
+</div>

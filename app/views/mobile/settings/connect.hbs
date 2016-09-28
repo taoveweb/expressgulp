@@ -1,0 +1,32 @@
+{{#extend "style"}}
+    <link href="/pc/css/all.css" rel="stylesheet">
+{{/extend}}
+
+
+
+{{#extend "script"}}
+
+{{/extend}}
+
+{{>pc_settings_top}}
+
+<div class="container container-default">
+
+    <main role="main" class="col-main col-xs-12">
+        <section class="card inner">
+
+            <div class="section" id="sina">
+                <h3>新浪微博</h3>
+                <p><a href="{{host}}/weibo/auth/?action=bind">连接</a>新浪微博</p>
+            </div>
+            <div class="section" id="weixin">
+                <h3>微信（已连接）</h3>
+                <p><a href="javascript:void(0);" onclick="TuchongClient.delete('users/self/weixin-connection', {}, local.operation)">取消</a>微信的连接</p>
+            </div>
+            <div class="section" id="qq">
+                <h3>腾讯QQ</h3>
+                <p><a href="{{host}}/qq/auth/?action=bind">连接</a>腾讯QQ</p>
+            </div>
+        </section>
+    </main>
+</div>

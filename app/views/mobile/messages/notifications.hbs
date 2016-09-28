@@ -1,0 +1,42 @@
+{{#extend "style"}}
+    <link href="/pc/css/all.css" rel="stylesheet">
+{{/extend}}
+
+{{#extend 'bodyAttr'}}
+     class="home-p has-subnav no-touch"
+{{/extend}}
+
+{{#extend "script"}}
+
+{{/extend}}
+
+
+
+<div class="navbar-secondary pc-navbar">
+    <nav class="navbar container">
+        <ul class="navbar-subnav">
+            <li><a href="{{host}}/messages/">站内信</a></li>
+            <li class="active"><a href="{{host}}/notifications/">通知</a></li>
+            <li><a href="{{host}}/requests/">请求</a></li>
+        </ul>
+    </nav>
+</div>
+<div class="notify-bar card" style="display: none;"><ul class="notify-list"></ul><div class="read-all"><a href="javascript:void(0)" class="btn btn-sm btn-default">知道了</a></div></div>
+<div class="container container-default">
+    <h1>我的通知</h1>
+    <main role="main" class="col-main">
+        <section class="with-bg">
+            <ul class="notification-list">
+                <li class="read">
+                    <span class="date">16-9-21 14:23</span>
+                    您于2016-09-21 14:20:01发布的 可爱不 因未通过审核被删除;如有疑问请与管理员联系。		</li>
+                <li class="read">
+                    <span class="date">16-9-21 13:10</span>
+                    有可能是偶酷网史上最好玩的赛事——“街拍中国”摄影擂台赛已经启动啦。国际级的阵容、众多的奖项、高额的奖金、有趣的赛制，了解详情猛戳：<a target="_blank" href="{{host}}/jiepaizhongguo/">查看详情</a>		</li>
+            </ul>
+            <div class="pagebar"></div>
+        </section>
+    </main>
+    <aside id="side" class="col-side">
+    </aside>
+</div>

@@ -1,0 +1,75 @@
+{{#extend "style"}}
+    <link href="/pc/css/all.css" rel="stylesheet">
+{{/extend}}
+
+
+
+{{#extend "script"}}
+
+{{/extend}}
+
+{{>pc_settings_top}}
+
+<div class="container container-default">
+    <main id="main" class="col-main col-xs-12">
+        <section class="with-bg inner custom-theme">
+            <h3>主页背景图</h3>
+            <form class="upload-bg form-horizontal" method="patch" enctype="multipart/form-data" action="/rest/sites/1551288/background-image" onsubmit="isImage(this.image) &amp;&amp; generalUpload(this, headerUploadCallback);return false;">
+                <input type="hidden" name="nonce" value="09f5b1782ead0392">			<input type="hidden" name="site_id" value="1551288">
+                <input type="hidden" name="MAX_FILE_SIZE" value="524288">
+                <div class="form-group">
+                    <label class="col-xs-2 control-label">当前背景图</label>
+                    <div class="col-xs-10">
+                        <img id="siteBg" src="https://s1.tuchong.com/sites/155/1551288/header." alt="子一824的自定义背景" class="img-responsive">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-2 control-label">上传背景图</label>
+                    <div class="col-xs-10">
+                        <input type="file" accept="image/*" name="image" onchange="this.form.onsubmit(event);">
+                        <p class="help-block">支持jpg,png,gif格式图片，最大512kB </p>
+                    </div>
+                </div>
+            </form>
+            <form class="form-horizontal" method="patch" action="/rest/sites/1551288/appearance" onsubmit="$(this).ajaxsubmit( handleUserAppearanceUpdate );return false;">
+                <input type="hidden" name="nonce" value="09f5b1782ead0392">			<input type="hidden" name="site_id" value="1551288">
+                <div class="form-group">
+                    <label class="col-xs-2 control-label">启用</label>
+                    <div class="col-xs-10">
+                        <div class="checkbox">
+                            <label><input type="checkbox" name="useBg">使用背景图</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-2 control-label">是否重复</label>
+                    <div class="col-xs-10">
+                        <label class="checkbox-inline"><input type="checkbox" name="backgroundAttachment">锁定</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="backgroundRepeat">平铺</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-2 control-label">对齐方式</label>
+                    <div class="col-xs-10">
+                        <label class="radio-inline"><input type="radio" name="backgroundPosition" value="left">左对齐</label>
+                        <label class="radio-inline"><input type="radio" name="backgroundPosition" value="center">居中对齐</label>
+                        <label class="radio-inline"><input type="radio" name="backgroundPosition" value="right">右对齐</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-2 control-label">背景色</label>
+                    <div class="col-xs-10">
+                        <span id="newColor" style="display:inline-block;width:16px;height:16px; background:"></span>
+                        <input type="text" class="form-control" style="display:inline-block;width:200px;" name="backgroundColor" value="" onkeyup="$('#newColor').css('background-color','#fff').css('background-color',$(this).attr('value'))">
+                        <p class="help-block">请输入#RRGGBB格式的色彩值，例如#000000代表黑色，#FFFFFF代表白色，#FF0000代表红色。</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-offset-2 col-xs-10">
+                        <button type="submit" class="btn btn-sm btn-primary">保存</button>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </main>
+</div>

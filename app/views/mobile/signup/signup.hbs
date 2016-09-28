@@ -1,0 +1,196 @@
+{{#extend "style"}}
+    <link href="/pc/css/all.css" rel="stylesheet">
+{{/extend}}
+{{#extend 'bodyAttr'}}
+    class="signup-p no-subnav no-touch"
+{{/extend}}
+
+
+{{#extend "script"}}
+    <script src="/components/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="/pc/js/layer.js"></script>
+    <script>
+
+        $(function () {
+            //弹出登录框
+            $('.login-trigger').click(function () {
+                $('#login-dialog').css('display', 'block');
+            })
+            //关闭弹出框
+            $('.dialog-close').click(function () {
+                $('#login-dialog').css('display', 'none');
+            })
+
+        })
+    </script>
+    <script>
+        //登录
+        $(function () {
+            jQuery.validator.addMethod("userName", function(value, element) {
+                var username = /^[a-zA-Z\u4e00-\u9fa5]+$/;
+                return this.optional(element) || (username.test(value));
+            }, "输入长度必须介于 5 和 10 之间的字母或汉字");
+            $("#regForm").validate({
+                rules: {
+                    user_name: {
+                        required: true,
+                        rangelength:[5,10],
+                        userName:true
+                    },
+                    user_password: {
+                        minlength: 6,
+                        required: true
+                    },
+                    user_password2: {
+                        minlength: 6,
+                        required: true,
+                        equalTo: "#user_password"
+                    }
+                },
+                messages: {
+                    user_name: "输入长度必须介于 5 和 10 之间的字母或汉字",
+                    user_password: "密码长度至少6位",
+                    user_password2:"两次密码输入不一致"
+                },
+                submitHandler: function (form) {
+                    var params = $('form').serializeArray();
+                    var data = {};
+                    params.map(function (val, i) {
+                        data[val.name] = val.value;
+                    });
+                    data.type="register";
+                    $.post('{{host}}/rest/accounts/register',data,function(data){
+                        if(data.success){
+                            //正上方
+                            layer.msg('注册成功请登录', {
+                                offset: 0,
+                                shift: 6
+                            });
+
+                            $('.login-trigger').trigger('click')
+                        }else{
+                            layer.msg(data.msg, {
+                                offset: 0,
+                                shift: 6
+                            });
+                        }
+
+                    });
+                    /*$(form).ajaxSubmit();*/
+                    return true;
+
+                },
+
+
+            });
+
+        })
+    </script>
+{{/extend}}
+
+<div class="container container-default">
+
+    <main role="main" class="col-main">
+        <section class="with-bg">
+            <h1 class="card-header-larger">注册帐号</h1>
+            <form id="regForm" class="form-horizontal form-mobile inner" action="{{host}}/admin/login" onsubmit="return false;" method="post" novalidate="novalidate">
+                <input type="hidden" name="nonce" value="48d6b46cbe678335">						<div class="form-group form-group-email">
+                <label class="col-xs-2 control-label" for="regEmail">电子邮箱</label>
+                <div class="col-xs-6">
+                    <input type="text" name="user_email" class="form-control" placeholder="请输入你的电子邮箱" disabled="disabled" required="" aria-required="true">
+                    <span class="help-block">没有邮箱？<a href="javascript:;" class="changeRegMethod" data-method="mobile">用手机注册</a></span>
+                </div>
+            </div>
+               <!-- <div class="form-group form-group-mobile">
+                    <label class="col-xs-2 control-label" for="regMobile">手机号码</label>
+                    <div class="col-xs-6">
+                        <select name="zone" class="form-control">
+                            <option value="0086" selected="selected">中国0086</option>
+                            &lt;!&ndash;
+                                        <option value="00852">中国香港</option>
+                                        <option value="00853">中国澳门</option>
+                                        <option value="00886">中国台湾</option>
+                                        <option value="001">美国</option>
+                                        <option value="001">加拿大</option>
+                                        <option value="0060">马来西亚</option>
+                                        <option value="0061">澳洲</option>
+                                        <option value="0081">日本</option>
+                                        <option value="0082">韩国</option>
+                                        <option value="0065">新加坡</option>
+                                        <option value="0044">英国</option>
+                                        <option value="0033">法国</option>
+                                        <option value="007">俄罗斯</option>
+                                        <option value="0091">印度</option>
+                                        <option value="0066">泰国</option>
+                                        <option value="0049">德国</option>
+                                        &ndash;&gt;
+                        </select>
+                        <input type="text" class="form-control valid" name="mobile_number" placeholder="请输入你的手机号码" id="regMobile" required="" autofocus="" aria-required="true">
+                        &lt;!&ndash;<span class="help-block">没有手机？<a href="javascript:;" class="changeRegMethod" data-method="email">用邮箱注册</a></span>&ndash;&gt;
+                    </div>
+                </div>
+                <div class="form-group form-group-mobile">
+                    <label class="col-xs-2 control-label" for="regMobileCaptcha">短信验证码</label>
+                    <div class="col-xs-3">
+                        <input type="text" class="form-control" name="sms_captcha" placeholder="输入短信验证码" id="regMobileCaptcha">
+                    </div>
+                    <div class="col-xs-3">
+                        <button class="btn btn-default btn-block sendSMSBtn" type="button">获取短信验证码</button>
+                    </div>
+                </div>-->
+                <div class="form-group">
+                    <label class="col-xs-2 control-label" for="regNickname">用户名</label>
+                    <div class="col-xs-6">
+                        <input type="text" name="user_name" class="form-control" placeholder="请输入你的用户名" required="" aria-required="true">
+                        <span class="help-block">输入长度必须介于 5 和 10 之间的字母或汉字</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-2 control-label" for="regPassword">密码</label>
+                    <div class="col-xs-6">
+                        <input type="password" id="user_password" name="user_password" class="form-control" placeholder="请输入密码">
+                        <span class="help-block">密码长度至少6位</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-2 control-label" for="regPassword2">确认密码</label>
+                    <div class="col-xs-6">
+                        <input type="password" name="user_password2" class="form-control" placeholder="请再次输入密码">
+                    </div>
+                </div>
+                <div class="form-group form-captcha form-group-email"><label class="col-xs-2 control-label" for="captcha_token">验证码</label><div class="col-xs-3">  <input type="hidden" class="form-control" name="captcha_id" value="bupu4SZ77RQrtVcgXKhZ">  <input type="text" class="form-control" name="captcha_token" placeholder="请输入验证码" id="captcha_token" required="">  <span class="ckeck_captcha_token hide"></span></div><div class="col-xs-3">  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAAoCAMAAAACNM4XAAAAP1BMVEUAAAB3G1PVebHSdq5hBT3Ha6PTd69yFk6KLma6Xpbjh7/Pc6tzF0/hhb2OMmqfQ3vBZZ2WOnJwFEyILGTghLyhcTVjAAAAAXRSTlMAQObYZgAAAfVJREFUeJzEmA1z8iAMgBt9X3XVue3//8ntdnPO3S6DQiE0gYaKM/VavsJDPuBqV92dZAa8vRN4a67Nzdhl8mbzd2RIatXcvWqU6GrwMlQu85M8pVwVWQAHgzGv9phyKfnDXAoBqQnTGrBVGO47Jb9pUHWLSbyekG8gEcOA2cZqEWK8KypAjMRVK+C6hvtlnza0LL3scKSKhQQsC7f4bC4/M3YsvEgKiGJyKgWEkqsaZMyr3rVA9K8r8LybFRfKFY6awFcPaGQg9APZ2AgT56La18+Bu3M471SLSamdbx7u/ckV7C0uEDuul+e+evKZUri1wavJgwYdMps8S07mzwwbLHMGexsRJokOIb+XpDbQwmTS8WZ/GFuIMgqqtWBaSbYJQiROjSM+qSUn+xidxD2C4Wbb9jwuPsLWJ6TzQQEWYxwsJzEFu6FO3dSp4Mdh2BwD91OBlqByvu7lFIa4KfxzicXSAR37cl2hR5/h/yZ1rM6SVL248grpaaVwUgDoxkVZz3D/fysm4QErsjXr6nVQAZRjj+3Xv8bk3whYutAjrsH7U/7ELG+Rm0oyfYtsL0s5Y534s/qlLVdBXnluS/KPubTS1OL2cmg4V803kENTcl74P/Jaria7BW74BnFcpG+46wI57+rL+C3guJRczO7fAAAA//+8C25rXsK/UAAAAABJRU5ErkJggg==" width="120px" class="captcha-img" alt="captcha"></div></div>
+                <div class="form-group">
+                    <div class="col-xs-offset-2 col-xs-10" style="padding-top:10px">
+                        <div class="checkbox">
+                            <label><input type="checkbox" name="accept" value="default-follow" checked="checked">我已经认真阅读并同意接受</label> <a href="{{host}}/info/terms/" target="_blank">用户协议</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-offset-2 col-xs-10" style="padding-top:10px">
+                        <button type="submit" class="btn btn-sm btn-primary">注册</button>
+                        &nbsp;如果已经注册请&nbsp;<a class="login-trigger" onclick="return false;">登录</a>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </main>
+    <aside id="side" class="col-side">
+        <section class="widget">
+            <h3 class="card-header">使用社交帐号登录</h3>
+            <div class="inner">
+                <a class="ir weibo-round" href="{{host}}/weibo/auth/">用新浪微博登录</a>
+                <a class="ir qq-round" href="{{host}}/qq/auth/">用QQ登录</a>
+                <a class="ir weixin-round" href="{{host}}/weixin/auth/">用微信登录</a>
+            </div>
+        </section>
+        <section class="widget">
+            <h3 class="card-header">加入后你可以</h3>
+            <ul>
+                <li class="inner"><strong>展示 </strong>批量照片上传和管理</li>
+                <li class="inner"><strong>分享 </strong>随时查看影友新作</li>
+                <li class="inner"><strong>收获 </strong>在摄影的道路上共同成长</li>
+            </ul>
+        </section>
+    </aside>
+</div>

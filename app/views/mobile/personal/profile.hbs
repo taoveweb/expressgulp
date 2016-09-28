@@ -1,0 +1,101 @@
+{{#extend "style"}}
+    <link href="/pc/css/all.css" rel="stylesheet">
+    <style type="text/css">
+        #site-header {
+            background: #000 url(https://static.tuchong.net/images/site-bg-1.jpg) no-repeat center 0;
+            background-size: cover;
+        }
+        .m-site-header {
+            background: #000 url(https://static.tuchong.net/images/site-bg-1.jpg) no-repeat center 0;
+            background-size: cover;
+        }
+    </style>
+{{/extend}}
+{{#extend 'bodyAttr'}}
+    class="space-p no-subnav no-touch"
+{{/extend}}
+
+
+{{#extend "script"}}
+
+{{/extend}}
+
+
+{{>pc_personal_top}}
+
+<div class="container container-default">
+
+    <main role="main" class="col-main">
+        <section class="with-bg inner">
+            <h2>基本信息</h2>
+            <div class="clearfix">
+                <div class="row">
+                    <div class="col-xs-3">居住地</div>
+                    <div class="col-xs-9">福建</div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3">注册时间</div>
+                    <div class="col-xs-9">昨天 13:10</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="with-bg inner">
+            <h2>常用的标签</h2>
+            <p class="tag-list">
+            </p>
+        </section>
+
+        <section class="with-bg inner">
+            <h2>用过的器材</h2>
+            <ul>
+                <li>手机<a href="{{host}}/phone/apple-iphone-6-plus/">Apple iPhone 6 Plus</a>(3张)</li>
+                <li>镜头<a href="{{host}}/lens/10737/">iPhone 6 Plus back camera 4.15mm f/2.2</a>(3张)</li>
+            </ul>
+        </section>
+
+        <section class="with-bg inner comments-wrapper">
+            <h2>留言板</h2>
+
+            <form class="form-reply" data-where="top" method="post" action="/rest/sites/1551288/comments">
+
+                <input type="hidden" name="post_id" value="0">
+
+
+                <p class="reply-items"></p>
+                <textarea name="content" id="commentFormText" required="" title="Ctrl+Enter快捷提交" placeholder="你的评论对ta的作品是最大的鼓励……" onkeydown="ctrlenterkey(this.form, event)"></textarea>
+                <div class="actions">
+                    <button type="submit" class="btn btn-sm btn-primary">评论</button>
+                    <label class="checkbox-inline"><input type="checkbox" name="anonymous" id="anonymous">匿名评论</label>
+                </div>
+            </form>
+            <ul id="comments" class="comment-list row-inner">
+            </ul>
+            <div class="pagebar"></div>
+        </section>
+    </main>
+    <aside id="side" class="col-side">
+        <section class="widget">
+            <h3 class="card-header"><a href="{{host}}/1551288/following/">关注的人(4)<span class="more"></span></a></h3>
+            <ul class="tight-icons clearfix">
+                <li><a href="{{host}}/1006317/" title="牛山" rel="author" class="site-icon " data-site-id="1006317" target="_blank"><img src="https://s1.tuchong.com/sites/100/1006317/logo_small.jpg?1" alt="牛山"></a></li>
+                <li><a href="https://jiek.tuchong.com/" title="杰客" rel="author" class="site-icon " data-site-id="1016113" target="_blank"><img src="https://s1.tuchong.com/sites/101/1016113/logo_small.jpg?4" alt="杰客"></a></li>
+                <li><a href="{{host}}/1103201/" title="千载不变" rel="author" class="site-icon " data-site-id="1103201" target="_blank"><img src="https://s1.tuchong.com/sites/110/1103201/logo_small.jpg?1" alt="千载不变"></a></li>
+                <li><a href="{{host}}/1120775/" title="湘山红叶" rel="author" class="site-icon " data-site-id="1120775" target="_blank"><img src="https://s1.tuchong.com/sites/112/1120775/logo_small.jpg?1" alt="湘山红叶"></a></li>
+                <li><a href="{{host}}/1039777/" title="老三2005" rel="author" class="site-icon " data-site-id="1039777" target="_blank"><img src="https://s1.tuchong.com/sites/103/1039777/logo_small.jpg?1" alt="老三2005"></a></li>
+                <li><a href="{{host}}/253549/" title="乔茗星" rel="author" class="site-icon " data-site-id="253549" target="_blank"><img src="https://s1.tuchong.com/sites/253/253549/logo_small.jpg?6" alt="乔茗星"></a></li>
+                <li><a href="https://maswsh.tuchong.com/" title="风无语" rel="author" class="site-icon " data-site-id="242416" target="_blank"><img src="https://s1.tuchong.com/sites/242/242416/logo_small.jpg?1" alt="风无语"></a></li>
+                <li><a href="https://estella.tuchong.com/" title="Estella_lin" rel="author" class="site-icon " data-site-id="1041891" target="_blank"><img src="https://s1.tuchong.com/sites/104/1041891/logo_small.jpg?1" alt="Estella_lin"></a></li>
+                <li><a href="https://maomao.tuchong.com/" title="毛酱" rel="author" class="site-icon " data-site-id="960745" target="_blank"><img src="https://s1.tuchong.com/sites/960/960745/logo_small.jpg?29" alt="毛酱"></a></li>
+                <li><a href="https://zhangxiaoxiao.tuchong.com/" title="张小小" rel="author" class="site-icon " data-site-id="41544" target="_blank"><img src="https://s1.tuchong.com/sites/041/41544/logo_small.jpg?8" alt="张小小"></a></li>
+                <li><a href="https://himmly.tuchong.com/" title="himmly" rel="author" class="site-icon " data-site-id="396821" target="_blank"><img src="https://s1.tuchong.com/sites/396/396821/logo_small.jpg?1" alt="himmly"></a></li>
+                <li><a href="{{host}}/1006101/" title="Max_yu" rel="author" class="site-icon " data-site-id="1006101" target="_blank"><img src="https://s1.tuchong.com/sites/100/1006101/logo_small.jpg?1" alt="Max_yu"></a></li>
+            </ul>
+        </section>
+        <section class="widget">
+            <h3 class="card-header"><a href="{{host}}/1551288/followers/">关注者(0)<span class="more"></span></a></h3>
+            <ul class="tight-icons clearfix">
+            </ul>
+        </section>
+    </aside>
+</div>

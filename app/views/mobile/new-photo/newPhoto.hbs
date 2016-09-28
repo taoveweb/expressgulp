@@ -1,0 +1,423 @@
+{{#extend "style"}}
+    <link href="/pc/css/camera.css" rel="stylesheet">
+{{/extend}}
+<div class="notify-bar card"></div>
+<div class="container container-default">
+    <main role="main" class="col-main col-xs-12">
+        <div class="with-bg card clearfix">
+            <h1 class="card-header-large">发布照片</h1>
+            <div class="new-tubo-photo">
+                <form class="" action="/rest/posts" method="post" onsubmit="($(this).find('.tag-editor .tag').length || confirm('你还没有设置任何标签，设置标签可以让更多的人看到你的作品，你确定不设置标签就发布吗？')) && $(this).ajaxsubmit(local.firstMultiPhoto);return false">
+                    <input type="hidden" name="type" value="multi-photo" />
+                    <input type="hidden" name="site_id" value="1551288" />
+
+                    <div class="col-xs-12 col-md-6 inner">
+
+
+                        <div class="form-group">
+                            <label class="control-label">标题</label>
+                            <input type="text" class="form-control" name="title" value="" style="height:2em" placeholder="" />	</div>
+                        <div class="form-group form-group-content">
+                            <label class="control-label">描述</label>
+                            <textarea name="content" class="form-control" style="min-height:100px" placeholder="说说你的拍摄经历、心得体会、PS技巧。"></textarea>
+                        </div>
+                        <ol class="uploader-image-list col-xs-12" id="fileList">
+                        </ol>
+                        <p class="upload-prompt">最长边不能小于600px，最大支持20MB的JPEG格式照片<br />不建议加画框和水印签名</p>
+                        <div class="uploader-file-queue"></div>
+                        <div class="col-xs-12 upload-wrapper" style="overflow:hidden; display=block;">
+
+                            <div class="upload-trigger-wrapper col-xs-6 fileinput-button">
+                                <input id="file_upload" type="file" accept="image/*" multiple />
+                            </div>
+                            <div class="upload-album-queue col-xs-6">
+                                <a id="upload-album" class="ir" href="javascript:void(0);" onclick="toggleImgSelector($('#fileList'));return false">从相册选择</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6 inner" style="border-left: 1px solid #ddd;">
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label class="control-label">标签</label>
+                                <div class="tag-editor col-xs-12">
+                                    <input class="text" type="text" name="tags[]" />
+                                </div>
+                                <section class="tag-selector">
+                                    <span class="tag-selector-caret"></span>
+                                    <h3>常用的标签</h3>
+                                    <ul class="tag-selector-list tag-selector-mine clearfix">
+                                        <span class="tag-selector-caret"></span>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">风光</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">城市</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">美丽</a>
+                                    </ul>
+                                    <h3>题材</h3>
+                                    <ul class="tag-selector-list tag-selector-subject clearfix">
+                                        <span class="tag-selector-caret"></span>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">风光</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">人像</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">街拍</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">城市</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">纪实</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">旅行</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">人文</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">美女</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">建筑</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">夜景</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">儿童</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">自然</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">少女</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">静物</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">光影</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">生活</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">动物</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">植物</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">花卉</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">私房</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">校园</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">美食</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">日出</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">星空</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">猫</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">夕阳</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">生态</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">婚纱</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">婚礼</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">昆虫</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">海</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">铁路</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">Cosplay</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">晚霞</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">秋天</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">古镇</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">火车</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">宠物</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">雪山</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">黄昏</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">草原</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">自拍</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">乡村</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">室内</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">剪影</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">汽车</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">云</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">荷花</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">运动</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">大学</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">花草</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">倒影</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">烟花</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">鸟</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">青春</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">夏天</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">老人</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">女生</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">公园</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">学校</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">森林</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">教堂</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">水</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">模特</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">海滩</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">户外</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">傍晚</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">车展</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">狗</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">地铁</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">情侣</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">雪景</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">车模</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">长城</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">音乐节</a>
+                                        <li><a href="javascript:void(0);" onclick="$(this).closest('.tag-selector-list').find('li').show();$(this).hide();return false;" style="color:#aaa">更多</a></li>
+                                    </ul>
+                                    <h3>风格</h3>
+                                    <ul class="tag-selector-list tag-selector-style clearfix">
+                                        <span class="tag-selector-caret"></span>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">色彩</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">黑白</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">抓拍</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">小清新</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">情绪</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">日系</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">后期</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">情感</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">长曝光</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">微距</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">唯美</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">创意</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">极简主义</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">写真</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">复古</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">小品</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">文艺</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">故事</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">安静</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">逆光</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">时尚</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">性感</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">印象</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">画意</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">艺术</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">怀旧</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">HDR</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">心情</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">可爱</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">现场</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">蓝色</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">lightroom</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">观念</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">幻想</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">绿色</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">超现实</a>
+                                        <li><a href="javascript:void(0);" onclick="$(this).closest('.tag-selector-list').find('li').show();$(this).hide();return false;" style="color:#aaa">更多</a></li>
+                                    </ul>
+                                    <h3>器材</h3>
+                                    <ul class="tag-selector-list tag-selector-equipment clearfix">
+                                        <span class="tag-selector-caret"></span>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">佳能</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">尼康</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">手机</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">50mm</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">索尼</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">广角</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">35mm</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">胶片</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">宾得</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">富士</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">奥林巴斯</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">徕卡</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">28MM</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">iphone</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">理光</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">超广角</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">5d3</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">蔡司</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">70-200</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">定焦</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">24-70</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">适马</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">中画幅</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">85mm</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">D90</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">单反</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">600D</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">狗头</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">卡片机</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">D7000</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">大光圈</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">腾龙</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">美能达</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">7D</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">哈苏</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">Rolleiflex</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">华为手机</a>
+                                        <li><a href="javascript:void(0);" onclick="$(this).closest('.tag-selector-list').find('li').show();$(this).hide();return false;" style="color:#aaa">更多</a></li>
+                                    </ul>
+                                    <h3>地区</h3>
+                                    <ul class="tag-selector-list tag-selector-location clearfix">
+                                        <span class="tag-selector-caret"></span>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">北京</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">上海</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">杭州</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">广州</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">深圳</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">武汉</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">云南</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">四川</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">成都</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">中国</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">南京</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">重庆</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">青岛</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">西安</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">西藏</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">浙江</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">长沙</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">天津</a>
+                                        <li style=""><a href="javascript:void(0)" class="tag-btn">新疆</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">大连</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">厦门</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">青海</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">安徽</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">香港</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">内蒙古</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">贵州</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">江苏</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">郑州</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">日本</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">苏州</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">台湾</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">印度</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">济南</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">美国</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">昆明</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">尼泊尔</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">珠海</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">湖南</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">大理</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">福州</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">哈尔滨</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">江西</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">福建</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">意大利</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">南昌</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">泰国</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">西湖</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">海外</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">澳门</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">山西</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">三亚</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">故宫</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">加拿大</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">欧洲</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">海南</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">坝上</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">桂林</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">澳大利亚</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">新加坡</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">外滩</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">北海</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">颐和园</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">土耳其</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">墨尔本</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">洱海</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">俄罗斯</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">青海湖</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">新西兰</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">巴厘岛</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">法国</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">川西</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">台北</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">罗马</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">丽江</a>
+                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">东京</a>
+                                        <li><a href="javascript:void(0);" onclick="$(this).closest('.tag-selector-list').find('li').show();$(this).hide();return false;" style="color:#aaa">更多</a></li>
+                                    </ul>
+                                    <p class="tag-warning">活动标签搬家了，去活动页面看看吧，参加活动还有丰厚奖品哦~</p>
+                                </section>
+                            </div>
+                            <!-- 多个标签之间用空格分隔 -->
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">版权</label>
+                            <select name="copyright" class="form-control">
+                                <option value="" >非原创</option>
+                                <option value="by" >原创，CC协议共享(署名)</option>
+                                <option value="by,nc" >原创，CC协议共享(署名-非商业性使用)</option>
+                                <option value="by,nd" >原创，CC协议共享(署名-禁止演绎)</option>
+                                <option value="by,sa" >原创，CC协议共享(署名-相同方式共享)</option>
+                                <option value="by,nc,nd" >原创，CC协议共享(署名-非商业性使用-禁止演绎)</option>
+                                <option value="by,nc,sa"  selected>原创，CC协议共享(署名-非商业性使用-相同方式共享)</option>
+                            </select>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label class="control-label">同时将照片添加到相册</label>
+                            <select name="alb_id" class="form-control col-xs-8">
+                                <option>选择相册</option>
+                            </select>
+                            <a class="btn btn-default btn-sm col-xs-3" style="padding: 7px;border-radius: 4px;margin-left: 10px;width: 28%;" href="javascript:void(0);" onclick="popCreateAlbum({});return false;">新建相册</a>
+                        </div>
+                        <div class="form-group form-captcha clearfix"></div>
+                    </div>
+                    <div class="">
+                        <div class="form-group" style="padding:1em 0;text-align:center;clear:both;">
+                            <button type="submit" class="btn btn-primary" style="padding-left: 4em; padding-right: 4em;">发布</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+</div>
+{{#extend "script"}}
+  <script src="/pc/js/jquery-ui-1.8.16.custom.min.js"></script>
+  <script src="/pc/js/jquery.uploadify.js"></script>
+  <script src="/pc/js/jupload.js"></script>
+  <script src="/pc/js/rsa.min.js"></script>
+  <script src="/pc/js/twig.js"></script>
+  <script src="/pc/js/all.js"></script>
+  <script type="text/javascript">
+      Date.prototype.offset = new Date().getTime() - 1474469616712.1;
+      Tuchong.apiPath = '/api/';
+      var app_domain = 'tuchong.com',			web_root = '{{host}}/', 		media_root = 'https://s1.tuchong.com/', 		js_root = 'https://static.tuchong.net/js/',
+              style_root = 'https://static.tuchong.net/styles/',
+              visitor = {"id":"1551288","name":"\u5b50\u4e00824","domain":"","icon":"https:\/\/s1.tuchong.com\/sites\/155\/1551288\/logo_small.jpg?1","url":"https:\/\/tuchong.com\/1551288\/"},
+              weiboAccount = false,
+              nonce = '1c4a9429d2d4a374',
+              ENV = 'production',
+              dialog;		if( self != top) {
+          top.location = self.location ;
+      }
+  </script>
+  <script type="text/javascript">
+      //<!--
+      $( document ).ready( function() {
+          initUpload( $('#file_upload') );
+          $( '#file_upload' ).attr( 'title','请挑选您最得意的原创摄影作品，\n最大支持20MB的JPG格式图片，不建议加画框和水印签名。\n请勿上传到此一游照、产品照片或屏幕截图，可能会被系统删除。');
+
+          $('.uploader-image-list').sortable( {
+              items: '> .post',
+              containment: 'parent',
+              appendTo: 'parent',
+              tolerance: 'pointer',
+              axis:   'y',
+              placeholder: 'holder',
+              forceHelperSize: true,
+              forcePlaceholderSize: true,
+              opacity: 0.8,
+              cursor: 'ns-resize'
+          });
+          uploadController.checkMultiPhotos();
+      });
+      //-->
+  </script>
+  <script type="text/javascript">
+      //<!--
+      window.uploadMode = 'multi-photo';
+      $(document).ready(function() {
+          tagEditorInit(0);
+      });
+      //-->
+  </script>
+
+  <!--[if lt IE 9]>
+  <iframe class="bc-warn" src="{{host}}/browsercheck.html" frameborder="0"></iframe>
+  <div class="bc-screen-lock"></div>
+  <link href="https://static.tuchong.net/styles/ie-checker.css?1456660771.css" rel="stylesheet" />
+  <![endif]-->
+  <div class="back-to-top direction-caret big"></div>
+
+  <script>
+      navInit();
+      $('.dropdown-toggle').dropdown();
+      editableInit();
+
+      $(document).ready(function() {
+          if ( visitor.id > 0 ){
+              refreshNotifications();
+              //setInterval(refreshNotifications, 60000);
+              bindNotifyBarEvents();
+          }
+
+          if (window.WebSocket && visitor.id > 0) {
+              var wsntf = new WSNotification('wss://ws.tuchong.com:3001', visitor);
+          }
+
+          initBackToTop($('.back-to-top'));
+      });
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-4386938-1']);
+      _gaq.push(['_setDomainName', '.tuchong.com']);
+
+      _gaq.push(['_trackPageview']);
+
+      googleAnalytics();
+      window.HOST_TYPE = 2;
+      window.BMap_loadScriptTime = (new Date).getTime();
+      window.androidApk = "{{host}}/rest/android/download";
+      window.showApkLink = true;
+  </script>
+{{/extend}}

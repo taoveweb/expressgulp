@@ -1,0 +1,755 @@
+{{#extend "style"}}
+    <link href="/pc/css/new-text.css" rel="stylesheet">
+{{/extend}}
+<main>
+    <div class="container">
+        <div class="content">
+            <h1 class="page-title">发布文字</h1>
+            <form class="publish-zone" action="/rest/posts" method="POST">
+                <input type="hidden" name="type" value="text">
+                <label>发布在</label>
+                <select name="site_id" class="form-group m-input">
+                    <option value="1551288">我的主页</option>
+                </select>
+                <div class="form-group">
+                    <label>标题</label>
+                    <input type="text" class="m-input post-title" name="title" value="" required="" autofocus="">
+                    <label>内容</label>
+                    <div class="widget-ueditor">
+                        <div id="text-ueditor" class="edui-default" style=""><div id="edui1" class="edui-editor  edui-default" style="width: 718px; z-index: 0;"><div id="edui1_toolbarbox" class="edui-editor-toolbarbox edui-default"><div id="edui1_toolbarboxouter" class="edui-editor-toolbarboxouter edui-default"><div class="edui-editor-toolbarboxinner edui-default"><div id="edui2" class="edui-toolbar   edui-default" onselectstart="return false;" onmousedown="return $EDITORUI[&quot;edui2&quot;]._onMouseDown(event, this);" style="-webkit-user-select: none;"><div id="edui3" class="edui-box edui-button edui-for-bold edui-default"><div id="edui3_state" onmousedown="$EDITORUI[&quot;edui3&quot;].Stateful_onMouseDown(event, this);" onmouseup="$EDITORUI[&quot;edui3&quot;].Stateful_onMouseUp(event, this);" onmouseover="$EDITORUI[&quot;edui3&quot;].Stateful_onMouseOver(event, this);" onmouseout="$EDITORUI[&quot;edui3&quot;].Stateful_onMouseOut(event, this);" class="edui-default"><div class="edui-button-wrap edui-default"><div id="edui3_body" unselectable="on" title="加粗" class="edui-button-body edui-default" onmousedown="return $EDITORUI[&quot;edui3&quot;]._onMouseDown(event, this);" onclick="return $EDITORUI[&quot;edui3&quot;]._onClick(event, this);"><div class="edui-box edui-icon edui-default"></div></div></div></div></div><div id="edui4" class="edui-box edui-button edui-for-italic edui-default"><div id="edui4_state" onmousedown="$EDITORUI[&quot;edui4&quot;].Stateful_onMouseDown(event, this);" onmouseup="$EDITORUI[&quot;edui4&quot;].Stateful_onMouseUp(event, this);" onmouseover="$EDITORUI[&quot;edui4&quot;].Stateful_onMouseOver(event, this);" onmouseout="$EDITORUI[&quot;edui4&quot;].Stateful_onMouseOut(event, this);" class="edui-default"><div class="edui-button-wrap edui-default"><div id="edui4_body" unselectable="on" title="斜体" class="edui-button-body edui-default" onmousedown="return $EDITORUI[&quot;edui4&quot;]._onMouseDown(event, this);" onclick="return $EDITORUI[&quot;edui4&quot;]._onClick(event, this);"><div class="edui-box edui-icon edui-default"></div></div></div></div></div><div id="edui5" class="edui-box edui-button edui-for-underline edui-default"><div id="edui5_state" onmousedown="$EDITORUI[&quot;edui5&quot;].Stateful_onMouseDown(event, this);" onmouseup="$EDITORUI[&quot;edui5&quot;].Stateful_onMouseUp(event, this);" onmouseover="$EDITORUI[&quot;edui5&quot;].Stateful_onMouseOver(event, this);" onmouseout="$EDITORUI[&quot;edui5&quot;].Stateful_onMouseOut(event, this);" class="edui-default"><div class="edui-button-wrap edui-default"><div id="edui5_body" unselectable="on" title="下划线" class="edui-button-body edui-default" onmousedown="return $EDITORUI[&quot;edui5&quot;]._onMouseDown(event, this);" onclick="return $EDITORUI[&quot;edui5&quot;]._onClick(event, this);"><div class="edui-box edui-icon edui-default"></div></div></div></div></div><div id="edui6" class="edui-box edui-separator  edui-default"></div><div id="edui7" class="edui-box edui-button edui-for-blockquote edui-default"><div id="edui7_state" onmousedown="$EDITORUI[&quot;edui7&quot;].Stateful_onMouseDown(event, this);" onmouseup="$EDITORUI[&quot;edui7&quot;].Stateful_onMouseUp(event, this);" onmouseover="$EDITORUI[&quot;edui7&quot;].Stateful_onMouseOver(event, this);" onmouseout="$EDITORUI[&quot;edui7&quot;].Stateful_onMouseOut(event, this);" class="edui-default"><div class="edui-button-wrap edui-default"><div id="edui7_body" unselectable="on" title="引用" class="edui-button-body edui-default" onmousedown="return $EDITORUI[&quot;edui7&quot;]._onMouseDown(event, this);" onclick="return $EDITORUI[&quot;edui7&quot;]._onClick(event, this);"><div class="edui-box edui-icon edui-default"></div></div></div></div></div><div id="edui8" class="edui-box edui-button edui-for-indent edui-default"><div id="edui8_state" onmousedown="$EDITORUI[&quot;edui8&quot;].Stateful_onMouseDown(event, this);" onmouseup="$EDITORUI[&quot;edui8&quot;].Stateful_onMouseUp(event, this);" onmouseover="$EDITORUI[&quot;edui8&quot;].Stateful_onMouseOver(event, this);" onmouseout="$EDITORUI[&quot;edui8&quot;].Stateful_onMouseOut(event, this);" class="edui-default"><div class="edui-button-wrap edui-default"><div id="edui8_body" unselectable="on" title="首行缩进" class="edui-button-body edui-default" onmousedown="return $EDITORUI[&quot;edui8&quot;]._onMouseDown(event, this);" onclick="return $EDITORUI[&quot;edui8&quot;]._onClick(event, this);"><div class="edui-box edui-icon edui-default"></div></div></div></div></div><div id="edui9" class="edui-box edui-menubutton edui-for-insertorderedlist edui-default"><div title="有序列表" id="edui9_state" onmousedown="$EDITORUI[&quot;edui9&quot;].Stateful_onMouseDown(event, this);" onmouseup="$EDITORUI[&quot;edui9&quot;].Stateful_onMouseUp(event, this);" onmouseover="$EDITORUI[&quot;edui9&quot;].Stateful_onMouseOver(event, this);" onmouseout="$EDITORUI[&quot;edui9&quot;].Stateful_onMouseOut(event, this);" class="edui-default"><div class="edui-menubutton-body edui-default"><div id="edui9_button_body" class="edui-box edui-button-body edui-default" onclick="$EDITORUI[&quot;edui9&quot;]._onButtonClick(event, this);"><div class="edui-box edui-icon edui-default"></div></div><div class="edui-box edui-splitborder edui-default"></div><div class="edui-box edui-arrow edui-default" onclick="$EDITORUI[&quot;edui9&quot;]._onArrowClick();"></div></div></div></div><div id="edui22" class="edui-box edui-menubutton edui-for-insertunorderedlist edui-default"><div title="无序列表" id="edui22_state" onmousedown="$EDITORUI[&quot;edui22&quot;].Stateful_onMouseDown(event, this);" onmouseup="$EDITORUI[&quot;edui22&quot;].Stateful_onMouseUp(event, this);" onmouseover="$EDITORUI[&quot;edui22&quot;].Stateful_onMouseOver(event, this);" onmouseout="$EDITORUI[&quot;edui22&quot;].Stateful_onMouseOut(event, this);" class="edui-default"><div class="edui-menubutton-body edui-default"><div id="edui22_button_body" class="edui-box edui-button-body edui-default" onclick="$EDITORUI[&quot;edui22&quot;]._onButtonClick(event, this);"><div class="edui-box edui-icon edui-default"></div></div><div class="edui-box edui-splitborder edui-default"></div><div class="edui-box edui-arrow edui-default" onclick="$EDITORUI[&quot;edui22&quot;]._onArrowClick();"></div></div></div></div><div id="edui29" class="edui-box edui-separator  edui-default"></div><div id="edui30" class="edui-box edui-button edui-for-insertlink edui-default"><div id="edui30_state" onmousedown="$EDITORUI[&quot;edui30&quot;].Stateful_onMouseDown(event, this);" onmouseup="$EDITORUI[&quot;edui30&quot;].Stateful_onMouseUp(event, this);" onmouseover="$EDITORUI[&quot;edui30&quot;].Stateful_onMouseOver(event, this);" onmouseout="$EDITORUI[&quot;edui30&quot;].Stateful_onMouseOut(event, this);" class="edui-default"><div class="edui-button-wrap edui-default"><div id="edui30_body" unselectable="on" title="插入链接" class="edui-button-body edui-default" onmousedown="return $EDITORUI[&quot;edui30&quot;]._onMouseDown(event, this);" onclick="return $EDITORUI[&quot;edui30&quot;]._onClick(event, this);"><div class="edui-box edui-icon edui-default"></div><div class="edui-box edui-label edui-default"></div></div></div></div></div><div id="edui31" class="edui-box edui-button edui-for-insertimages edui-default"><div id="edui31_state" onmousedown="$EDITORUI[&quot;edui31&quot;].Stateful_onMouseDown(event, this);" onmouseup="$EDITORUI[&quot;edui31&quot;].Stateful_onMouseUp(event, this);" onmouseover="$EDITORUI[&quot;edui31&quot;].Stateful_onMouseOver(event, this);" onmouseout="$EDITORUI[&quot;edui31&quot;].Stateful_onMouseOut(event, this);" class="edui-default"><div class="edui-button-wrap edui-default"><div id="edui31_body" unselectable="on" title="插入图片" class="edui-button-body edui-default" onmousedown="return $EDITORUI[&quot;edui31&quot;]._onMouseDown(event, this);" onclick="return $EDITORUI[&quot;edui31&quot;]._onClick(event, this);"><div class="edui-box edui-icon edui-default"></div><div class="edui-box edui-label edui-default"></div></div></div></div></div><div id="edui32" class="edui-box edui-separator  edui-default"></div><div id="edui33" class="edui-box edui-button edui-for-removeformat edui-default"><div id="edui33_state" onmousedown="$EDITORUI[&quot;edui33&quot;].Stateful_onMouseDown(event, this);" onmouseup="$EDITORUI[&quot;edui33&quot;].Stateful_onMouseUp(event, this);" onmouseover="$EDITORUI[&quot;edui33&quot;].Stateful_onMouseOver(event, this);" onmouseout="$EDITORUI[&quot;edui33&quot;].Stateful_onMouseOut(event, this);" class="edui-default"><div class="edui-button-wrap edui-default"><div id="edui33_body" unselectable="on" title="清除格式" class="edui-button-body edui-default" onmousedown="return $EDITORUI[&quot;edui33&quot;]._onMouseDown(event, this);" onclick="return $EDITORUI[&quot;edui33&quot;]._onClick(event, this);"><div class="edui-box edui-icon edui-default"></div></div></div></div></div><div id="myautosave" class="myautosave on edui-default"></div></div></div></div><div id="edui1_toolbarmsg" class="edui-editor-toolbarmsg edui-default" style="display:none;"><div id="edui1_upload_dialog" class="edui-editor-toolbarmsg-upload edui-default" onclick="$EDITORUI[&quot;edui1&quot;].showWordImageDialog();">点击上传</div><div class="edui-editor-toolbarmsg-close edui-default" onclick="$EDITORUI[&quot;edui1&quot;].hideToolbarMsg();">x</div><div id="edui1_toolbarmsg_label" class="edui-editor-toolbarmsg-label edui-default"></div><div style="height:0;overflow:hidden;clear:both;" class="edui-default"></div></div><div id="edui1_message_holder" class="edui-editor-messageholder edui-default"></div></div><div id="edui1_iframeholder" class="edui-editor-iframeholder edui-default" style="width: 718px; height: 400px; z-index: 0; overflow: hidden;"><iframe id="ueditor_0" width="100%" height="100%" frameborder="0" src="javascript:void(function(){document.open();document.write(&quot;<!DOCTYPE html><html xmlns='http://www.w3.org/1999/xhtml' class='view' ><head><link rel='stylesheet' type='text/css' href='//static.tuchong.net/ueditor/themes/iframe.css?v=20160822'/></head><body class='view' ></body><script type='text/javascript'  id='_initialScript'>setTimeout(function(){editor = window.parent.UE.instants['ueditorInstant0'];editor._setup(document);},0);var _tmpScript = document.getElementById('_initialScript');_tmpScript.parentNode.removeChild(_tmpScript);</script></html>&quot;);document.close();}())"></iframe></div><div id="edui1_bottombar" class="edui-editor-bottomContainer edui-default"><table class="edui-default"><tbody class="edui-default"><tr class="edui-default"><td id="edui1_elementpath" class="edui-editor-bottombar edui-default" style="display: none;"></td><td id="edui1_wordcount" class="edui-editor-wordcount edui-default" style="display: none;"></td><td id="edui1_scale" class="edui-editor-scale edui-default" style="display: none;"><div class="edui-editor-icon edui-default"></div></td></tr></tbody></table></div><div id="edui1_scalelayer" class="edui-default"></div></div></div>
+                    </div>
+                </div>
+                <div class="widget-taginput form-group">
+                    <label>标签</label>
+                    <div class="tag-wrap">
+                        <input type="text" class="tag-input">
+                    </div>
+                    <section class="tag-selector">
+                        <h3>常用的标签</h3>
+                        <ul class="tag-selector-list">
+                            <li class="">
+                                <a class="tag-list-item">风光</a>
+                            </li>
+                            <li class="">
+                                <a class="tag-list-item">城市</a>
+                            </li>
+                            <li class="">
+                                <a class="tag-list-item">美丽</a>
+                            </li>
+                        </ul>
+                        <h3>题材</h3>
+                        <ul class="tag-selector-list">
+                            <li class="">
+                                <a class="tag-list-item">风光</a>
+                            </li>
+                            <li class="">
+                                <a class="tag-list-item">人像</a>
+                            </li>
+                            <li class="">
+                                <a class="tag-list-item">街拍</a>
+                            </li>
+                            <li class="">
+                                <a class="tag-list-item">城市</a>
+                            </li>
+                            <li class="">
+                                <a class="tag-list-item">纪实</a>
+                            </li>
+                            <li class="">
+                                <a class="tag-list-item">旅行</a>
+                            </li>
+                            <li class="">
+                                <a class="tag-list-item">人文</a>
+                            </li>
+                            <li class="">
+                                <a class="tag-list-item">美女</a>
+                            </li>
+                            <li class="">
+                                <a class="tag-list-item">建筑</a>
+                            </li>
+                            <li class="">
+                                <a class="tag-list-item">夜景</a>
+                            </li>
+                            <li class="">
+                                <a class="tag-list-item">儿童</a>
+                            </li>
+                            <li class="">
+                                <a class="tag-list-item">自然</a>
+                            </li>
+                            <li class="">
+                                <a class="tag-list-item">少女</a>
+                            </li>
+                            <li class="">
+                                <a class="tag-list-item">静物</a>
+                            </li>
+                            <li class="">
+                                <a class="tag-list-item">光影</a>
+                            </li>
+                            <li class="">
+                                <a class="tag-list-item">生活</a>
+                            </li>
+                            <li class="">
+                                <a class="tag-list-item">动物</a>
+                            </li>
+                            <li class="">
+                                <a class="tag-list-item">植物</a>
+                            </li>
+                            <li class="">
+                                <a class="tag-list-item">花卉</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">私房</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">美食</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">校园</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">星空</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">日出</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">猫</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">夕阳</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">生态</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">婚礼</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">昆虫</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">婚纱</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">海</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">铁路</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">古镇</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">Cosplay</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">秋天</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">晚霞</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">宠物</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">草原</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">火车</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">乡村</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">黄昏</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">雪山</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">自拍</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">云</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">剪影</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">室内</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">烟花</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">荷花</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">运动</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">倒影</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">汽车</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">花草</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">大学</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">老人</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">水</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">鸟</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">夏天</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">森林</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">女生</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">狗</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">青春</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">情侣</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">户外</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">学校</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">摇滚</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">公园</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">教堂</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">模特</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">沙漠</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">地铁</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">雪景</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">音乐节</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">傍晚</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">海滩</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">车展</a>
+                            </li>
+                            <li>
+                                <a class="see-more">更多</a>
+                            </li>
+                        </ul>
+                        <h3>风格</h3>
+                        <ul class="tag-selector-list">
+                            <li class="">
+                                <a class="tag-list-item">色彩</a>
+                            </li>
+                            <li class="">
+                                <a class="tag-list-item">黑白</a>
+                            </li>
+                            <li class="">
+                                <a class="tag-list-item">抓拍</a>
+                            </li>
+                            <li class="">
+                                <a class="tag-list-item">小清新</a>
+                            </li>
+                            <li class="">
+                                <a class="tag-list-item">情绪</a>
+                            </li>
+                            <li class="">
+                                <a class="tag-list-item">日系</a>
+                            </li>
+                            <li class="">
+                                <a class="tag-list-item">后期</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">情感</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">微距</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">长曝光</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">唯美</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">极简主义</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">写真</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">创意</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">复古</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">小品</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">文艺</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">安静</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">逆光</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">故事</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">时尚</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">性感</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">画意</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">印象</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">艺术</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">现场</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">怀旧</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">HDR</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">可爱</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">心情</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">幻想</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">蓝色</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">lightroom</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">观念</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">绿色</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">超现实</a>
+                            </li>
+                            <li>
+                                <a class="see-more">更多</a>
+                            </li>
+                        </ul>
+                        <h3>器材</h3>
+                        <ul class="tag-selector-list">
+                            <li class="">
+                                <a class="tag-list-item">佳能</a>
+                            </li>
+                            <li class="">
+                                <a class="tag-list-item">尼康</a>
+                            </li>
+                            <li class="">
+                                <a class="tag-list-item">手机</a>
+                            </li>
+                            <li class="">
+                                <a class="tag-list-item">50mm</a>
+                            </li>
+                            <li class="">
+                                <a class="tag-list-item">索尼</a>
+                            </li>
+                            <li class="">
+                                <a class="tag-list-item">广角</a>
+                            </li>
+                            <li class="">
+                                <a class="tag-list-item">胶片</a>
+                            </li>
+                            <li class="">
+                                <a class="tag-list-item">35mm</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">宾得</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">富士</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">iphone</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">奥林巴斯</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">徕卡</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">28MM</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">5d3</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">理光</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">超广角</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">蔡司</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">定焦</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">70-200</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">24-70</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">适马</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">中画幅</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">单反</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">85mm</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">D90</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">600D</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">卡片机</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">狗头</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">大光圈</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">腾龙</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">美能达</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">哈苏</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">D7000</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">Rolleiflex</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">7D</a>
+                            </li>
+                            <li>
+                                <a class="see-more">更多</a>
+                            </li>
+                        </ul>
+                        <h3>地区</h3>
+                        <ul class="tag-selector-list">
+                            <li class="">
+                                <a class="tag-list-item">北京</a>
+                            </li>
+                            <li class="">
+                                <a class="tag-list-item">上海</a>
+                            </li>
+                            <li class="">
+                                <a class="tag-list-item">广州</a>
+                            </li>
+                            <li class="">
+                                <a class="tag-list-item">杭州</a>
+                            </li>
+                            <li class="">
+                                <a class="tag-list-item">深圳</a>
+                            </li>
+                            <li class="">
+                                <a class="tag-list-item">四川</a>
+                            </li>
+                            <li class="">
+                                <a class="tag-list-item">云南</a>
+                            </li>
+                            <li class="">
+                                <a class="tag-list-item">南京</a>
+                            </li>
+                            <li class="">
+                                <a class="tag-list-item">成都</a>
+                            </li>
+                            <li class="">
+                                <a class="tag-list-item">中国</a>
+                            </li>
+                            <li class="">
+                                <a class="tag-list-item">重庆</a>
+                            </li>
+                            <li class="">
+                                <a class="tag-list-item">武汉</a>
+                            </li>
+                            <li class="">
+                                <a class="tag-list-item">西安</a>
+                            </li>
+                            <li class="">
+                                <a class="tag-list-item">青岛</a>
+                            </li>
+                            <li class="">
+                                <a class="tag-list-item">西藏</a>
+                            </li>
+                            <li class="">
+                                <a class="tag-list-item">长沙</a>
+                            </li>
+                            <li class="">
+                                <a class="tag-list-item">浙江</a>
+                            </li>
+                            <li class="">
+                                <a class="tag-list-item">天津</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">新疆</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">大连</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">青海</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">厦门</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">内蒙古</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">江苏</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">香港</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">泰国</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">安徽</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">苏州</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">日本</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">贵州</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">郑州</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">台湾</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">印度</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">济南</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">美国</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">哈尔滨</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">珠海</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">尼泊尔</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">福州</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">昆明</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">湖南</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">大理</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">福建</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">江西</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">南昌</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">西湖</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">澳门</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">桂林</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">三亚</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">意大利</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">山西</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">加拿大</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">坝上</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">外滩</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">澳大利亚</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">洱海</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">颐和园</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">俄罗斯</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">北海</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">海南</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">欧洲</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">巴厘岛</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">海外</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">土耳其</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">墨尔本</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">台北</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">故宫</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">扬州</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">丽江</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">黄山</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">新西兰</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">川西</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">法国</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">新加坡</a>
+                            </li>
+                            <li class="hidden">
+                                <a class="tag-list-item">拉萨</a>
+                            </li>
+                            <li>
+                                <a class="see-more">更多</a>
+                            </li>
+                        </ul>
+                    </section>
+                </div>
+                <select name="copyright" class="form-group m-input">
+                    <option value="">非原创</option>
+                    <option value="by">原创，CC协议共享(署名)</option>
+                    <option value="by,nc">原创，CC协议共享(署名-非商业性使用)</option>
+                    <option value="by,nd">原创，CC协议共享(署名-禁止演绎)</option>
+                    <option value="by,sa">原创，CC协议共享(署名-相同方式共享)</option>
+                    <option value="by,nc,nd">原创，CC协议共享(署名-非商业性使用-禁止演绎)</option>
+                    <option value="by,nc,sa" selected="">原创，CC协议共享(署名-非商业性使用-相同方式共享)</option>
+                </select>
+                <div class="form-group form-captcha" style="display: block;">
+                    <label for="login-password">验证码</label>
+                    <img class="captcha-img" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAAoCAMAAAACNM4XAAAAP1BMVEUAAAA4H3R5YLVaQZYgB1xQN4xMM4g7IndrUqd0W7CVfNGUe9CNdMlKMYaWfdI7IndxWK1oT6SKccZrUqdLMofunDCvAAAAAXRSTlMAQObYZgAAAgZJREFUeJy0l+Fu4jAMx+P2EKjiThz3/o94GpomxoSYZ9qkTtLEcdJiPiyt7P/Pdt0068w2Vq1TEXASZWrJev+TRP6m38tMqliyo8rrd6O6wD0myV3M3Zz8QT+FbV/x1vZrZXwX/KnhriVP3K6BvImJ3P02jNCg7ELcr1egVeSkKZLO24pgCsX2aPHh9gXuGpPCifsQAhGQFaprlyp+CFzjmLbhUNuA5oZRxcaWjPZy7MLzjqZ8cCJNYD8OkKtA1s4lMs3PolG7wncdpjJ9bpBSkTsPbojemb5IjoOAFxAkkIo0qcCJrOBGYIgWyXljL59c8aTdq4Qc7dawWCx9wjoryJOEHwBopTAtF+9z/nuMODXiwLeGDPhJBX+O3YPFWf3v6GJbS76IceqxEffG3GsGbcICbXlcF3EvziPVynjnogxvM5eoWa6xJUAmf2oBjjZWm1UJ0WO+KnO9BB5ll8OZPZLjnbxHZ/c3JTnqsIHz/0AKM0Ob/PLB7aDlsvy0grMZPucL30m0IRRUksHbO8D8i7C5nSTiXuf7ynca0IqgCb5M3j6u0PJf24ovLMyWCk4Pl6hX523B/q6xAJ/K4sO14Tj3VMOlNnpcu6tkz3OD2d2rmCZRxOI4dt9fiiq5XToH1TzJvhfPrdUG6kFs4f4RoC0nRm0Mcd85BvlACY3/TfwEAAD//yLzbtyMNSuLAAAAAElFTkSuQmCC">
+                    <input type="text" class="captcha-token" captcha-id="6xoi19jmVHGPja70oWtU">
+                </div>
+                <div class="form-group form-submit">
+                    <input type="submit" class="publish-btn" value="发布">
+                </div>
+                <textarea name="content" id="ueditor_textarea_content" style="display: none;"></textarea></form>
+        </div>
+    </div>
+</main>
+{{#extend "script"}}
+
+{{/extend}}

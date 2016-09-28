@@ -1,0 +1,56 @@
+
+{{#eq user null}}
+    <header style="background-color: rgba(34, 34, 34, 0);">
+        <a class="login-trigger">登录</a>
+        <a class="signup-trigger" href="/signup">注册</a>
+    </header>
+{{else}}
+    <header>
+        <div class="nav-narrow">
+            <div class="nav-left">
+                <a class="iconfont subnav-trigger" data-target=".subnav-home"></a>
+            </div>
+            <div class="nav-right">
+                <a class="iconfont subnav-trigger" data-target=".subnav-search"></a>
+                <a class="iconfont subnav-trigger" data-target=".subnav-publish"></a>
+                <a class="iconfont subnav-trigger" data-target=".subnav-user"></a>
+            </div>
+        </div>
+        <div class="subnav-narrow">
+            <ul class="subnav-item subnav-home" style="display:none">
+                <li><a href="/"><i class="iconfont"></i>首页</a></li>
+                <li><a href="/groups/all/"><i class="iconfont"></i>小组</a></li>
+                <li><a href="/vision/"><i class="iconfont"></i>影像</a></li>
+                <li><a href="/activity/"><i class="iconfont"></i>活动</a></li>
+                <!--<li><a href="/equipments/"><i class="iconfont"></i>器材</a></li>-->
+                <li><a href="/discussion/hot/"><i class="iconfont"></i>讨论</a></li>
+                <li><a href="/discovery/"><i class="iconfont"></i>标签</a></li>
+            </ul>
+            <form class="subnav-item subnav-search" action="/search/" method="get">
+                <select name="type">
+                    <option value="all">全部</option>
+                    <option value="tag">搜标签</option>
+                    <option value="user">搜用户</option>
+                </select>
+                <input type="text" name="query" placeholder="搜索">
+                <input type="submit" value="搜索">
+            </form>
+            <ul class="subnav-item subnav-publish">
+                <li><a href="/new-photo/"><i class="iconfont"></i>发照片</a></li>
+                <li><a href="/new-text/"><i class="iconfont"></i>发文字</a></li>
+            </ul>
+            <ul class="subnav-item subnav-user" style="display: block">
+                <li><a href="/1551288/"><i class="iconfont"></i>我的主页</a></li>
+                <li><a href="/1551288/albums/"><i class="iconfont"></i>我的相册</a></li>
+                <li><a href="/1551288/following/"><i class="iconfont"></i>我的关注</a></li>
+                <li><a href="/1551288/favorites/"><i class="iconfont"></i>我的分享</a></li>
+                <li><a href="/1551288/collections/"><i class="iconfont"></i>我的收藏</a></li>
+                <li><a href="/notes/comments/"><i class="iconfont"></i>与我相关</a></li>
+                <li><a href="/notes/my-comments/"><i class="iconfont"></i>我的评论</a></li>
+                <li><a href="/messages/"><i class="iconfont"></i>通知</a></li>
+                <li><a href="/settings/"><i class="iconfont"></i>设置</a></li>
+                <li><a href="javascript:void(0);" class="logout"><i class="iconfont"></i>登出</a></li>
+            </ul>
+        </div>
+    </header>
+{{/eq}}

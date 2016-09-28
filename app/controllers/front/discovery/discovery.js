@@ -11,7 +11,7 @@ router.get('/', function (req, res, next) {
 
 
   if(req.headers["user-agent"].toLowerCase().indexOf('mobile')!==-1){
-    res.render('mobile/discovery/discovery', {
+    res.render('mobile/discovery/discoveryMain', {
       title: '热门标签 - 偶酷网 - 最好的摄影师都在这',
       layout:"main_m",
       route:'discovery'

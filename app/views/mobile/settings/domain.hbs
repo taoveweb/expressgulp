@@ -1,0 +1,33 @@
+{{#extend "style"}}
+    <link href="/pc/css/all.css" rel="stylesheet">
+{{/extend}}
+
+
+
+{{#extend "script"}}
+
+{{/extend}}
+
+{{>pc_settings_top}}
+
+<div class="container container-default">
+
+    <main role="main" class="col-main col-xs-12">
+        <section class="card inner">
+
+            <h3>偶酷二级域名</h3>
+            <p class="text-gray-placeholder">你还没有绑定手机号，无法设置二级域名。现在绑定，立即开启二级域名，<a href="{{host}}/settings/account/">点击绑定</a></p>
+
+            <!-- h2>顶级域名绑定</h3>
+                  <form method="post" action="/api/domain/add-top-level-domain/" onsubmit="$(this).ajaxsubmit(local.operation);return false;">
+                      <input type="hidden" name="type" value="user" />
+                      <input type="hidden" name="id" value="1551288" />
+                      <dl class="domain-list">
+                                          <dt>添加新域名</dt>
+                          <dd><input type="text" class="form-control" style="width:240px;" name="domain" value="" /><button type="submit" class="btn btn-sm btn-primary">添加</button></dd>
+                      </dl>
+                      <p class="text-gray-placeholder">本功能已经开放，但暂时不支持自助管理。绑定顶级域名请给<a href="https://shen2.tuchong.com/">管理员</a>留言</p>
+                  </form -->
+        </section>
+    </main>
+</div>

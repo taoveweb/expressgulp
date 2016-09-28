@@ -133,4 +133,22 @@ router.get('/profile' , function (req, res, next) {
 
 });
 
+router.get('/followers' , function (req, res, next) {
+
+  if(req.headers["user-agent"].toLowerCase().indexOf('mobile')!==-1){
+    res.render('mobile/personal/followers', {
+      title: '关注我的人 - 子一 - 偶酷摄影网',
+      route:'profile',
+      layout:'main_m'
+    });
+  }else {
+    res.render('pc/personal/followers', {
+      title: '关注我的人 - 子一 - 偶酷摄影网',
+      route:'profile',
+      layout:'main'
+    });
+  }
+
+});
+
 

@@ -1,10 +1,18 @@
 {{#extend "style"}}
-    <link href="/pc/css/all.css" rel="stylesheet">
+    <link href="/mobile/css/all.css" rel="stylesheet">
+    <link href="/mobile/css/narrow.css" rel="stylesheet">
+  <style>
+      .widget-dialog{
+          display: none;
+      }
+      .col-main{
+          min-height:inherit;
+      }
+  </style>
 {{/extend}}
 {{#extend 'bodyAttr'}}
-    class="signup-p no-subnav no-touch"
+    class="signup-p no-subnav"
 {{/extend}}
-
 
 {{#extend "script"}}
     <script src="/components/jquery-validation/dist/jquery.validate.min.js"></script>

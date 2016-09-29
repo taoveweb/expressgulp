@@ -15,13 +15,13 @@ router.get('/', function (req, res, next) {
       res.render('mobile/home/homeMain', {
         layout: "main_m",
         title: '首页 - 偶酷网 - 最好的摄影师都在这',
-        route: "动态",
+
       });
     }else{
       res.render('mobile/home/homeNoLogin', {
+        route: "welcome",
         layout: "main_m",
         title: '首页 - 偶酷网 - 最好的摄影师都在这',
-        route: "动态",
       });
     }
 

@@ -13,3 +13,116 @@
         <a href="javascript:;" class="switch-layout" data-version="pc">电脑版</a>
     </div>
 </footer>
+{{#eq user null}}
+    <div class="widget-dialog" id="login-dialog">
+        <div class="dialog-wrapper" style="width: 300px;">
+
+            <h2 class="dialog-title">登录</h2>
+
+            <div class="dialog-body">
+                <form id="login-form" action="/admin/login" method="post" class="login-form" onsubmit="return false;">
+                    <div class="login-group">
+                        <label for="login-account">账号</label>
+                        <input type="text" name="account" id="login-account" autofocus="" required=""
+                               placeholder="邮箱、手机、用户名">
+                    </div>
+                    <div class="login-group">
+                        <label for="login-password">密码</label>
+                        <input type="password" name="password" id="login-password" required="">
+                    </div>
+                    <div class="login-group login-captcha">
+                        <label for="login-password">验证码</label>
+                        <img class="captcha-img" src="">
+                        <input type="text" name="capthca_token" captcha-id="" id="captcha-token">
+                    </div>
+                    <p class="login-msg"></p>
+                    <div class="login-line">
+                        <input type="checkbox" name="remember" id="login-remember" checked="checked">
+                        <label for="login-remember">下次自动登录</label>
+                        <a href="/account/forget/" target="_blank">忘记密码</a>
+                        <button class="login-btn" type="submit">登录</button>
+                    </div>
+                    <div class="login-connect">
+                        <span>无需注册，用社交帐号登录：</span>
+                        <a href="/weibo/auth/" class="login-weibo"></a>
+                        <a href="/weixin/auth/" class="login-weixin"></a>
+                        <a href="/qq/auth/" class="login-qq"></a>
+                    </div>
+                </form>
+            </div>
+            <a class="dialog-close" href="javascript:void(0)"></a>
+        </div>
+    </div>
+    {{#extend "script"}}
+        <script src="/components/jquery-validation/dist/jquery.validate.min.js"></script>
+        <script>
+            $(function () {
+                //弹出登录框
+                $('.login-trigger').click(function () {
+                    $('#login-dialog').css('display', 'block');
+                })
+                //关闭弹出框
+                $('.dialog-close').click(function () {
+                    $('#login-dialog').css('display', 'none');
+                })
+
+            })
+        </script>
+        <script>
+            //登录
+            $(function () {
+                $("#login-form").validate({
+                    rules: {
+                        account: {
+                            required: true,
+                            minlength: 5
+                        },
+                        password: {
+                            minlength: 5,
+                            required: true
+                        }
+                    },
+                    messages: {
+                        account: "格式不正确 请用 邮箱、手机、用户名 登录",
+                        password: "密码不能为空"
+                    },
+                    submitHandler: function (form) {
+                        var params = $('form').serializeArray();
+                        var data = {};
+                        params.map(function (val, i) {
+                            data[val.name] = val.value;
+                        });
+                        data.type="poplogin";
+                        $.post('{{host}}/admin/login',data,function(data){
+                            if(data.success){
+                                location.reload()
+                            }else{
+                                console.log(data)
+                            }
+
+                        });
+                        return true;
+
+                    },
+
+
+                });
+
+            })
+        </script>
+    {{/extend}}
+
+    <style>
+        .login-form .login-group label.error {
+            width: 100%;
+            position: absolute;
+            bottom: 102px;
+            left: 10px;
+            right: 10px;
+            text-align: center;
+            font-weight: normal;
+            color: #ff6600;
+        }
+    </style>
+
+{{/eq}}

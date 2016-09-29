@@ -1,3 +1,32 @@
+{{#extend "script"}}
+    <script>
+        $(function () {
+            $('.subnav-home-trigger').on('touchstart', function () {
+                $('.subnav-narrow .active').not('.subnav-home').removeClass('active');
+                $('.subnav-home').toggleClass('active');
+            })
+            $('.subnav-search-trigger').on('touchstart', function () {
+                $('.subnav-narrow .active').not('.subnav-search').removeClass('active');
+                $('.subnav-search').toggleClass('active');
+            })
+            $('.subnav-publish-trigger').on('touchstart', function () {
+                $('.subnav-narrow .active').not('.subnav-publish').removeClass('active');
+                $('.subnav-publish').toggleClass('active');
+            })
+            $('.subnav-user-trigger').on('touchstart', function () {
+                $('.subnav-narrow .active').not('.subnav-user').removeClass('active');
+                $('.subnav-user').toggleClass('active');
+            })
+        })
+    </script>
+
+{{/extend}}
+
+<style>
+    .subnav-narrow .subnav-item.active {
+        display: block;
+    }
+</style>
 
 {{#eq user null}}
     <header style="background-color: rgba(34, 34, 34, 0);">
@@ -8,16 +37,16 @@
     <header>
         <div class="nav-narrow">
             <div class="nav-left">
-                <a class="iconfont subnav-trigger" data-target=".subnav-home"></a>
+                <a class="iconfont subnav-trigger subnav-home-trigger" data-target=".subnav-home"></a>
             </div>
             <div class="nav-right">
-                <a class="iconfont subnav-trigger" data-target=".subnav-search"></a>
-                <a class="iconfont subnav-trigger" data-target=".subnav-publish"></a>
-                <a class="iconfont subnav-trigger" data-target=".subnav-user"></a>
+                <a class="iconfont subnav-trigger subnav-search-trigger" data-target=".subnav-search"></a>
+                <a class="iconfont subnav-trigger subnav-publish-trigger" data-target=".subnav-publish"></a>
+                <a class="iconfont subnav-trigger subnav-user-trigger" data-target=".subnav-user"></a>
             </div>
         </div>
         <div class="subnav-narrow">
-            <ul class="subnav-item subnav-home" style="display:none">
+            <ul class="subnav-item subnav-home">
                 <li><a href="/"><i class="iconfont"></i>首页</a></li>
                 <li><a href="/groups/all/"><i class="iconfont"></i>小组</a></li>
                 <li><a href="/vision/"><i class="iconfont"></i>影像</a></li>
@@ -39,7 +68,7 @@
                 <li><a href="/new-photo/"><i class="iconfont"></i>发照片</a></li>
                 <li><a href="/new-text/"><i class="iconfont"></i>发文字</a></li>
             </ul>
-            <ul class="subnav-item subnav-user" style="display: block">
+            <ul class="subnav-item subnav-user">
                 <li><a href="/1551288/"><i class="iconfont"></i>我的主页</a></li>
                 <li><a href="/1551288/albums/"><i class="iconfont"></i>我的相册</a></li>
                 <li><a href="/1551288/following/"><i class="iconfont"></i>我的关注</a></li>

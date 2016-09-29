@@ -1,67 +1,56 @@
 <!doctype html5>
 <html lang="zh-CN">
 <head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+    <meta name="title" content="偶酷网 - 最好的摄影师都在这">
+    <!-- 模拟webApp -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="偶酷">
+    <meta name="viewport"
+          content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,initial-scale=1.0,user-scalable=no">
+    <!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 -->
+    <meta name="HandheldFriendly" content="true">
+    <!-- 微软的老式浏览器 -->
+    <meta name="MobileOptimized" content="320">
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta http-equiv="Cache-Control" content="no-cache,no-transform,no-siteapp">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="apple-itunes-app" content="app-id=1073064739">
+    <link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+          href="http://tuchong.testing/apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144x144-precomposed.png">
+    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <meta name="copyright" content="偶酷网">
+    <meta name="author" content="偶酷">
+    <meta name="robots" content="all">
+    <meta name="keywords" content="摄影,图片库,摄影社区,作品,器材,照片,专业,图片,上传,分享,拍照,照相,相册,Web2.0,博客">
+    <meta name="description"
+          content="偶酷APP，偶酷客户端，偶酷APP下载，偶酷网，偶酷网是中国最专业的web2.0摄影社区，下属纪实、风光、人像、生态、黑白、器材、佳能、尼康、宾得等几十个专业摄影社区。海量的照片、相册和图博全部由摄影师共同管理和维护。">
+    <!--[if lt IE 9]>
+  <script src="https://static.tuchong.net/js/html5shiv.js"></script>
+    <![endif]-->
+  {{{block "style"}}}
+    <script src="{{STATIC}}/components/jquery/dist/jquery.min.js"></script>
 
-    <head>
-        <meta charset="UTF-8">
-        <title>{{title}}</title>
-        <meta name="title" content="偶酷网 - 最好的摄影师都在这">
-        <!-- 模拟webApp -->
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-        <meta name="apple-mobile-web-app-title" content="偶酷">
-        <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,initial-scale=1.0,user-scalable=no">
-        <!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 -->
-        <meta name="HandheldFriendly" content="true">
-        <!-- 微软的老式浏览器 -->
-        <meta name="MobileOptimized" content="320">
-        <!-- uc强制竖屏 -->
-        <meta name="screen-orientation" content="portrait">
-        <!-- QQ强制竖屏 -->
-        <meta name="x5-orientation" content="portrait">
-        <!-- UC强制全屏 -->
-        <meta name="full-screen" content="yes">
-        <!-- QQ强制全屏 -->
-        <meta name="x5-fullscreen" content="true">
-        <!-- UC应用模式 -->
-        <meta name="browsermode" content="application">
-        <!-- QQ应用模式 -->
-        <meta name="x5-page-mode" content="app">
-        <!-- windows phone 点击无高光 -->
-        <meta name="msapplication-tap-highlight" content="no">
-        <meta http-equiv="Cache-Control" content="no-cache,no-transform,no-siteapp">
-        <meta http-equiv="Pragma" content="no-cache">
-        <meta http-equiv="Expires" content="0">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <meta name="apple-itunes-app" content="app-id=1073064739">
-        <link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://tuchong.testing/apple-touch-icon-114x114-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144x144-precomposed.png">
-        <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon">
-        <meta name="copyright" content="偶酷网">
-        <meta name="author" content="偶酷">
-        <meta name="robots" content="all">
-        <meta name="keywords" content="摄影,图片库,摄影社区,作品,器材,照片,专业,图片,上传,分享,拍照,照相,相册,Web2.0,博客">
-        <meta name="description" content="偶酷APP，偶酷客户端，偶酷APP下载，偶酷网，偶酷网是中国最专业的web2.0摄影社区，下属纪实、风光、人像、生态、黑白、器材、佳能、尼康、宾得等几十个专业摄影社区。海量的照片、相册和图博全部由摄影师共同管理和维护。">
-        <!--[if lt IE 9]>
-      <script src="https://static.tuchong.net/js/html5shiv.js"></script>
-        <![endif]-->
-      {{{block "style"}}}
-        <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="//static.tuchong.net/js/rsa.min.js" src="//static.tuchong.net/js/rsa.min.js"></script><style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
-    .en-markup-crop-options {
-        top: 18px !important;
-        left: 50% !important;
-        margin-left: -100px !important;
-        width: 200px !important;
-        border: 2px rgba(255,255,255,.38) solid !important;
-        border-radius: 4px !important;
-    }
-
-    .en-markup-crop-options div div:first-of-type {
-        margin-left: 0px !important;
-    }
-    </style>
   {{#if ENV_DEVELOPMENT}}
       <script src="http://localhost:35729/livereload.js"></script>
   {{/if}}

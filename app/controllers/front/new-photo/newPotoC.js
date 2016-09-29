@@ -10,7 +10,7 @@ module.exports = function (app) {
 router.get('/', function (req, res, next) {
 
   if(req.headers["user-agent"].toLowerCase().indexOf('mobile')!==-1){
-    res.render('mobile/new-photo/new-photo', {
+    res.render('mobile/new-photo/newPhoto', {
       layout:"main_m",
       title: '发布',
     });

@@ -28,7 +28,7 @@
                         <div class="col-xs-12 upload-wrapper" style="overflow:hidden; display=block;">
 
                             <div class="upload-trigger-wrapper col-xs-6 fileinput-button">
-                                <input id="file_upload" type="file" accept="image/*" multiple />
+                                <input id="file_upload" type="file"  name="files" data-url="/new-photo/img"   multiple />
                             </div>
                             <div class="upload-album-queue col-xs-6">
                                 <a id="upload-album" class="ir" href="javascript:void(0);" onclick="toggleImgSelector($('#fileList'));return false">从相册选择</a>
@@ -332,7 +332,8 @@
 
 </div>
 {{#extend "script"}}
-  <script src="/pc/js/jquery-ui-1.8.16.custom.min.js"></script>
-  <script src="/pc/js/uploadify/jquery.uploadify.js"></script>
-  <script src="/pc/js/jupload.js"></script>
+    <script src="/components/jQuery-File-Upload/js/vendor/jquery.ui.widget.js"></script>
+    <script src="/components/jQuery-File-Upload/js/jquery.iframe-transport.js"></script>
+    <script src="/components/jQuery-File-Upload/js/jquery.fileupload.js"></script>
+    <script src="/pc/js/jupload.js"></script>
  {{/extend}}

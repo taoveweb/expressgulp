@@ -59,7 +59,7 @@ module.exports = function (req, res, next) {
       var exifData=yield new Promise(function (resolve, reject) {
         new ExifImage({ image : imgptah }, function (error, exifData) {
           if (error)
-            reject(error);
+            resolve('');
           else
             resolve(exifData); // Do something with your data!
         });

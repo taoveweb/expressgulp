@@ -17,6 +17,7 @@ var UserSchema = new Schema({
   fans:[Schema.Types.Mixed],//粉丝
   concern:[Schema.Types.Mixed],//关注
   level:{type:Number,default :0},
+  loginIp:{type:String,default :''},
   created: {type: Date,default :new Date()},
   updateby: {type: Date,default :new Date()}
 });

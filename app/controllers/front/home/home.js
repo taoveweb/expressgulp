@@ -9,7 +9,7 @@ module.exports = function (app) {
 };
 
 router.get('/', function (req, res, next) {
-  console.log(req.user)
+
   if (req.headers["user-agent"].toLowerCase().indexOf('mobile') !== -1) {
     if (req.user) {
       res.render('mobile/home/homeMain', {
@@ -28,6 +28,7 @@ router.get('/', function (req, res, next) {
   } else {
     var template;
     if (req.user) {
+
       template="pc/home/homeMain";
       res.render(template, {
         layout:'mainh5',

@@ -7,7 +7,7 @@
         <div class="with-bg card clearfix">
             <h1 class="card-header-large">发布照片</h1>
             <div class="new-tubo-photo">
-                <form class="" action="/rest/posts" method="post" onsubmit="($(this).find('.tag-editor .tag').length || confirm('你还没有设置任何标签，设置标签可以让更多的人看到你的作品，你确定不设置标签就发布吗？')) && $(this).ajaxsubmit(local.firstMultiPhoto);return false">
+                <form class="" action="/new-photo" method="post" onsubmit="($(this).find('.tag-editor .tag').length || confirm('你还没有设置任何标签，设置标签可以让更多的人看到你的作品，你确定不设置标签就发布吗？')) && $(this).ajaxsubmit(local.firstMultiPhoto);return false">
                     <input type="hidden" name="type" value="multi-photo" />
                     <input type="hidden" name="site_id" value="1551288" />
 
@@ -333,91 +333,6 @@
 </div>
 {{#extend "script"}}
   <script src="/pc/js/jquery-ui-1.8.16.custom.min.js"></script>
-  <script src="/pc/js/jquery.uploadify.js"></script>
+  <script src="/pc/js/uploadify/jquery.uploadify.js"></script>
   <script src="/pc/js/jupload.js"></script>
-  <script src="/pc/js/rsa.min.js"></script>
-  <script src="/pc/js/twig.js"></script>
-  <script src="/pc/js/all.js"></script>
-  <script type="text/javascript">
-      Date.prototype.offset = new Date().getTime() - 1474469616712.1;
-      Tuchong.apiPath = '/api/';
-      var app_domain = 'tuchong.com',			web_root = '{{host}}/', 		media_root = 'https://s1.tuchong.com/', 		js_root = 'https://static.tuchong.net/js/',
-              style_root = 'https://static.tuchong.net/styles/',
-              visitor = {"id":"1551288","name":"\u5b50\u4e00824","domain":"","icon":"https:\/\/s1.tuchong.com\/sites\/155\/1551288\/logo_small.jpg?1","url":"https:\/\/tuchong.com\/1551288\/"},
-              weiboAccount = false,
-              nonce = '1c4a9429d2d4a374',
-              ENV = 'production',
-              dialog;		if( self != top) {
-          top.location = self.location ;
-      }
-  </script>
-  <script type="text/javascript">
-      //<!--
-      $( document ).ready( function() {
-          initUpload( $('#file_upload') );
-          $( '#file_upload' ).attr( 'title','请挑选您最得意的原创摄影作品，\n最大支持20MB的JPG格式图片，不建议加画框和水印签名。\n请勿上传到此一游照、产品照片或屏幕截图，可能会被系统删除。');
-
-          $('.uploader-image-list').sortable( {
-              items: '> .post',
-              containment: 'parent',
-              appendTo: 'parent',
-              tolerance: 'pointer',
-              axis:   'y',
-              placeholder: 'holder',
-              forceHelperSize: true,
-              forcePlaceholderSize: true,
-              opacity: 0.8,
-              cursor: 'ns-resize'
-          });
-          uploadController.checkMultiPhotos();
-      });
-      //-->
-  </script>
-  <script type="text/javascript">
-      //<!--
-      window.uploadMode = 'multi-photo';
-      $(document).ready(function() {
-          tagEditorInit(0);
-      });
-      //-->
-  </script>
-
-  <!--[if lt IE 9]>
-  <iframe class="bc-warn" src="{{host}}/browsercheck.html" frameborder="0"></iframe>
-  <div class="bc-screen-lock"></div>
-  <link href="https://static.tuchong.net/styles/ie-checker.css?1456660771.css" rel="stylesheet" />
-  <![endif]-->
-  <div class="back-to-top direction-caret big"></div>
-
-  <script>
-      navInit();
-      $('.dropdown-toggle').dropdown();
-      editableInit();
-
-      $(document).ready(function() {
-          if ( visitor.id > 0 ){
-              refreshNotifications();
-              //setInterval(refreshNotifications, 60000);
-              bindNotifyBarEvents();
-          }
-
-          if (window.WebSocket && visitor.id > 0) {
-              var wsntf = new WSNotification('wss://ws.tuchong.com:3001', visitor);
-          }
-
-          initBackToTop($('.back-to-top'));
-      });
-
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-4386938-1']);
-      _gaq.push(['_setDomainName', '.tuchong.com']);
-
-      _gaq.push(['_trackPageview']);
-
-      googleAnalytics();
-      window.HOST_TYPE = 2;
-      window.BMap_loadScriptTime = (new Date).getTime();
-      window.androidApk = "{{host}}/rest/android/download";
-      window.showApkLink = true;
-  </script>
-{{/extend}}
+ {{/extend}}

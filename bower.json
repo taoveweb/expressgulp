@@ -12,6 +12,7 @@
     "ckeditor": "~4.5.10",
     "bootstrap-daterangepicker": "~2.1.24",
     "moment": "~2.14.1",
-    "Font-Awesome": "~4.6.3"
+    "Font-Awesome": "~4.6.3",
+    "jQuery-File-Upload": "~9.12.5"
   }
 }

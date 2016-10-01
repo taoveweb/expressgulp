@@ -1,0 +1,37 @@
+{{#extend "style"}}
+    <link href="/pc/css/all.css" rel="stylesheet">
+{{/extend}}
+{{#extend 'bodyAttr'}}
+    class="default-p no-subnav no-touch"
+{{/extend}}
+
+
+{{#extend "script"}}
+
+{{/extend}}
+
+
+
+<div class="container container-default">
+
+    <h1>偶酷服务</h1>
+    <main role="main" class="col-main">
+
+        <section class="with-bg inner">
+            <h2>RSS订阅偶酷内容</h2>
+            <dl>
+                <dt>最新编辑推荐作品</dt>
+                <dd><a href="{{host}}feeds/recommend/">{{host}}feeds/recommend/</a></dd>
+                <dt>你的影友新鲜事</dt>
+                <dd><a href="{{host}}feeds/contacts/receiver/1551288/">{{host}}feeds/contacts/receiver/1551288/</a></dd>
+                <dt>偶酷全站最新图博</dt>
+                <dd><a href="{{host}}feeds/groups/">{{host}}feeds/groups/</a></dd>
+                <dt>个人最新作品</dt>
+                <dd>请到每位用户主页侧栏下方得到RSS feed</dd>
+                <dt>小组最新图博</dt>
+                <dd>请到每个小组侧栏下方得到RSS feed</dd>
+            </dl>
+        </section>
+    </main>
+</div>
+

@@ -51,19 +51,22 @@ module.exports = function (req, res, next) {
     });
 
 
-
+    console.log(formmid)
     if (formmid) {
       var imgptah = formmid.files['files'].path;
       var imgPathParse=path.parse(imgptah);
-      console.log(imgptah)
+      console.log(imgPathParse)
       var exifData=yield new Promise(function (resolve, reject) {
         new ExifImage({ image : imgptah }, function (error, exifData) {
           if (error)
-            reject(error);
+            reject('');
           else
             resolve(exifData); // Do something with your data!
         });
       });
+      if(exifData){
+
+      }
       console.log(exifData)
  /*     yield new Promise(function (resolve, reject) {
         gm(ptah).crop(crop.width, crop.height, crop.x, crop.y).write(ptah, function (err) {

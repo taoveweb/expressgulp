@@ -4,9 +4,10 @@ var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
 var ImageSchema = new Schema({
+  album:{type: String, default: "选择相册"},//属于哪一个相册，可以同时属于多个相册
   introduction: {type: String, required: true},
   imgUrl: {type: String, default :""},
-  imgs: [Schema.Types.Mixed],//相册{imgUrl:'',width:0,height:0,device:'',mode:'',exposure:'',focus:'',color:"",time:""}
+  device: {type: String, default :""},
   width:{type:Number,default :0},
   height:{type:Number,default :0},
   author: {type: Schema.Types.ObjectId, ref: "User"},
@@ -16,6 +17,7 @@ var ImageSchema = new Schema({
   excellent:{type:Number,default :0},//是否精选
   comments: [Schema.Types.Mixed],//评论
   created: {type: Date,default :new Date()},
+  phototime: {type: Date,default :new Date()},
   updateby: {type: Date,default :new Date()}
 });
 

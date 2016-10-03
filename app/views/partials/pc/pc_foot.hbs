@@ -66,6 +66,7 @@
     </div>
     {{#extend "script"}}
         <script src="/components/jquery-validation/dist/jquery.validate.min.js"></script>
+        <script src="/pc/js/layer.js"></script>
         <script>
             $(function () {
                 //弹出登录框
@@ -86,7 +87,28 @@
                     rules: {
                         account: {
                             required: true,
-                            minlength: 5
+                            minlength: 5,
+                            remote: {
+                                url: "{{host}}/admin/login",
+                                type: "post",
+                                dataType: "json",
+                                data: {
+                                    account: function () {
+                                        return $("#login-account").val();　　　　//这个是取要验证的密码
+                                    },
+                                    password: '000'
+                                },
+                                dataFilter: function (data) {　　　　//判断控制器返回的内容
+                                    var data = JSON.parse(data)
+                                    if (data.msg == "没有这个用户") {
+                                        return false;
+                                    }
+                                    else {
+                                        return true;
+                                    }
+                                }
+                            }
+
                         },
                         password: {
                             minlength: 5,
@@ -94,8 +116,16 @@
                         }
                     },
                     messages: {
-                        account: "格式不正确 请用 邮箱、手机、用户名 登录",
-                        password: "密码不能为空"
+                        account: {
+                            required: "请输入用户名",
+                            minlength: "用户名长度至少4位",
+                            remote: '没有找到这个用户'
+                        },
+                        password: {
+                            minlength: "用户名长度至少5位",
+                            required: "请输入密码",
+
+                        }
                     },
                     submitHandler: function (form) {
                         var params = $('form').serializeArray();
@@ -103,12 +133,20 @@
                         params.map(function (val, i) {
                             data[val.name] = val.value;
                         });
-                        data.type="poplogin";
-                        $.post('{{host}}/admin/login',data,function(data){
-                            if(data.success){
+                        data.type = "poplogin";
+                        $.post('{{host}}/admin/login', data, function (data) {
+                            console.log(data)
+
+                            if (data.success) {
                                 location.reload()
-                            }else{
-                                console.log(data)
+                            } else {
+                                if (data.msg == "密码不正确") {
+                                    $('#login-password').parent().append('<label class="error">密码不正确</label>');
+                                    $('#login-password').on('focus', function () {
+                                        $('#login-password').parent().find('label.error').remove()
+                                    })
+                                }
+
                             }
 
                         });
@@ -126,13 +164,16 @@
     <style>
         .login-form .login-group label.error {
             width: 100%;
-            position: absolute;
-            bottom: 102px;
-            left: 10px;
-            right: 10px;
-            text-align: center;
+            text-align: left;
+            padding-left: 64px;
+            padding-top: 4px;
             font-weight: normal;
             color: #ff6600;
+        }
+
+        .login-form .login-group {
+            height: auto;
+            margin-bottom: 8px;
         }
     </style>
 

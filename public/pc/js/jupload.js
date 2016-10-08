@@ -14,22 +14,22 @@ $(function () {
       });
     }
   }).bind('fileuploadprocessstart', function (e) {
-    console.log(fileuploadprocessstart)
+    console.log('fileuploadprocessstart')
   })
     .bind('fileuploadprocess', function (e, data) {
-      console.log(fileuploadprocessstart)
+      console.log('fileuploadprocess')
     })
     .bind('fileuploadprocessdone', function (e, data) {
-      console.log(fileuploadprocessstart)
+      console.log('fileuploadprocessdone')
     })
     .bind('fileuploadprocessfail', function (e, data) {
-      console.log(fileuploadprocessstart)
+      console.log('fileuploadprocessfail')
     })
     .bind('fileuploadprocessalways', function (e, data) {
-      console.log(fileuploadprocessstart)
+      console.log('fileuploadprocessalways')
     })
     .bind('fileuploadprocessstop', function (e) {
-      console.log(fileuploadprocessstop)
+      console.log('fileuploadprocessstop')
     });
 
 

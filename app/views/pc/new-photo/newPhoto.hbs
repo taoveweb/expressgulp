@@ -8,7 +8,7 @@
             <h1 class="card-header-large">发布照片</h1>
             <div class="new-tubo-photo">
                 <form class="" action="/new-photo" method="post"
-                      onsubmit="($(this).find('.tag-editor .tag').length || confirm('你还没有设置任何标签，设置标签可以让更多的人看到你的作品，你确定不设置标签就发布吗？')) && $(this).ajaxsubmit(local.firstMultiPhoto);return false">
+                      onsubmit="($(this).find('.tag-editor .tag').length || confirm('你还没有设置任何标签，设置标签可以让更多的人看到你的作品，你确定不设置标签就发布吗？')) ;return false">
                     <input type="hidden" name="type" value="multi-photo"/>
                     <input type="hidden" name="site_id" value="1551288"/>
 
@@ -352,7 +352,7 @@
 
 </div>
 
-<form class="form-horizontal" style="display: none;" action="/rest/albums" method="post" onsubmit="return false;">
+<form class="form-horizontal" style="display: none" action="/rest/albums" method="post" onsubmit="return false;">
     <div class="dialog-body">
         <div class="form-group"><label class="col-xs-2 control-label">标题</label>
             <div class="col-xs-10"><input type="text" class="form-control" name="title" autofocus=""></div>

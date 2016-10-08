@@ -98,6 +98,23 @@ router.post('/', function (req, res, next) {
 
 
 
+//保存相关信息
+router.post('/', function (req, res, next) {
+
+  co(function *() {
+
+
+
+
+  }).catch(function (err) {
+    console.log('出错文件' + __filename + "出错方法：add 具体内容", err)
+  });
+
+});
+
+
+
+
 //提交图片
 router.post('/img', function (req, res, next) {
   require('../../function/frontuploadimg')(req, res, next)

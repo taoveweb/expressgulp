@@ -4,20 +4,18 @@ var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
 var ImageSchema = new Schema({
-  album:{type: String, default: "选择相册"},//属于哪一个相册，可以同时属于多个相册
   introduction: {type: String, required: true},
   imgUrl: {type: String, default :""},
+  album:[Schema.Types.Mixed],//{url,introduction,width,height,size,phototime,other}
   device: {type: String, default :""},
-  width:{type:Number,default :0},
-  height:{type:Number,default :0},
   author: {type: Schema.Types.ObjectId, ref: "User"},
   published: {type: Number, default: 1},
   sign:[Schema.Types.Mixed],//关健字
   meta: {type: Schema.Types.Mixed,default :[]},//被赞
   excellent:{type:Number,default :0},//是否精选
   comments: [Schema.Types.Mixed],//评论
+  copyright:{type: Number, default :0},
   created: {type: Date,default :new Date()},
-  phototime: {type: Date,default :new Date()},
   updateby: {type: Date,default :new Date()}
 });
 

@@ -7,31 +7,35 @@
         <div class="with-bg card clearfix">
             <h1 class="card-header-large">发布照片</h1>
             <div class="new-tubo-photo">
-                <form class="" action="/new-photo" method="post" onsubmit="($(this).find('.tag-editor .tag').length || confirm('你还没有设置任何标签，设置标签可以让更多的人看到你的作品，你确定不设置标签就发布吗？')) && $(this).ajaxsubmit(local.firstMultiPhoto);return false">
-                    <input type="hidden" name="type" value="multi-photo" />
-                    <input type="hidden" name="site_id" value="1551288" />
+                <form class="" action="/new-photo" method="post"
+                      onsubmit="($(this).find('.tag-editor .tag').length || confirm('你还没有设置任何标签，设置标签可以让更多的人看到你的作品，你确定不设置标签就发布吗？')) && $(this).ajaxsubmit(local.firstMultiPhoto);return false">
+                    <input type="hidden" name="type" value="multi-photo"/>
+                    <input type="hidden" name="site_id" value="1551288"/>
 
                     <div class="col-xs-12 col-md-6 inner">
 
 
                         <div class="form-group">
                             <label class="control-label">标题</label>
-                            <input type="text" class="form-control" name="title" value="" style="height:2em" placeholder="" />	</div>
+                            <input type="text" class="form-control" name="title" value="" style="height:2em"
+                                   placeholder=""/></div>
                         <div class="form-group form-group-content">
                             <label class="control-label">描述</label>
-                            <textarea name="content" class="form-control" style="min-height:100px" placeholder="说说你的拍摄经历、心得体会、PS技巧。"></textarea>
+                            <textarea name="content" class="form-control" style="min-height:100px"
+                                      placeholder="说说你的拍摄经历、心得体会、PS技巧。"></textarea>
                         </div>
                         <ol class="uploader-image-list col-xs-12" id="fileList">
                         </ol>
-                        <p class="upload-prompt">最长边不能小于600px，最大支持20MB的JPEG格式照片<br />不建议加画框和水印签名</p>
+                        <p class="upload-prompt">最长边不能小于600px，最大支持20MB的JPEG格式照片<br/>不建议加画框和水印签名</p>
                         <div class="uploader-file-queue"></div>
                         <div class="col-xs-12 upload-wrapper" style="overflow:hidden; display=block;">
 
                             <div class="upload-trigger-wrapper col-xs-6 fileinput-button">
-                                <input id="file_upload" type="file"  name="files" data-url="/new-photo/img"   multiple />
+                                <input id="file_upload" type="file" name="files" data-url="/new-photo/img" multiple/>
                             </div>
                             <div class="upload-album-queue col-xs-6">
-                                <a id="upload-album" class="ir" href="javascript:void(0);" onclick="toggleImgSelector($('#fileList'));return false">从相册选择</a>
+                                <a id="upload-album" class="ir" href="javascript:void(0);"
+                                   onclick="toggleImgSelector($('#fileList'));return false">从相册选择</a>
                             </div>
                         </div>
                     </div>
@@ -40,7 +44,7 @@
                             <div class="form-group">
                                 <label class="control-label">标签</label>
                                 <div class="tag-editor col-xs-12">
-                                    <input class="text" type="text" name="tags[]" />
+                                    <input class="text" type="text" name="tags[]"/>
                                 </div>
                                 <section class="tag-selector">
                                     <span class="tag-selector-caret"></span>
@@ -86,7 +90,8 @@
                                         <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">昆虫</a>
                                         <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">海</a>
                                         <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">铁路</a>
-                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">Cosplay</a>
+                                        <li style="display:none;"><a href="javascript:void(0)"
+                                                                     class="tag-btn">Cosplay</a>
                                         <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">晚霞</a>
                                         <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">秋天</a>
                                         <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">古镇</a>
@@ -129,7 +134,9 @@
                                         <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">车模</a>
                                         <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">长城</a>
                                         <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">音乐节</a>
-                                        <li><a href="javascript:void(0);" onclick="$(this).closest('.tag-selector-list').find('li').show();$(this).hide();return false;" style="color:#aaa">更多</a></li>
+                                        <li><a href="javascript:void(0);"
+                                               onclick="$(this).closest('.tag-selector-list').find('li').show();$(this).hide();return false;"
+                                               style="color:#aaa">更多</a></li>
                                     </ul>
                                     <h3>风格</h3>
                                     <ul class="tag-selector-list tag-selector-style clearfix">
@@ -165,12 +172,15 @@
                                         <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">可爱</a>
                                         <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">现场</a>
                                         <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">蓝色</a>
-                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">lightroom</a>
+                                        <li style="display:none;"><a href="javascript:void(0)"
+                                                                     class="tag-btn">lightroom</a>
                                         <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">观念</a>
                                         <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">幻想</a>
                                         <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">绿色</a>
                                         <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">超现实</a>
-                                        <li><a href="javascript:void(0);" onclick="$(this).closest('.tag-selector-list').find('li').show();$(this).hide();return false;" style="color:#aaa">更多</a></li>
+                                        <li><a href="javascript:void(0);"
+                                               onclick="$(this).closest('.tag-selector-list').find('li').show();$(this).hide();return false;"
+                                               style="color:#aaa">更多</a></li>
                                     </ul>
                                     <h3>器材</h3>
                                     <ul class="tag-selector-list tag-selector-equipment clearfix">
@@ -188,12 +198,14 @@
                                         <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">奥林巴斯</a>
                                         <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">徕卡</a>
                                         <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">28MM</a>
-                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">iphone</a>
+                                        <li style="display:none;"><a href="javascript:void(0)"
+                                                                     class="tag-btn">iphone</a>
                                         <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">理光</a>
                                         <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">超广角</a>
                                         <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">5d3</a>
                                         <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">蔡司</a>
-                                        <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">70-200</a>
+                                        <li style="display:none;"><a href="javascript:void(0)"
+                                                                     class="tag-btn">70-200</a>
                                         <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">定焦</a>
                                         <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">24-70</a>
                                         <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">适马</a>
@@ -212,7 +224,9 @@
                                         <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">哈苏</a>
                                         <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">Rolleiflex</a>
                                         <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">华为手机</a>
-                                        <li><a href="javascript:void(0);" onclick="$(this).closest('.tag-selector-list').find('li').show();$(this).hide();return false;" style="color:#aaa">更多</a></li>
+                                        <li><a href="javascript:void(0);"
+                                               onclick="$(this).closest('.tag-selector-list').find('li').show();$(this).hide();return false;"
+                                               style="color:#aaa">更多</a></li>
                                     </ul>
                                     <h3>地区</h3>
                                     <ul class="tag-selector-list tag-selector-location clearfix">
@@ -292,7 +306,9 @@
                                         <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">罗马</a>
                                         <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">丽江</a>
                                         <li style="display:none;"><a href="javascript:void(0)" class="tag-btn">东京</a>
-                                        <li><a href="javascript:void(0);" onclick="$(this).closest('.tag-selector-list').find('li').show();$(this).hide();return false;" style="color:#aaa">更多</a></li>
+                                        <li><a href="javascript:void(0);"
+                                               onclick="$(this).closest('.tag-selector-list').find('li').show();$(this).hide();return false;"
+                                               style="color:#aaa">更多</a></li>
                                     </ul>
                                     <p class="tag-warning">活动标签搬家了，去活动页面看看吧，参加活动还有丰厚奖品哦~</p>
                                 </section>
@@ -302,13 +318,13 @@
                         <div class="form-group">
                             <label class="control-label">版权</label>
                             <select name="copyright" class="form-control">
-                                <option value="" >非原创</option>
-                                <option value="by" >原创，CC协议共享(署名)</option>
-                                <option value="by,nc" >原创，CC协议共享(署名-非商业性使用)</option>
-                                <option value="by,nd" >原创，CC协议共享(署名-禁止演绎)</option>
-                                <option value="by,sa" >原创，CC协议共享(署名-相同方式共享)</option>
-                                <option value="by,nc,nd" >原创，CC协议共享(署名-非商业性使用-禁止演绎)</option>
-                                <option value="by,nc,sa"  selected>原创，CC协议共享(署名-非商业性使用-相同方式共享)</option>
+                                <option value="">非原创</option>
+                                <option value="by">原创，CC协议共享(署名)</option>
+                                <option value="by,nc">原创，CC协议共享(署名-非商业性使用)</option>
+                                <option value="by,nd">原创，CC协议共享(署名-禁止演绎)</option>
+                                <option value="by,sa">原创，CC协议共享(署名-相同方式共享)</option>
+                                <option value="by,nc,nd">原创，CC协议共享(署名-非商业性使用-禁止演绎)</option>
+                                <option value="by,nc,sa" selected>原创，CC协议共享(署名-非商业性使用-相同方式共享)</option>
                             </select>
                         </div>
                         <div class="form-group clearfix">
@@ -316,13 +332,17 @@
                             <select name="alb_id" class="form-control col-xs-8">
                                 <option>选择相册</option>
                             </select>
-                            <a class="btn btn-default btn-sm col-xs-3" style="padding: 7px;border-radius: 4px;margin-left: 10px;width: 28%;" href="javascript:void(0);" onclick="popCreateAlbum({});return false;">新建相册</a>
+                            <a class="btn btn-default btn-sm col-xs-3 popCreateAlbum"
+                               style="padding: 7px;border-radius: 4px;margin-left: 10px;width: 28%;"
+                               href="javascript:void(0);" >新建相册</a>
                         </div>
                         <div class="form-group form-captcha clearfix"></div>
                     </div>
                     <div class="">
                         <div class="form-group" style="padding:1em 0;text-align:center;clear:both;">
-                            <button type="submit" class="btn btn-primary" style="padding-left: 4em; padding-right: 4em;">发布</button>
+                            <button type="submit" class="btn btn-primary"
+                                    style="padding-left: 4em; padding-right: 4em;">发布
+                            </button>
                         </div>
                     </div>
                 </form>
@@ -331,9 +351,26 @@
     </main>
 
 </div>
+
+<form class="form-horizontal" action="/rest/albums" method="post" onsubmit="return false;">
+    <div class="dialog-body">
+        <div class="form-group"><label class="col-xs-2 control-label">标题</label>
+            <div class="col-xs-10"><input type="text" class="form-control" name="title" autofocus=""></div>
+        </div>
+        <div class="form-group"><label class="col-xs-2 control-label">描述</label>
+            <div class="col-xs-10"><textarea class="form-control" name="description" ></textarea></div>
+        </div>
+    </div>
+    <p class="dialog-footer">
+        <button type="reset" class="btn btn-sm btn-default resetalbums">取消</button>
+        <button type="submit" class="btn btn-sm btn-primary submitalbums">确定</button>
+    </p>
+</form>
 {{#extend "script"}}
     <script src="/components/jQuery-File-Upload/js/vendor/jquery.ui.widget.js"></script>
     <script src="/components/jQuery-File-Upload/js/jquery.iframe-transport.js"></script>
     <script src="/components/jQuery-File-Upload/js/jquery.fileupload.js"></script>
+    <script src="/pc/js/layer.js"></script>
     <script src="/pc/js/jupload.js"></script>
- {{/extend}}
+
+{{/extend}}

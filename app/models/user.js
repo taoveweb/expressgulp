@@ -19,7 +19,8 @@ var UserSchema = new Schema({
   level:{type:Number,default :0},
   loginIp:{type:String,default :''},
   created: {type: Date,default :new Date()},
-  updateby: {type: Date,default :new Date()}
+  updateby: {type: Date,default :new Date()},
+  albums:[Schema.Types.Mixed],//所有相册列表
 });
 UserSchema.methods.verifyPassword = function(password){
   var isMatch = md5(password) === this.password;

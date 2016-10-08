@@ -27,12 +27,12 @@ module.exports.init = function () {
           return done(err);
         }
         if (!user) {
-          return done(null, false);
+          return done(null, false,{ message: 'Incorrectusername' });
         }
         if (!user.verifyPassword(password)) {
-          return done(null, false);
+          return done(null, false,{ message: 'Incorrectpassword' });
         }
-        return done(null, user);
+        return done(null, user,{ message: 'success' });
       });
     }
   ));

@@ -5,6 +5,7 @@
 
 $(function () {
   //上传图片
+
   $('#file_upload').fileupload({
     acceptFileTypes: /(\.|\/)(jpe?g|png)$/i,
     imageMinWidth:600,
@@ -17,7 +18,19 @@ $(function () {
     },
     done: function (e, data) {
       console.log(data.result)
+      var result=data.result;
+      var html='<li class="post file" >\
+        <input type="hidden" name="images[order]" value="0">\
+        <span class="thumb">\
+        <img src="'+imghost+result.imgUrl+'">\
+        </span>\
+        <div class="meta">\
+        <textarea class="form-control description" name="images[description]" placeholder="照片描述"></textarea>\
+        </div>\
+        <a class="ir btn-delete" >删除</a>  <a class="ir btn-sort">排序</a>\
+        </li>'
 
+      $('#fileList').append(html)
     }
   }).bind('fileuploadprocessstart', function (e) {
     console.log('fileuploadprocessstart')

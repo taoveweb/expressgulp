@@ -376,19 +376,24 @@
     </p>
 </form>
 
-<!--<li class="post file" data-image-id="8603084">
-    <input type="hidden" name="images[8603084][order]" value="0">  <span class="thumb">
-        <img src="https://photo.tuchong.com/1551288/t/8603084.webp">  </span>
-    <div class="meta">
-        <textarea class="form-control description" name="images[8603084][description]" placeholder="照片描述"></textarea>
-    </div>
-    <a class="ir btn-delete" href="javascript:void(0)">删除</a>  <a class="ir btn-sort" href="javascript:void(0)">排序</a>
+<!--<li class="post file" >
+      <input type="hidden" name="images[order]" value="0">
+      <span class="thumb">
+        <img src="https://photo.tuchong.com/1551288/t/8603084.webp">
+      </span>
+      <div class="meta">
+          <textarea class="form-control description" name="images[description]" placeholder="照片描述"></textarea>
+      </div>
+      <a class="ir btn-delete" >删除</a>  <a class="ir btn-sort">排序</a>
 </li>-->
 {{#extend "script"}}
     <script src="/components/jQuery-File-Upload/js/vendor/jquery.ui.widget.js"></script>
     <script src="/components/jQuery-File-Upload/js/jquery.iframe-transport.js"></script>
     <script src="/components/jQuery-File-Upload/js/jquery.fileupload.js"></script>
     <script src="/pc/js/layer.js"></script>
+    <script>
+        var imghost='{{host}}/images/';
+    </script>
     <script src="/pc/js/jupload.js"></script>
 
 {{/extend}}

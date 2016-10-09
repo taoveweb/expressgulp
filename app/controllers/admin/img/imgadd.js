@@ -44,7 +44,6 @@ router.post('/add', function (req, res, next) {
     add.width=req.body.width;
     add.height=req.body.height;
     add.author=ObjectId(user['_id']);
-    console.log(add.author)
     add.created=new Date();
     var sign=req.body.sign;
     if(sign.indexOf('.')){

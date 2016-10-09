@@ -12,7 +12,9 @@ module.exports.requireLogin = function (req, res, next) {
     if (req.user) {
         next();
     } else {
-        res.redirect('/m/user/login');
+        res.json({
+          img:"没有登录"
+        })
     }
 };
 

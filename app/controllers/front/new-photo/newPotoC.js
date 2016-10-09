@@ -116,7 +116,7 @@ router.post('/', function (req, res, next) {
 
 
 //提交图片
-router.post('/img', function (req, res, next) {
+router.post('/img', auth.requireLogin,function (req, res, next) {
   require('../../function/frontuploadimg')(req, res, next)
 });
 

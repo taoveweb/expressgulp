@@ -1,6 +1,15 @@
 {{#extend "style"}}
     <link href="/pc/css/all.css" rel="stylesheet">
+  <style>
+      .bar {
+          height: 18px;
+          background: green;
+      }
+  </style>
 {{/extend}}
+<div id="progress">
+    <div class="bar" style="width: 0%;"></div>
+</div>
 <div class="notify-bar card"></div>
 <div class="container container-default">
     <main role="main" class="col-main col-xs-12">
@@ -31,7 +40,7 @@
                         <div class="col-xs-12 upload-wrapper" style="overflow:hidden; display=block;">
 
                             <div class="upload-trigger-wrapper col-xs-6 fileinput-button">
-                                <input id="file_upload" type="file" name="files" data-url="/new-photo/img" multiple/>
+                                <input id="file_upload" type="file" name="files" data-url="{{host}}/new-photo/img" multiple/>
                             </div>
                             <div class="upload-album-queue col-xs-6">
                                 <a id="upload-album" class="ir" href="javascript:void(0);"

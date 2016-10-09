@@ -2,15 +2,14 @@
  * Created by Administrator on 2016/8/30 0030.
  */
 var mongoose = require('mongoose'),
-  Image = mongoose.model('Image'),
+  Img = mongoose.model('Img'),
   co = require('co'),
   formidable = require('formidable'),
   path = require('path'),
   fs = require('fs'),
   gm = require('gm'),
   crypto = require('crypto'),
-  _ = require('lodash'),
-  ExifImage=require('exif').ExifImage,
+  ObjectId = mongoose.Types.ObjectId,
   config = require('../../../config/config');
 
 formidable.IncomingForm.prototype._uploadPath = function (filename) {
@@ -34,8 +33,11 @@ formidable.IncomingForm.prototype._uploadPath = function (filename) {
 module.exports = function (req, res, next) {
 
   co(function *() {
+    var add = {};
+    var user=req.user;
     var form = new formidable.IncomingForm();
-    var dir = config.root + "/upload/images/" + new Date().getFullYear() + (new Date().getMonth() + 1) + '/';
+    var dirDate = `${new Date().getFullYear()}${(new Date().getMonth() + 1)}/`;
+    var dir = config.root + "/upload/images/" + dirDate;
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir);
     }
@@ -51,39 +53,43 @@ module.exports = function (req, res, next) {
     });
 
 
-    console.log(formmid)
     if (formmid) {
       var imgptah = formmid.files['files'].path;
-      var imgPathParse=path.parse(imgptah);
-      console.log(imgPathParse)
-      var exifData=yield new Promise(function (resolve, reject) {
-        new ExifImage({ image : imgptah }, function (error, exifData) {
-          if (error)
-<<<<<<< HEAD
-            resolve('');
-=======
-            reject('');
->>>>>>> 9c7be14e4b308293a2cf6d02490b5aacd16a50b2
-          else
-            resolve(exifData); // Do something with your data!
-        });
-      });
-      if(exifData){
-
-      }
-      console.log(exifData)
- /*     yield new Promise(function (resolve, reject) {
-        gm(ptah).crop(crop.width, crop.height, crop.x, crop.y).write(ptah, function (err) {
-          if (!err) {
-            resolve();
+      var imgPathParse = path.parse(imgptah);
+      var imginfo = yield new Promise(function (resolve, reject) {
+        gm(imgptah).identify(function (err, value) {
+          if (err) {
+            reject(err)
           } else {
-            reject(err);
+            resolve(value);
           }
+        })
+      });
+      if(imginfo['Profile-EXIF']){
+        var exif=imginfo['Profile-EXIF'];
+        add.device=exif['0xA434'];
+      }
+      var fimg = formmid.files['files'];
+      add.size = fimg.size;
+      add.lastModifiedDate = new Date(fimg.lastModifiedDate);
+      add.imgUrl = dirDate + imgPathParse.base;
+      add.author=ObjectId(user['_id']);
+      add.width=imginfo.size.width;
+      add.height=imginfo.size.height;
+      add.signature=imginfo.Signature;
 
-        });
-      })*/
+      var img=new Img(add);
+      var nimg=yield new Promise(function(resolve,reject){
+        img.save(function(err,img){
+          if(err){
+            reject(err);
+          }else{
+            resolve(img)
+          }
+        })
+      });
 
-      res.json({imgptah: imgptah.split('upload')[1],});
+      res.json(nimg);
     }
 
 

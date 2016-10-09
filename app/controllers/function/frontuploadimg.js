@@ -79,6 +79,18 @@ module.exports = function (req, res, next) {
       add.signature=imginfo.Signature;
 
       var img=new Img(add);
+      var hasimg=yield new Promise(function(resolve,reject){
+        Img.find({signature:add.signature},function(err,img){
+          if(err){
+            reject(err);
+          }else{
+            resolve(img)
+          }
+        })
+      });
+      if(hasimg.length){
+        return res.json({msg:'已经存在这张图片了'})
+      }
       var nimg=yield new Promise(function(resolve,reject){
         img.save(function(err,img){
           if(err){

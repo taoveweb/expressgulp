@@ -17,6 +17,7 @@ $(function () {
     },
     done: function (e, data) {
       console.log(data.result)
+
     }
   }).bind('fileuploadprocessstart', function (e) {
     console.log('fileuploadprocessstart')

@@ -17,7 +17,6 @@ $(function () {
       ).html(progress + '%');
     },
     done: function (e, data) {
-      console.log(data.result)
       var result=data.result;
       var html='<li class="post file" >\
         <input type="hidden" name="images[order]" value="0">\

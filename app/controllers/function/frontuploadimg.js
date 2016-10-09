@@ -65,6 +65,22 @@ module.exports = function (req, res, next) {
           }
         })
       });
+      yield new Promise(function (resolve, reject) {
+        gm(imgptah)
+          .resize(90)
+          .crop(90, 90, 0, 0)
+          .noProfile()
+          .write(imgPathParse.dir+imgPathParse.name+"90"+imgPathParse.ext, function (err) {
+            if (err) {
+              reject(err)
+            } else {
+              resolve(value);
+            }
+          });
+
+      });
+
+
       if(imginfo['Profile-EXIF']){
         var exif=imginfo['Profile-EXIF'];
         add.device=exif['0xA434'];

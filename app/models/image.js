@@ -6,7 +6,7 @@ var mongoose = require('mongoose'),
 var ImageSchema = new Schema({
   introduction: {type: String, required: true},
   imgUrl: {type: String, default :""},
-  album:[Schema.Types.Mixed],//{url,introduction,width,height,size,phototime,other}
+  imgs:[Schema.Types.Mixed],//{url,introduction,width,height,size,phototime,other}
   device: {type: String, default :""},
   author: {type: Schema.Types.ObjectId, ref: "User"},
   published: {type: Number, default: 1},

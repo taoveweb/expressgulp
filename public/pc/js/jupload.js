@@ -231,6 +231,7 @@ $(function () {
   })
 
   function showResponse(responseText, statusText, xhr, $form)  {
+    console.log(responseText)
     console.log('status: ' + statusText + '\n\nresponseText: \n' + responseText);
   }
 })

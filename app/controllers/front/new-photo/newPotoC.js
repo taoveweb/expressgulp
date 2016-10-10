@@ -28,11 +28,23 @@ router.get('/', function (req, res, next) {
   }
 
 });
-
+function transform(obj){
+  var arr = [];
+  for(var item in obj){
+    arr.push(obj[item]);
+  }
+  return arr;
+}
 
 //保存相关信息
 router.post('/', function (req, res, next) {
-
+  var imgs={ '8602613': { order: '8602613', description: '' },
+    '8602911': { order: '8602911', description: '' },
+    '8602912': { order: '8602912', description: '' },
+    '8603084': { order: '8603084', description: '' } };
+  //var images=Object.values(imgs);
+  console.log(transform(imgs));
+  return res.json(req.body);
   co(function *() {
     /*var add = {};
     var user=req.user;

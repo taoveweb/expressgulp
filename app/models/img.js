@@ -5,6 +5,7 @@ var mongoose = require('mongoose'),
 
 var imgSchema = new Schema({
   imgUrl: {type: String, default :""},
+  album: {type: String, default :""},
   device: {type: String, default :""},
   signature: {type: String, default :""},
   width: {type: Number, default :0},

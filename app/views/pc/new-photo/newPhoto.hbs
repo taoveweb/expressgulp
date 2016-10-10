@@ -39,7 +39,7 @@
         <div class="with-bg card clearfix">
             <h1 class="card-header-large">发布照片</h1>
             <div class="new-tubo-photo">
-                <form class="" action="/new-photo" method="post"
+                <form class="publishForm" action="/new-photo" method="post"
                       onsubmit="($(this).find('.tag-editor .tag').length || confirm('你还没有设置任何标签，设置标签可以让更多的人看到你的作品，你确定不设置标签就发布吗？')) ;return false">
                     <input type="hidden" name="type" value="multi-photo"/>
                     <input type="hidden" name="site_id" value="1551288"/>
@@ -89,7 +89,7 @@
                             <div class="form-group">
                                 <label class="control-label">标签</label>
                                 <div class="tag-editor col-xs-12">
-                                    <input class="text" type="text" name="tags[]"/>
+                                    <input id="tagText" class="text" type="text" name="tags[]"/>
                                 </div>
                                 <section class="tag-selector">
                                     <span class="tag-selector-caret"></span>
@@ -385,7 +385,7 @@
                     </div>
                     <div class="">
                         <div class="form-group" style="padding:1em 0;text-align:center;clear:both;">
-                            <button type="submit" class="btn btn-primary"
+                            <button id="publish" type="submit" class="btn btn-primary"
                                     style="padding-left: 4em; padding-right: 4em;">发布
                             </button>
                         </div>
@@ -400,7 +400,7 @@
 <form class="form-horizontal" style="display: none" action="/rest/albums" method="post" onsubmit="return false;">
     <div class="dialog-body">
         <div class="form-group"><label class="col-xs-2 control-label">标题</label>
-            <div class="col-xs-10"><input type="text" class="form-control" name="title" autofocus=""></div>
+            <div class="col-xs-10"><input  type="text" class="form-control" name="title" autofocus=""></div>
         </div>
         <div class="form-group"><label class="col-xs-2 control-label">描述</label>
             <div class="col-xs-10"><textarea class="form-control" name="description"></textarea></div>

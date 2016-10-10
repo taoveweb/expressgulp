@@ -2,9 +2,17 @@
  * Created by Administrator on 2016/9/30 0030.
  */
 
-
+Array.prototype.indexOf = function (val) {
+  for (var i = 0; i < this.length; i++) {
+    if (this[i] == val) return i;
+  }
+  return -1;
+};
 $(function () {
   //上传图片
+
+  var imgDada = [];
+  var tagDada = [];
 
   $('#file_upload').fileupload({
     acceptFileTypes: /(\.|\/)(jpe?g|png)$/i,
@@ -22,18 +30,11 @@ $(function () {
         layer.msg('此图片已经存在');
         return;
       }
-      var html = '<li class="post file" >\
-        <input type="hidden" name="images[order]" value="0">\
-        <span class="thumb">\
-        <img src="' + imghost + result.imgUrl.replace('.', '_90.') + '">\
-        </span>\
-        <div class="meta">\
-        <textarea class="form-control description" name="images[description]" placeholder="照片描述"></textarea>\
-        </div>\
-        <a class="ir btn-delete" >删除</a>  <a class="ir btn-sort">排序</a>\
-        </li>'
 
-      $('#fileList').append(html)
+      var url = imghost + result.imgUrl.replace('.', '_90.');
+      var id=result['_id'];
+      console.log(id)
+      addImg(url,id);
     }
   }).bind('fileuploadprocessstart', function (e) {
     console.log('fileuploadprocessstart')
@@ -68,7 +69,7 @@ $(function () {
     });
   })
 
-  //从相册中选取
+  //从相册中选取弹出框
   $('#upload-album').click(function () {
     layer.open({
       type: 1, //page层
@@ -83,26 +84,33 @@ $(function () {
     });
   });
 
+  //从相册中选取
+  $('.selector-choice').on('click', 'img:not(.selected)', function () {
+    $(this).addClass('selected');
+    var id=$(this).data('imageId');
+    var url = $(this).attr('src');
+    imgDada.push(url);
+    addImg(url,id);
+  })
+
   //关闭弹窗
   $('.resetalbums,.closeAlbums,.x-delete').click(function () {
     layer.closeAll()
   });
 
   //图片排序
-
   var adjustment;
-
   $("#fileList").sortable({
     group: '#fileList',
-    vertical:true,
+    vertical: true,
     pullPlaceholder: false,
     // animation on drop
-    onDrop: function  ($item, container, _super) {
+    onDrop: function ($item, container, _super) {
       var $clonedItem = $('<li/>').css({height: 0});
       $item.before($clonedItem);
       $clonedItem.animate({'height': $item.height()});
 
-      $item.animate($clonedItem.position(), function  () {
+      $item.animate($clonedItem.position(), function () {
         $clonedItem.detach();
         _super($item, container);
       });
@@ -126,12 +134,25 @@ $(function () {
         top: position.top - adjustment.top
       });
     }
+
+
   });
 
 
-
-
-
+  //册除图片
+  $('#fileList').on('click', '.btn-delete', function () {
+    var val = $(this).parents('.post').find('img').attr('src');
+    if (imgDada.indexOf(val) != -1) {
+      imgDada.splice(imgDada.indexOf(val),1);
+      $('.selector-choice').find('img').each(function (i) {
+        if($(this).attr('src')==val){
+          $(this).removeClass('selected');
+          return false;
+        }
+      })
+    }
+    $(this).parents('.post').remove();
+  });
 
 
   $('.submitalbums').click(function () {
@@ -143,6 +164,65 @@ $(function () {
     $.ajax('/rest/albums', data, function (response) {
       console.log(response)
     })
+  });
+
+
+  //添加图片
+  function addImg(url,id) {
+    var html = '<li class="post file" >\
+        <input type="hidden" name="images['+id+'][order]" value="0">\
+        <span class="thumb">\
+        <img src="' + url + '">\
+        </span>\
+        <div class="meta">\
+        <textarea class="form-control description" name="images['+id+'][description]" placeholder="照片描述"></textarea>\
+        </div>\
+        <a class="ir btn-delete" >删除</a>  <a class="ir btn-sort">排序</a>\
+        </li>';
+
+    $('#fileList').append(html)
+  }
+
+
+  //添加求签
+  function addTag(val) {
+    var html = '<span><input type="hidden" name="tags[]" value="' + val + '"><em class="tag">' + val + '</em><a class="del">x</a></span>';
+    if (tagDada.indexOf(val) == -1) {
+      tagDada.push(val);
+      $('#tagText').before(html);
+    }
+  }
+
+  $('.tag-selector').on('click', '.tag-btn', function () {
+    var val = $(this).html();
+    addTag(val);
+  });
+
+  $('#tagText').on('blur', function () {
+    var val = $(this).val();
+    if (val.trim().length > 0) {
+      $(this).val('');
+      addTag(val);
+    }
+  })
+  //删除标签
+  function deleteTag(val) {
+    var index = tagDada.indexOf(val);
+    tagDada.splice(index, 1);
+  }
+
+  $('.tag-editor').on('click', '.del', function () {
+    var val = $(this).parent().find('.tag').html();
+    $(this).parent().remove();
+    deleteTag(val)
   })
 
 });
+
+
+$(function(){
+  $('.publishForm').on('submit',function(){
+    console.log($(this).serialize());
+
+  })
+})

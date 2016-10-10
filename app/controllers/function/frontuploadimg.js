@@ -65,20 +65,7 @@ module.exports = function (req, res, next) {
           }
         })
       });
-      yield new Promise(function (resolve, reject) {
-        gm(imgptah)
-          .resize(90)
-          .crop(90, 90, 0, 0)
-          .noProfile()
-          .write(imgPathParse.dir+imgPathParse.name+"90"+imgPathParse.ext, function (err) {
-            if (err) {
-              reject(err)
-            } else {
-              resolve(value);
-            }
-          });
 
-      });
 
 
       if(imginfo['Profile-EXIF']){
@@ -105,8 +92,32 @@ module.exports = function (req, res, next) {
         })
       });
       if(hasimg.length){
+        yield new Promise((resolve,reject)=>{
+          fs.unlink(imgptah, (err)=>{
+            if(err){
+              reject(err);
+            }else{
+              resolve()
+            }
+          })
+        });
         return res.json({msg:'已经存在这张图片了'})
       }
+
+      yield new Promise(function (resolve, reject) {
+        gm(imgptah)
+          .resize(90)
+          .crop(90, 90, 0, 0)
+          .noProfile()
+          .write(dir+imgPathParse.name+"_90"+imgPathParse.ext, function (err) {
+            if (err) {
+              reject(err)
+            } else {
+              resolve();
+            }
+          });
+
+      });
       var nimg=yield new Promise(function(resolve,reject){
         img.save(function(err,img){
           if(err){
@@ -117,7 +128,7 @@ module.exports = function (req, res, next) {
         })
       });
 
-      res.json(nimg);
+      res.json(Object.assign(nimg, {msg:'提交成功'}));
     }
 
 

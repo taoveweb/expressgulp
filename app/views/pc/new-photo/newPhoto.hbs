@@ -1,11 +1,34 @@
 {{#extend "style"}}
     <link href="/pc/css/all.css" rel="stylesheet">
-  <style>
-      .bar {
-          height: 18px;
-          background: green;
-      }
-  </style>
+    <style>
+        .bar {
+            height: 18px;
+            background: green;
+        }
+
+        body.dragging, body.dragging * {
+            cursor: move !important;
+        }
+
+        .dragged {
+            position: absolute;
+            opacity: 0.5;
+            z-index: 2000;
+        }
+
+        .uploader-image-list>.dragged{
+            position: absolute;
+        }
+
+        #fileList li.placeholder {
+            position: relative;
+            /** More li styles **/
+        }
+        #fileList li.placeholder:before {
+            position: absolute;
+            /** Define arrowhead **/
+        }
+    </style>
 {{/extend}}
 <div id="progress">
     <div class="bar" style="width: 0%;"></div>
@@ -28,23 +51,36 @@
                             <label class="control-label">标题</label>
                             <input type="text" class="form-control" name="title" value="" style="height:2em"
                                    placeholder=""/></div>
-                        <div class="form-group form-group-content">
+                        <div class="form-group form-group-content" style="display: none">
                             <label class="control-label">描述</label>
                             <textarea name="content" class="form-control" style="min-height:100px"
                                       placeholder="说说你的拍摄经历、心得体会、PS技巧。"></textarea>
                         </div>
-                        <ol class="uploader-image-list col-xs-12" id="fileList">
+                        <ol class="uploader-image-list col-xs-12 vertical" id="fileList">
+
+                            <li class="post file"><input type="hidden" name="images[order]" value="0"> <span
+                                    class="thumb">        <img
+                                    src="http://localhost:8083/images/201610/hp_e251157f40915eb150294f9b37b8a010_90.JPG">        </span>
+                                <div class="meta"><textarea class="form-control description" name="images[description]"
+                                                            placeholder="照片描述"></textarea></div>
+                                <a class="ir btn-delete">删除</a> <a class="ir btn-sort">排序</a></li>
+                            <li class="post file"><input type="hidden" name="images[order]" value="0"> <span
+                                    class="thumb">        <img
+                                    src="http://localhost:8083/images/201610/hp_012c2d8f662942e72c807d4a697a2649_90.JPG">        </span>
+                                <div class="meta"><textarea class="form-control description" name="images[description]"
+                                                            placeholder="照片描述"></textarea></div>
+                                <a class="ir btn-delete">删除</a> <a class="ir btn-sort">排序</a></li>
                         </ol>
                         <p class="upload-prompt">最长边不能小于600px，最大支持20MB的JPEG格式照片<br/>不建议加画框和水印签名</p>
                         <div class="uploader-file-queue"></div>
                         <div class="col-xs-12 upload-wrapper" style="overflow:hidden; display=block;">
 
                             <div class="upload-trigger-wrapper col-xs-6 fileinput-button">
-                                <input id="file_upload" type="file" name="files" data-url="{{host}}/new-photo/img" multiple/>
+                                <input id="file_upload" type="file" name="files" data-url="{{host}}/new-photo/img"
+                                       multiple/>
                             </div>
                             <div class="upload-album-queue col-xs-6">
-                                <a id="upload-album" class="ir" href="javascript:void(0);"
-                                   onclick="toggleImgSelector($('#fileList'));return false">从相册选择</a>
+                                <a id="upload-album" class="ir">从相册选择</a>
                             </div>
                         </div>
                     </div>
@@ -343,7 +379,7 @@
                             </select>
                             <a class="btn btn-default btn-sm col-xs-3 popCreateAlbum"
                                style="padding: 7px;border-radius: 4px;margin-left: 10px;width: 28%;"
-                               href="javascript:void(0);" >新建相册</a>
+                               href="javascript:void(0);">新建相册</a>
                         </div>
                         <div class="form-group form-captcha clearfix"></div>
                     </div>
@@ -367,7 +403,7 @@
             <div class="col-xs-10"><input type="text" class="form-control" name="title" autofocus=""></div>
         </div>
         <div class="form-group"><label class="col-xs-2 control-label">描述</label>
-            <div class="col-xs-10"><textarea class="form-control" name="description" ></textarea></div>
+            <div class="col-xs-10"><textarea class="form-control" name="description"></textarea></div>
         </div>
     </div>
     <p class="dialog-footer">
@@ -375,6 +411,53 @@
         <button type="submit" class="btn btn-sm btn-primary submitalbums">确定</button>
     </p>
 </form>
+
+
+<div id="divImageBlocks" class="dialog tc-img-selector">
+    <h2> 从相册中选择 <a class="x-delete" href="javascript:void(0)"
+                   onclick="$( '.image-list .just-add' ).remove();dialog.close();">取消</a>
+    </h2>
+    <div class="dialog-body">
+        <p><select class="select-finder">
+            <option value="all" selected="selected">所有照片 (12)</option>
+            <option value="not_in_album">未分类的照片 (11)</option>
+            <optgroup label="我的相册">
+                <option value="album-484841">朋友的天 (1)</option>
+                <option value="album-484871">aaa (0)</option>
+            </optgroup>
+        </select></p>
+        <div class="selector-choice">
+            <img alt="" title="" src="https://photo.tuchong.com/1551288/t/8603084.webp"
+                 data-image-id="8603084" data-description="">
+            <img alt="19751649"
+                 title="19751649"
+                 src="https://photo.tuchong.com/1551288/t/8602912.webp"
+                 data-image-id="8602912"
+                 data-description="">
+            <img
+                    alt="18169255" title="18169255" src="https://photo.tuchong.com/1551288/t/8602911.webp"
+                    data-image-id="8602911" data-description="">
+            <img alt="19751487" title="19751487"
+                 src="https://photo.tuchong.com/1551288/t/8602613.webp"
+                 data-image-id="8602613" data-description=""><img
+                alt="4" title="4" src="https://photo.tuchong.com/1551288/t/8602502.webp" data-image-id="8602502"
+                data-description="">
+            <img alt="3" title="3" src="https://photo.tuchong.com/1551288/t/8602501.webp"
+                 data-image-id="8602501" data-description="">
+            <img alt="1" title="1"
+                 src="https://photo.tuchong.com/1551288/t/8602500.webp"
+                 data-image-id="8602500"
+                 data-description="">
+            <img alt="w" title="w" src="https://photo.tuchong.com/1551288/t/8602492.webp" data-image-id="8602492"
+                 data-description=""></div>
+    </div>
+    <div class="dialog-footer"><span class="selector-paginator" style="display: none;">      <a href="#"
+                                                                                                class="prev-page">上一页</a>      <select></select>      <a
+            href="#" class="next-page">下一页</a>    </span>
+        <button class="btn btn-sm btn-primary closeAlbums">确定</button>
+        <button class="btn btn-sm btn-default closeAlbums">取消</button>
+    </div>
+    <a class="x-delete" href="javascript:void(0)">关闭</a></div>
 
 <!--<li class="post file" >
       <input type="hidden" name="images[order]" value="0">
@@ -389,11 +472,13 @@
 {{#extend "script"}}
     <script src="/components/jQuery-File-Upload/js/vendor/jquery.ui.widget.js"></script>
     <script src="/components/jQuery-File-Upload/js/jquery.iframe-transport.js"></script>
+    <script src="/components/jquery-sortable/source/js/jquery-sortable-min.js"></script>
     <script src="/components/jQuery-File-Upload/js/jquery.fileupload.js"></script>
-    <script src="/pc/js/layer.js"></script>
+    <script src="/components/layer/layer.js"></script>
     <script>
-        var imghost='{{host}}/images/';
+        var imghost = '{{host}}/images/';
     </script>
     <script src="/pc/js/jupload.js"></script>
 
 {{/extend}}
+

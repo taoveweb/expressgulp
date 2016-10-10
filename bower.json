@@ -15,6 +15,7 @@
     "Font-Awesome": "~4.6.3",
     "jQuery-File-Upload": "~9.12.5",
     "jquery-sortable": "~0.9.13",
-    "layer": "*"
+    "layer": "*",
+    "jquery-form": "~3.46.0"
   }
 }

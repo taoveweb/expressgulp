@@ -34,7 +34,7 @@ router.get('/', function (req, res, next) {
 router.post('/', function (req, res, next) {
 
   co(function *() {
-    var add = {};
+    /*var add = {};
     var user=req.user;
 
     req.checkBody('excellent', '不是数字').isInt();
@@ -56,8 +56,7 @@ router.post('/', function (req, res, next) {
     }else{
       add.sign = req.body.sign;
     }
-    add.excellent = req.body.excellent;
-
+    add.excellent = req.body.excellent;*/
     var errors = req.validationErrors();
     if (errors) {
       console.log(errors);
@@ -99,11 +98,11 @@ router.post('/', function (req, res, next) {
 
 
 //保存相关信息
+/*
 router.post('/', function (req, res, next) {
-
   co(function *() {
-
-
+    console.log('aaa')
+    res.json({msg:"成功了"})
 
 
   }).catch(function (err) {
@@ -111,6 +110,7 @@ router.post('/', function (req, res, next) {
   });
 
 });
+*/
 
 
 

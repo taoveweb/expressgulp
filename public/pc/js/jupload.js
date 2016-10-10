@@ -32,9 +32,9 @@ $(function () {
       }
 
       var url = imghost + result.imgUrl.replace('.', '_90.');
-      var id=result['_id'];
+      var id = result['_id'];
       console.log(id)
-      addImg(url,id);
+      addImg(url, id);
     }
   }).bind('fileuploadprocessstart', function (e) {
     console.log('fileuploadprocessstart')
@@ -87,10 +87,10 @@ $(function () {
   //从相册中选取
   $('.selector-choice').on('click', 'img:not(.selected)', function () {
     $(this).addClass('selected');
-    var id=$(this).data('imageId');
+    var id = $(this).data('imageId');
     var url = $(this).attr('src');
     imgDada.push(url);
-    addImg(url,id);
+    addImg(url, id);
   })
 
   //关闭弹窗
@@ -143,9 +143,9 @@ $(function () {
   $('#fileList').on('click', '.btn-delete', function () {
     var val = $(this).parents('.post').find('img').attr('src');
     if (imgDada.indexOf(val) != -1) {
-      imgDada.splice(imgDada.indexOf(val),1);
+      imgDada.splice(imgDada.indexOf(val), 1);
       $('.selector-choice').find('img').each(function (i) {
-        if($(this).attr('src')==val){
+        if ($(this).attr('src') == val) {
           $(this).removeClass('selected');
           return false;
         }
@@ -168,14 +168,14 @@ $(function () {
 
 
   //添加图片
-  function addImg(url,id) {
+  function addImg(url, id) {
     var html = '<li class="post file" >\
-        <input type="hidden" name="images['+id+'][order]" value="0">\
+        <input type="hidden" name="images[' + id + '][order]" value="'+id+'">\
         <span class="thumb">\
         <img src="' + url + '">\
         </span>\
         <div class="meta">\
-        <textarea class="form-control description" name="images['+id+'][description]" placeholder="照片描述"></textarea>\
+        <textarea class="form-control description" name="images[' + id + '][description]" placeholder="照片描述"></textarea>\
         </div>\
         <a class="ir btn-delete" >删除</a>  <a class="ir btn-sort">排序</a>\
         </li>';
@@ -220,9 +220,17 @@ $(function () {
 });
 
 
-$(function(){
-  $('.publishForm').on('submit',function(){
-    console.log($(this).serialize());
-
+$(function () {
+  $('.publishForm').on('submit', function () {
+    var options = {
+      target:        '#output1',   // target element(s) to be updated with server response
+      complete:       showResponse,  // post-submit callback
+      timeout:   3000
+    };
+    $(this).ajaxSubmit(options);
   })
+
+  function showResponse(responseText, statusText, xhr, $form)  {
+    console.log('status: ' + statusText + '\n\nresponseText: \n' + responseText);
+  }
 })

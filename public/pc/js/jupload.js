@@ -91,7 +91,9 @@ $(function () {
     var url = $(this).attr('src');
     imgDada.push(url);
     addImg(url, id);
-  })
+  });
+
+  //取消从相册读取的图片
 
   //关闭弹窗
   $('.resetalbums,.closeAlbums,.x-delete').click(function () {
@@ -170,7 +172,7 @@ $(function () {
   //添加图片
   function addImg(url, id) {
     var html = '<li class="post file" >\
-        <input type="hidden" name="images[' + id + '][order]" value="'+id+'">\
+        <input type="hidden" name="images[' + id + '][id]" value="'+id+'">\
         <span class="thumb">\
         <img src="' + url + '">\
         </span>\

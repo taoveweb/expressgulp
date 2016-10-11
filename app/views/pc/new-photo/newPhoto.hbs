@@ -58,18 +58,6 @@
                         </div>
                         <ol class="uploader-image-list col-xs-12 vertical" id="fileList">
 
-                            <li class="post file"><input type="hidden" name="images[order]" value="0"> <span
-                                    class="thumb">        <img
-                                    src="http://localhost:8083/images/201610/hp_e251157f40915eb150294f9b37b8a010_90.JPG">        </span>
-                                <div class="meta"><textarea class="form-control description" name="images[description]"
-                                                            placeholder="照片描述"></textarea></div>
-                                <a class="ir btn-delete">删除</a> <a class="ir btn-sort">排序</a></li>
-                            <li class="post file"><input type="hidden" name="images[order]" value="0"> <span
-                                    class="thumb">        <img
-                                    src="http://localhost:8083/images/201610/hp_012c2d8f662942e72c807d4a697a2649_90.JPG">        </span>
-                                <div class="meta"><textarea class="form-control description" name="images[description]"
-                                                            placeholder="照片描述"></textarea></div>
-                                <a class="ir btn-delete">删除</a> <a class="ir btn-sort">排序</a></li>
                         </ol>
                         <p class="upload-prompt">最长边不能小于600px，最大支持20MB的JPEG格式照片<br/>不建议加画框和水印签名</p>
                         <div class="uploader-file-queue"></div>
@@ -407,7 +395,7 @@
         </div>
     </div>
     <p class="dialog-footer">
-        <button type="reset" class="btn btn-sm btn-default resetalbums">取消</button>
+        <button type="reset" class="btn btn-sm btn-default resetalbums cancelAlbums">取消</button>
         <button type="submit" class="btn btn-sm btn-primary submitalbums">确定</button>
     </p>
 </form>
@@ -427,35 +415,17 @@
             </optgroup>
         </select></p>
         <div class="selector-choice">
-            <img alt="" title="" src="https://photo.tuchong.com/1551288/t/8603084.webp"
-                 data-image-id="8603084" data-description="">
-            <img alt="19751649"
-                 title="19751649"
-                 src="https://photo.tuchong.com/1551288/t/8602912.webp"
-                 data-image-id="8602912"
-                 data-description="">
-            <img
-                    alt="18169255" title="18169255" src="https://photo.tuchong.com/1551288/t/8602911.webp"
-                    data-image-id="8602911" data-description="">
-            <img alt="19751487" title="19751487"
-                 src="https://photo.tuchong.com/1551288/t/8602613.webp"
-                 data-image-id="8602613" data-description=""><img
-                alt="4" title="4" src="https://photo.tuchong.com/1551288/t/8602502.webp" data-image-id="8602502"
-                data-description="">
-            <img alt="3" title="3" src="https://photo.tuchong.com/1551288/t/8602501.webp"
-                 data-image-id="8602501" data-description="">
-            <img alt="1" title="1"
-                 src="https://photo.tuchong.com/1551288/t/8602500.webp"
-                 data-image-id="8602500"
-                 data-description="">
-            <img alt="w" title="w" src="https://photo.tuchong.com/1551288/t/8602492.webp" data-image-id="8602492"
-                 data-description=""></div>
+            {{#each imgs}}
+                <img alt="" title="" src="{{host}}/images/{{imgUrl}}"
+                     data-image-id="{{_id}}" data-description="">
+            {{/each}}
+
+           </div>
     </div>
     <div class="dialog-footer"><span class="selector-paginator" style="display: none;">      <a href="#"
                                                                                                 class="prev-page">上一页</a>      <select></select>      <a
             href="#" class="next-page">下一页</a>    </span>
         <button class="btn btn-sm btn-primary closeAlbums">确定</button>
-        <button class="btn btn-sm btn-default closeAlbums">取消</button>
     </div>
     <a class="x-delete" href="javascript:void(0)">关闭</a></div>
 

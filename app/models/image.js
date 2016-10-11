@@ -4,17 +4,16 @@ var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
 var ImageSchema = new Schema({
-  introduction: {type: String, required: true},
-  imgUrl: {type: String, default :""},
+  title: {type: String, default :""},
+  indtroduction: {type: String, default :""},
   imgs:[Schema.Types.Mixed],//{url,introduction,width,height,size,phototime,other}
-  device: {type: String, default :""},
   author: {type: Schema.Types.ObjectId, ref: "User"},
   published: {type: Number, default: 1},
-  sign:[Schema.Types.Mixed],//关健字
+  tags:[Schema.Types.Mixed],//标签
   meta: {type: Schema.Types.Mixed,default :[]},//被赞
   excellent:{type:Number,default :0},//是否精选
   comments: [Schema.Types.Mixed],//评论
-  copyright:{type: Number, default :0},
+  copyright:{type: String, default :""},
   created: {type: Date,default :new Date()},
   updateby: {type: Date,default :new Date()}
 });

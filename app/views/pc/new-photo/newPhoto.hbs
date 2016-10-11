@@ -402,17 +402,16 @@
 
 
 <div id="divImageBlocks" class="dialog tc-img-selector">
-    <h2> 从相册中选择 <a class="x-delete" href="javascript:void(0)"
-                   onclick="$( '.image-list .just-add' ).remove();dialog.close();">取消</a>
+    <h2> 从相册中选择 <a class="x-delete"   onclick="$( '.image-list .just-add' ).remove();">取消</a>
     </h2>
     <div class="dialog-body">
         <p><select class="select-finder">
-            <option value="all" selected="selected">所有照片 (12)</option>
-            <option value="not_in_album">未分类的照片 (11)</option>
+            <option value="all" selected="selected">所有照片 ({{length imgs}})</option>
+           <!-- <option value="not_in_album">未分类的照片 (11)</option>
             <optgroup label="我的相册">
                 <option value="album-484841">朋友的天 (1)</option>
                 <option value="album-484871">aaa (0)</option>
-            </optgroup>
+            </optgroup>-->
         </select></p>
         <div class="selector-choice">
             {{#each imgs}}

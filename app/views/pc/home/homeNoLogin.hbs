@@ -1,11 +1,31 @@
 {{#extend "style"}}
     <link href="/pc/css/welcome.css" rel="stylesheet">
 {{/extend}}
-{{#extend 'bodyAttr'}} class="body-loaded" {{/extend}}
+{{#extend 'bodyAttr'}} class="" {{/extend}}
 {{#extend 'headClass'}} fixed-top {{/extend}}
 
 {{#extend "script"}}
+  <script>
+      $(function(){
+        $('body').addClass('body-loaded');
 
+
+          $('.posts-list').on("mouseenter", ".post-cover", function(n) {
+              var t = $(this)
+                      , e = t.find(".post-mask")
+                      , o = t.width()
+                      , i = t.height();
+              e.removeClass("leave-left leave-top leave-bottom leave-right"),
+                      e.addClass(n.offsetY / n.offsetX <= i / o ? o - n.offsetX >= n.offsetY - 0 ? "enter-top" : "enter-right" : i - n.offsetY >= n.offsetX - 0 ? "enter-left" : "enter-bottom")
+          }).on("mouseleave", ".post-mask", function(n) {
+              var t = $(this)
+                      , e = t.width()
+                      , o = t.height();
+              t.removeClass("enter-left enter-top enter-bottom enter-right"),
+                      n.offsetX < 0 ? t.addClass("leave-left") : n.offsetX > e ? t.addClass("leave-right") : n.offsetY < 0 ? t.addClass("leave-top") : n.offsetY > o && t.addClass("leave-bottom")
+          })
+      })
+  </script>
 {{/extend}}
 
 <main>

@@ -8,8 +8,14 @@
   <script>
       $(function(){
         $('body').addClass('body-loaded');
-
-
+          //头部效果
+          var n = $("header").height()
+                  , t = function() {
+                      var t = $(window).scrollTop();
+                      t > n ? $("header").addClass("fixed-top") : $("header").removeClass("fixed-top")
+                  };
+          $(window).on("scroll", t);
+          //手热进入效果
           $('.posts-list').on("mouseenter", ".post-cover", function(n) {
               var t = $(this)
                       , e = t.find(".post-mask")

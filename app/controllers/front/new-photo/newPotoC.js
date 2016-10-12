@@ -124,6 +124,7 @@ router.post('/', function (req, res, next) {
 
 //提交图片
 router.post('/img', auth.requireLogin, function (req, res, next) {
+  console.log('bb')
   require('../../function/frontuploadimg')(req, res, next)
 });
 

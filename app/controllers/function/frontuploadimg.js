@@ -31,10 +31,10 @@ formidable.IncomingForm.prototype._uploadPath = function (filename) {
 
 
 module.exports = function (req, res, next) {
-
+  console.log('aaa');
   co(function *() {
     var add = {};
-    var user=req.user;
+    var user = req.user;
     var form = new formidable.IncomingForm();
     var dirDate = `${new Date().getFullYear()}${(new Date().getMonth() + 1)}/`;
     var dir = config.root + "/upload/images/" + dirDate;
@@ -67,49 +67,70 @@ module.exports = function (req, res, next) {
       });
 
 
-
-      if(imginfo['Profile-EXIF']){
-        var exif=imginfo['Profile-EXIF'];
-        add.device=exif['0xA434'];
+      if (imginfo['Profile-EXIF']) {
+        var exif = imginfo['Profile-EXIF'];
+        add.device = exif['0xA434'];
       }
       var fimg = formmid.files['files'];
       add.size = fimg.size;
       add.lastModifiedDate = new Date(fimg.lastModifiedDate);
       add.imgUrl = dirDate + imgPathParse.base;
-      add.author=ObjectId(user['_id']);
-      add.width=imginfo.size.width;
-      add.height=imginfo.size.height;
-      add.signature=imginfo.Signature;
+      add.author = ObjectId(user['_id']);
+      add.width = imginfo.size.width;
+      add.height = imginfo.size.height;
+      add.signature = imginfo.Signature;
 
-      var img=new Img(add);
-      var hasimg=yield new Promise(function(resolve,reject){
-        Img.find({signature:add.signature},function(err,img){
-          if(err){
+      var img = new Img(add);
+      var hasimg = yield new Promise(function (resolve, reject) {
+        Img.find({signature: add.signature}, function (err, img) {
+          if (err) {
             reject(err);
-          }else{
+          } else {
             resolve(img)
           }
         })
       });
-      if(hasimg.length){
-        yield new Promise((resolve,reject)=>{
-          fs.unlink(imgptah, (err)=>{
-            if(err){
+      if (hasimg.length) {
+        yield new Promise((resolve, reject)=> {
+          fs.unlink(imgptah, (err)=> {
+            if (err) {
               reject(err);
-            }else{
+            } else {
               resolve()
             }
           })
         });
-        return res.json({msg:'已经存在这张图片了'})
+        return res.json({msg: '已经存在这张图片了'})
+
       }
 
+
+      yield new Promise(function (resolve, reject) {
+        var width=90,height=null,x=0,y=parseInt(add.height*90/add.width-90)/2;
+        if(add.width/add.height>1){
+          width=null,height=90;
+          x=parseInt(add.width*90/add.height-90)/2;
+          y=0;
+        }
+        console.log(x,y)
+        gm(imgptah)
+          .resize(width, height)
+          .crop(90, 90,x,y)
+          .noProfile()
+          .write(dir + imgPathParse.name + "_90" + imgPathParse.ext, function (err) {
+            console.log(err)
+            if (err) {
+              reject(err)
+            } else {
+              resolve();
+            }
+          });
+      });
       yield new Promise(function (resolve, reject) {
         gm(imgptah)
-          .resize(90)
-          .crop(90, 90, 0, 0)
+          .resize(600)
           .noProfile()
-          .write(dir+imgPathParse.name+"_90"+imgPathParse.ext, function (err) {
+          .write(dir + imgPathParse.name + "_600" + imgPathParse.ext, function (err) {
             if (err) {
               reject(err)
             } else {
@@ -118,17 +139,34 @@ module.exports = function (req, res, next) {
           });
 
       });
-      var nimg=yield new Promise(function(resolve,reject){
-        img.save(function(err,img){
-          if(err){
+
+
+    if (add.width >= 1200) {
+        yield new Promise(function (resolve, reject) {
+          gm(imgptah)
+            .resize(1200)
+            .noProfile()
+            .write(dir + imgPathParse.name + "_1200" + imgPathParse.ext, function (err) {
+              if (err) {
+                reject(err)
+              } else {
+                resolve();
+              }
+            });
+
+        });
+      }
+      var nimg = yield new Promise(function (resolve, reject) {
+        img.save(function (err, img) {
+          if (err) {
             reject(err);
-          }else{
+          } else {
             resolve(img)
           }
         })
       });
 
-      res.json(Object.assign(nimg, {msg:'提交成功'}));
+      res.json(Object.assign(nimg, {msg: '提交成功'}));
     }
 
 

@@ -27,13 +27,17 @@ $(function () {
     done: function (e, data) {
       var result = data.result;
       if (result.msg == "已经存在这张图片了") {
-        layer.msg('此图片已经存在');
+        layer.msg('从相册中选取',function(){
+          $('#upload-album').trigger('click')
+        });
         return;
       }
 
       var url = imghost + result.imgUrl.replace('.', '_90.');
       var id = result['_id'];
-      console.log(id)
+      layer.msg('图片成功上传到你的相册中');
+      imgDada.push(url);
+      $('.selector-choice').append('<img class="selected" alt="" title="" src="'+url+'" data-image-id="'+id+'" data-description="">')
       addImg(url, id);
     }
   }).bind('fileuploadprocessstart', function (e) {
@@ -93,8 +97,10 @@ $(function () {
     addImg(url, id);
   });
 
-  //取消从相册读取的图片
-
+  $('.selector-choice').on('click','.selected',function(){
+    layer.msg('这张图片已经存在上传列表中了', function(){
+    });
+  });
   //关闭弹窗
   $('.resetalbums,.closeAlbums,.x-delete').click(function () {
     layer.closeAll()
@@ -192,6 +198,9 @@ $(function () {
     if (tagDada.indexOf(val) == -1) {
       tagDada.push(val);
       $('#tagText').before(html);
+    }else{
+      layer.msg('重复选标签!', function(){
+      });
     }
   }
 
@@ -233,7 +242,13 @@ $(function () {
   })
 
   function showResponse(responseText, statusText, xhr, $form)  {
-    console.log(responseText)
+    if(responseText.responseJSON.msg=="这个标题已经存在"){
+      layer.msg(responseText.responseJSON.msg, function(){
+      });
+    }
+    if(responseText.responseJSON.msg=="成功"){
+      layer.msg("发布成功");
+    }
     console.log('status: ' + statusText + '\n\nresponseText: \n' + responseText);
   }
 })

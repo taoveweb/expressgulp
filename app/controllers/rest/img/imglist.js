@@ -11,7 +11,7 @@ var express = require('express'),
   config = require('../../../../config/config');
 
 module.exports = function (app) {
-  app.use('/api/img', router);
+  app.use('/rest/img', router);
 };
 
 

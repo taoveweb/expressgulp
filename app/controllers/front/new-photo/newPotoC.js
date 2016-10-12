@@ -100,18 +100,15 @@ router.post('/', function (req, res, next) {
             }
           })
         });
-        console.log(hasSameTitle)
         if (hasSameTitle.length>0) {
-          console.log('已经存在相单的标题了')
-          return res.json({msg: "已经存在相单的标题了"})
+          return res.json({msg: "这个标题已经存在"})
         }
         add = new Image(add);
         add.save(function (err, img) {
           if (err) {
             res.json(err);
           } else {
-
-            res.json(img);
+            res.json({msg:"成功"});
           }
         })
       }).catch(function (err) {

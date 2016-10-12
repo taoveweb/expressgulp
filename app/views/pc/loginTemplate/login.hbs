@@ -17,26 +17,29 @@
     <main role="main" class="col-main">
         <section class="with-bg">
             <h1 class="card-header-larger">您还没有登录</h1>
-            <form class="form-horizontal inner" action="/rest/accounts/login" method="post" onsubmit="$(this).ajaxsubmit(local.operation);return false;">
+            <form class="form-horizontal inner login-form" action="/admin/login" method="post"
+                  onsubmit="return false;">
                 <div class="form-group">
                     <label class="col-xs-2 control-label" for="loginEmail">账号</label>
-                    <div class="col-xs-6"><input type="text" class="form-control" name="account" id="loginEmail" size="20" autofocus="" required=""></div>
+                    <div class="col-xs-6"><input type="text" placeholder="邮箱、手机、用户名" class="form-control" name="account" id="loginEmail"
+                                                 size="20" autofocus="" required=""></div>
                 </div>
                 <div class="form-group">
                     <label class="col-xs-2 control-label" for="loginPassword">密码</label>
-                    <div class="col-xs-6"><input type="password" class="form-control" name="password" id="loginPassword" size="20" required=""></div>
+                    <div class="col-xs-6"><input type="password" class="form-control" name="password" id="loginPassword"
+                                                 size="20" required=""></div>
                 </div>
                 <div class="form-group form-captcha"></div>
                 <div class="form-group">
                     <div class="col-xs-offset-2 col-xs-6">
                         <label class="checkbox-inline"><input type="checkbox" name="remember" checked="checked">&nbsp;下次自动登录</label>
-                        <a href="https://tuchong.com/account/forget/">忘记密码了</a>
+                        <a href="{{host}}/account/forget/">忘记密码了</a>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-xs-offset-2 col-xs-6">
                         <button class="btn btn-primary btn-sm" style="margin-right:1em;" type="submit">登录</button>
-                        <a href="https://tuchong.com/photos/">随便逛逛</a>
+                        <a href="{{host}}/photos/">随便逛逛</a>
                     </div>
                 </div>
             </form>
@@ -46,9 +49,9 @@
         <section class="widget">
             <h3 class="card-header">使用社交帐号登录</h3>
             <div class="inner">
-                <a class="ir weibo-round" href="https://tuchong.com/weibo/auth/">用新浪微博登录</a>
-                <a class="ir qq-round" href="https://tuchong.com/qq/auth/">用QQ登录</a>
-                <a class="ir weixin-round" href="https://tuchong.com/weixin/auth/">用微信登录</a>
+                <a class="ir weibo-round" href="{{host}}/weibo/auth/">用新浪微博登录</a>
+                <a class="ir qq-round" href="{{host}}/qq/auth/">用QQ登录</a>
+                <a class="ir weixin-round" href="{{host}}/weixin/auth/">用微信登录</a>
             </div>
         </section>
         <section class="widget">
@@ -57,10 +60,11 @@
                 <li class="inner"><strong>展示 </strong>批量照片上传和管理</li>
                 <li class="inner"><strong>分享 </strong>随时查看影友新作</li>
                 <li class="inner"><strong>收获 </strong>在摄影的道路上共同成长</li>
-                <li class="inner"><a class="btn btn-primary" href="https://tuchong.com/signup/">现在注册</a></li>
+                <li class="inner"><a class="btn btn-primary" href="{{host}}/signup/">现在注册</a></li>
             </ul>
         </section>
-    </aside>	</div>
+    </aside>
+</div>
 
 
 

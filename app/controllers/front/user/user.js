@@ -12,9 +12,16 @@ module.exports.requireLogin = function (req, res, next) {
     if (req.user) {
         next();
     } else {
-        res.json({
-          img:"没有登录"
-        })
+      if (req.headers["user-agent"].toLowerCase().indexOf('mobile') !== -1) {
+        res.render('mobile/loginTemplate/login', {
+          layout: "main_m",
+          title: '登录',
+        });
+      } else {
+        res.render('pc/loginTemplate/login', {
+          title: '登录',
+        });
+      }
     }
 };
 

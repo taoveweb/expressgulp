@@ -36,7 +36,6 @@ router.get('/', function (req, res, next) {
       obj.imgUrl = a.imgUrl.replace('.', '_90.')
       return obj;
     })
-    console.log(imgs)
     if (req.headers["user-agent"].toLowerCase().indexOf('mobile') !== -1) {
       res.render('mobile/new-photo/newPhoto', {
         layout: "main_m",

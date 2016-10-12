@@ -79,6 +79,7 @@ module.exports = function (req, res, next) {
       add.width = imginfo.size.width;
       add.height = imginfo.size.height;
       add.signature = imginfo.Signature;
+      add.created=new Date();
 
       var img = new Img(add);
       var hasimg = yield new Promise(function (resolve, reject) {

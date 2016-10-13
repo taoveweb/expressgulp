@@ -7,6 +7,9 @@ var mongoose = require('mongoose'),
 var UserSchema = new Schema({
   nic: {type:String,default :''},
   name: {type:String,default :''},
+  weixin: {type:String,default :''},
+  sina: {type:String,default :''},
+  qq: {type:String,default :''},
   sex:{type:Number,default :0},
   admin: {type:Number,default:0},
   email: {type:String,default :''},
@@ -14,8 +17,10 @@ var UserSchema = new Schema({
   password: {type:String,required:true},
   disable: {type:Number,default:0},//0激活 1停用
   headPicture:{type:String,default :""},
-  fans:[Schema.Types.Mixed],//粉丝
-  concern:[Schema.Types.Mixed],//关注
+  following:[{type: Schema.Types.ObjectId,default :[]}],//关注
+  followers:[{type: Schema.Types.ObjectId,default :[]}],//被关注
+  recommend:[{type: Schema.Types.ObjectId,default :[]}],//推荐用户
+  latestVisited:[{type: Schema.Types.ObjectId,default :[]}],//最近访问的用户
   level:{type:Number,default :0},
   loginIp:{type:String,default :''},
   created: {type: Date,default :new Date()},

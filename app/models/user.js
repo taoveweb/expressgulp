@@ -8,16 +8,35 @@ var UserSchema = new Schema({
   nic: {type:String,default :''},
   name: {type:String,default :''},
   weixin: {type:String,default :''},
+  realname:{type:String,default :''},
+  birthday:{type:String,default :''},
+  location:{type:String,default :''},
+  homepage:{type:String,default :''},
+  zipcode:{type:String,default :''},
+  address:{type:String,default :''},
   sina: {type:String,default :''},
+  description: {type:String,default :''},
   qq: {type:String,default :''},
-  sex:{type:Number,default :0},
+  gender:{type:Number,default :0},//性别
   admin: {type:Number,default:0},
   email: {type:String,default :''},
-  phone:{type:String,default:0},
+  mobile:{type:String,default:''},
+  backgroundParam:{type:Schema.Types.Mixed},
+  phone:{type:String,default:''},
+  regMobile:{type:Boolean,default:false},
+  regSina:{type:Boolean,default:false},
+  regWeixin:{type:Boolean,default:false},
+  regQq:{type:Boolean,default:false},
+  commercial:{type:Boolean,default:false},//您是否允许您的作品用于商业目的？
+  derivatives:{type:Boolean,default:true},//您是否允许他人改编、演绎您的作品？？
+  allApply:{type:Boolean,default:true},//保存后将协议设置更改应用到已有原创内容（包括图片和文章）
+  credential_type:{type:String,default:''},
+  credential_num:{type:String,default:''},
   password: {type:String,required:true},
-  disable: {type:Number,default:0},//0激活 1停用
+  disable: {type:Number,default:''},//0激活 1停用
   headPicture:{type:String,default :""},
   following:[{type: Schema.Types.ObjectId,default :[]}],//关注
+  flags:[{type:Schema.Types.Mixed}],//偏好
   followers:[{type: Schema.Types.ObjectId,default :[]}],//被关注
   recommend:[{type: Schema.Types.ObjectId,default :[]}],//推荐用户
   latestVisited:[{type: Schema.Types.ObjectId,default :[]}],//最近访问的用户

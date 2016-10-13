@@ -18,7 +18,7 @@ module.exports.init = function () {
       if(validator.isEmail(account)){
         search.email=account;
       }else if(validator.isMobilePhone(account,'zh-CN')){
-        search.phone=account;
+        search.mobile=account;
       }else{
         search.name=account
       }

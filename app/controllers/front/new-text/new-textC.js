@@ -4,7 +4,7 @@ var express = require('express'),
   User = mongoose.model('User');
 
 module.exports = function (app) {
-  app.use('/new-text', router);
+  app.use('/new-text',auth.requireLogin, router);
 };
 
 router.get('/', function (req, res, next) {

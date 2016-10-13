@@ -5,7 +5,7 @@ var express = require('express'),
   auth = require('../user/user') ;
 
 module.exports = function (app) {
-  app.use('/notes',router);
+  app.use('/notes',auth.requireLogin,router);
 };
 
 router.get('/comments' , function (req, res, next) {

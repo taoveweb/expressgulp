@@ -5,7 +5,7 @@ var express = require('express'),
   auth = require('../user/user') ;
 
 module.exports = function (app) {
-  app.use('/lookup',router);
+  app.use('/lookup',auth.requireLogin,router);
 };
 
 router.get('/weibo' , function (req, res, next) {

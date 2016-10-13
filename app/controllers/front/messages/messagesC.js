@@ -5,7 +5,7 @@ var express = require('express'),
   auth = require('../user/user') ;
 
 module.exports = function (app) {
-  app.use('/messages',router);
+  app.use('/messages',auth.requireLogin,router);
 };
 
 router.get('/' , function (req, res, next) {

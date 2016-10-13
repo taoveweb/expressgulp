@@ -5,7 +5,7 @@ var express = require('express'),
   auth = require('../user/user') ;
 
 module.exports = function (app) {
-  app.use('/settings',router);
+  app.use('/settings',auth.requireLogin,router);
 };
 
 router.get('/' , function (req, res, next) {

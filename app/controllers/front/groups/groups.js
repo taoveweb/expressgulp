@@ -7,7 +7,7 @@ var express = require('express'),
 module.exports = function (app) {
   app.use('/groups',router);
 };
-router.get('/' , function (req, res, next) {
+router.get('/' ,auth.requireLogin, function (req, res, next) {
   if(req.headers["user-agent"].toLowerCase().indexOf('mobile')!==-1){
     res.render('mobile/groups/groups', {
       layout:"main_m",

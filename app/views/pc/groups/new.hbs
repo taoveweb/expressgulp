@@ -1,0 +1,52 @@
+{{#extend "style"}}
+    <link href="/pc/css/all.css" rel="stylesheet">
+{{/extend}}
+{{#extend 'bodyAttr'}}
+    class="default-p has-subnav no-touch"
+{{/extend}}
+
+
+{{#extend "script"}}
+
+{{/extend}}
+
+
+<div class="navbar-secondary pc-navbar">
+    <nav class="navbar container">
+        <ul class="navbar-subnav">
+            <li><a href="{{host}}/groups/">我的小组</a></li>
+            <li class="active"><a href="{{host}}/groups/all/">所有小组</a></li>
+        </ul>
+    </nav>
+</div>
+<div class="notify-bar card" style="display: none;"><ul class="notify-list"></ul><div class="read-all"><a href="javascript:void(0)" class="btn btn-sm btn-default">知道了</a></div></div>
+<div class="container container-default">
+    <main role="main" class="col-main">
+        <section class="with-bg">
+            <h1 class="card-header-large">申请创建小组</h1>
+            <div class="alert alert-info">您尚未达到创建小组的条件，创建小组需符合以下三个条件：</div>
+            <table class="table">
+                <tbody>
+                <tr><td>注册图虫满两周</td><td>是</td></tr>
+                <tr><td>被20个人以上关注。</td><td>否</td></tr>
+                <tr><td>至多创建和管理3个小组。</td><td>是</td></tr>
+                </tbody>
+            </table>
+            <p>请继续努力！</p>
+        </section>
+    </main>
+
+    <aside id="side" class="col-side">
+        <section class="widget">
+            <h3 class="card-header">什么是小组？</h3>
+            <ul class="inner">
+                <li>小组是一种摄影组织</li>
+                <li>可以是学校摄影社团</li>
+                <li>可以是城市摄影家协会</li>
+                <li>可以是摄影QQ群</li>
+                <li>可以是城市+主题(如北京胡同)</li>
+                <li>可以是城市+器材(如上海大画幅、成都胶片)</li>
+            </ul>
+        </section>
+    </aside>
+</div>

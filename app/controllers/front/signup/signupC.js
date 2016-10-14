@@ -68,6 +68,7 @@ router.post('/rest/accounts/register', function (req, res, next) {
     var user = new User({
       name: req.body.user_name,
       password: md5(req.body.user_password),
+      headPicture:"",
     });
 
 

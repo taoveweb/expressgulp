@@ -29,12 +29,12 @@
             jQuery.validator.addMethod("userName", function(value, element) {
                 var username = /^[a-zA-Z\u4e00-\u9fa5]+$/;
                 return this.optional(element) || (username.test(value));
-            }, "输入长度必须介于 5 和 10 之间的字母或汉字");
+            }, "输入长度必须介于 4 和 10 之间的字母或汉字");
             $("#regForm").validate({
                 rules: {
                     user_name: {
                         required: true,
-                        rangelength:[5,10],
+                        rangelength:[4,10],
                         userName:true,
                        /* remote:{
                             url: "{-{host}}/admin/login",
@@ -70,7 +70,7 @@
                 messages: {
                     user_name:{
                         required:'用户名不能为空',
-                        rangelength:'输入长度必须介于 5 和 10 之间的字母或汉字',
+                        rangelength:'输入长度必须介于 4 和 10 之间的字母或汉字',
                         //remote:"已经用此用户了"
                     },
                     user_password: "密码长度至少6位",

@@ -64,13 +64,12 @@ router.post('/rest/accounts/register', function (req, res, next) {
         msg:"用户名已经被注册过了"
       })
     }
-
+    var headPicture='header/'+Math.floor(Math.random()*4)+1+'.png';
     var user = new User({
       name: req.body.user_name,
       password: md5(req.body.user_password),
-      headPicture:"",
+      headPicture:headPicture,
     });
-
 
 
     user.save(function (err, user) {

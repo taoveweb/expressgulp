@@ -29,7 +29,8 @@
                 <div class="form-group">
                     <label class="col-xs-2 control-label">生日</label>
                     <div class="col-xs-6">
-                        <select name="birthday">
+                        <input name="birthday" type="hidden">
+                        <select>
                           {{#eachIndex   resJson.year}}
                               <option value="{{item}}"
                                       {{#eq ../user.gender.year '{{item}}'}}selected="selected"{{/eq}}>

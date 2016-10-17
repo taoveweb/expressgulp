@@ -31,7 +31,6 @@ formidable.IncomingForm.prototype._uploadPath = function (filename) {
 
 
 module.exports = function (req, res, next) {
-  console.log('aaa');
   co(function *() {
     var add = {};
     var user = req.user;

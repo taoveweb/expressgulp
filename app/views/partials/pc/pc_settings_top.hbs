@@ -1,3 +1,82 @@
+{{#extend "script"}}
+  <script src="{{host}}/components/jquery-validation/dist/jquery.validate.min.js"></script>
+  <script src="{{host}}/components/jquery-validation/dist/additional-methods.min.js"></script>
+  <script src="{{host}}/components/jquery-form/jquery.form.js"></script>
+  <script>
+      $(function () {
+          jQuery.validator.addMethod("userName", function(value, element) {
+              var username = /^[\u4e00-\u9fa5]+$/;
+              return this.optional(element) || (username.test(value));
+          }, "输入长度必须介于 1 和 5 之间的字母或汉字");
+          jQuery.validator.addMethod("isZipCode", function(value, element) {
+              var tel = /^[0-9]{6}$/;
+              return this.optional(element) || (tel.test(value));
+          }, "请正确填写您的邮政编码");
+          jQuery.validator.addMethod("isQq", function(value, element) {
+              return this.optional(element) || /^[1-9]\d{4,12}$/;
+          }, "匹配QQ");
+          jQuery.validator.addMethod("isMobile", function(value, element) {
+              var length = value.length;
+              return this.optional(element) || (length == 11 && /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/.test(value));
+          }, "请正确填写您的手机号码。");
+
+          jQuery.validator.addMethod("isPhone", function(value, element) {
+              var tel = /^(\d{3,4}-?)?\d{7,9}$/g;
+              return this.optional(element) || (tel.test(value));
+          }, "请正确填写您的电话号码。");
+          // 身份证号码验证
+          jQuery.validator.addMethod("isIdCardNo", function(value, element) {
+              //var idCard = /^(\d{6})()?(\d{4})(\d{2})(\d{2})(\d{3})(\w)$/;
+              return this.optional(element) || isIdCardNo(value);
+          }, "请输入正确的身份证号码。");
+          $.extend($.validator.messages, {
+              required: "这是必填字段",
+              email: "请输入有效的电子邮件地址",
+              url: "请输入有效的网址",
+              date: "请输入有效的日期",
+              dateISO: "请输入有效的日期 (YYYY-MM-DD)",
+              number: "请输入有效的数字",
+              digits: "只能输入数字",
+              isQq:"请输入有效的QQ号"
+             });
+          $(".form-horizontal").validate({
+              rules: {
+                  realname: {
+                      rangelength:[1,5],
+                      userName:true,
+                  },
+                  homepage: {
+                      url: true
+                  },
+                  zipcode: {
+                      isZipCode: true,
+                  },
+                  qq: {
+                      isQq: true,
+                  },
+                  mobile: {
+                      isMobile: true,
+                  },
+                  phone: {
+                      isPhone: true,
+                  },
+                  credential_num: {
+                      isIdCardNo: true,
+                  },
+              },
+              submitHandler: function (form) {
+
+                  $(form).ajaxSubmit();
+                  return true;
+
+              },
+
+
+          });
+
+      })
+  </script>
+{{/extend}}
 <div class="navbar-secondary pc-navbar">
     <nav class="navbar container">
         <ul class="navbar-subnav">

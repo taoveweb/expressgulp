@@ -14,6 +14,7 @@ router.get('/forget', function (req, res, next) {
     res.render('mobile/account/forget', {
       layout:"main_m",
       route:'forget',
+      json,
       title: '忘记密码 - 偶酷网 - 最好的摄影师都在这',
     });
   }else {

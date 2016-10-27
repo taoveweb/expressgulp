@@ -16,7 +16,7 @@ module.exports = function (app) {
 
 
 //图片列表
-router.get('/list', function (req, res, next) {
+router.all('/list', function (req, res, next) {
 
   var search = {};
   var pageSize = 10;

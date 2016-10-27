@@ -28,3 +28,8 @@ bower install
 yum install ImageMagick
 yum install GraphicsMagick
 
+
+压力测式
+http-toos
+LoadRunner
+

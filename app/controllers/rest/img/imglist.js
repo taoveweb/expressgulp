@@ -13,7 +13,11 @@ var express = require('express'),
 module.exports = function (app) {
   app.use('/rest/img', router);
 };
-
+router.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 //图片列表
 router.all('/list', function (req, res, next) {

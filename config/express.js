@@ -15,6 +15,7 @@ const MongoStore = require('connect-mongo')(session);
 var passport = require('passport');
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
+var customValidators=require("./customValidators");
 
 module.exports = function (app, config,connection) {
   var env = process.env.NODE_ENV || 'development';
@@ -80,6 +81,7 @@ module.exports = function (app, config,connection) {
     next();
   });
   app.use(expressValidator({
+    customValidators,
     errorFormatter: function(param, msg, value) {
       var namespace = param.split('.')
         , root    = namespace.shift()

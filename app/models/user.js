@@ -14,7 +14,7 @@ var UserSchema = new Schema({
   homepage:{type:String,default :''},
   zipcode:{type:String,default :''},
   address:{type:String,default :''},
-  sina: {type:String,default :''},
+  weibo: {type:String,default :''},
   description: {type:String,default :''},
   qq: {type:String,default :''},
   gender:{type:Number,default :0},//性别

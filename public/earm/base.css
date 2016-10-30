@@ -1,0 +1,267 @@
+@charset "utf-8";
+blockquote, body, button, dd, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, hr, input, legend, li, ol, p, pre, td, textarea, th, ul {
+    margin: 0;
+    padding: 0
+}
+
+article, aside, details, figcaption, figure, footer, header, main, nav, section {
+    display: block
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: 100%
+}
+.customer-comment .f-user .f-br em{
+    color: #ff6600;
+}
+audio, canvas, video {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1
+}
+
+audio:not([controls]) {
+    display: none;
+    height: 0
+}
+
+[hidden] {
+    display: none
+}
+
+html {
+    display: block;
+    font-size: 100%;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%
+}
+
+a:focus {
+    outline: thin dotted #333;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px
+}
+
+a:hover, a:active {
+    outline: 0
+}
+
+b, strong {
+    font-weight: 700
+}
+
+small {
+    font-size: 80%
+}
+
+sub, sup {
+    position: relative;
+    font-size: 75%;
+    line-height: 0;
+    vertical-align: baseline
+}
+
+img {
+    width: auto\9;
+    vertical-align: middle;
+    border: 0;
+    -ms-interpolation-mode: bicubic
+}
+
+form {
+    margin: 0
+}
+
+button, input, select, textarea {
+    font-size: 100%;
+    margin: 0;
+    vertical-align: baseline;
+    *vertical-align: middle
+}
+
+button, input {
+    line-height: normal
+}
+input:focus{
+    outline: none;
+}
+button, html input[type=button], input[type=reset], input[type=submit] {
+    -webkit-appearance: button;
+    cursor: pointer;
+    *overflow: visible
+}
+
+button[disabled], html input[disabled] {
+    cursor: default
+}
+
+input[type=checkbox], input[type=radio] {
+    box-sizing: border-box;
+    padding: 0;
+    *height: 13px;
+    *width: 13px
+}
+
+input[type=search] {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    -webkit-appearance: textfield
+}
+
+input[type=search]::-webkit-search-decoration, input[type=search]::-webkit-search-cancel-button {
+    -webkit-appearance: none
+}
+
+button::-moz-focus-inner, input::-moz-focus-inner {
+    border: 0;
+    padding: 0
+}
+
+textarea {
+    overflow: auto;
+    vertical-align: top
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0
+}
+
+body {
+    margin: 0;
+    font: 12px/1.5 "Microsoft Yahei", arial, "Hiragino Sans GB", sans-serif;
+    color: #3f3f3f;
+    background-color: #f4f4f4
+}
+
+a {
+    color: #252525;
+    text-decoration: none;
+    cursor: pointer;
+    outline: 0
+}
+
+a:hover, a:active, a:focus {
+    color: #e30000;
+    outline: 0
+}
+
+.clearfix:after, .clearfix:before, .br:after, .br:before {
+    content: "\0020";
+    display: block;
+    height: 0;
+    visibility: hidden;
+    position: relative;
+    z-index: -1;
+    line-height: 0
+}
+
+.clearfix:after, .br:after {
+    clear: both
+}
+
+.clearfix, .br {
+    *zoom: 1
+}
+
+
+h1{
+    font-size:20px;
+}
+.main{
+    font-size: 1rem;
+}
+.main h1{
+    font-size:1.5rem;
+    height:3rem;
+    color: #7BC00E;
+    font-weight:normal;
+    line-height:3rem;
+    padding: 0.5rem;
+    background: #fff;
+
+}
+.explain{
+    padding:0rem 0.5rem 0.5rem 0.5rem;
+    background: #fff;
+    border-bottom:1px solid #dedfe0;
+    margin-bottom:1rem;
+    word-break: break-all;
+    word-wrap: break-word;
+    font-size:0.9rem;
+}
+
+.main h2{
+    padding: 0.5rem;
+    background: #fff;
+    border-bottom:1px solid #dedfe0;
+}
+.formbox{
+    background: #fff;
+    border-bottom:1px solid #dedfe0;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+}
+.formbox label{
+    display: block;
+    padding: 0.5rem;
+}
+
+.btn{
+    display: block;
+    width:90%;
+    margin: 0 auto;
+    height:3rem;
+    background: #ff6600;
+    color: #fff;
+    font-size:16px;
+    text-align: center;
+    line-height:3rem;
+    border:none;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    border-bottom:3px solid #d05500;
+}
+em,i{
+    font-style:normal;
+}
+.result{
+    display: none;
+}
+.result h3 em{
+    font-size:2rem;
+
+
+}
+.result h3{
+    font-size:1.5rem;
+}
+.result{
+    padding: 1rem;
+    background: #fff;
+
+}
+.result p em{
+    position: absolute;
+    left: 0;
+}
+.result p{
+    position: relative;
+    padding-left:1.5rem;
+    padding-bottom:10px;
+}
+.formbox input{
+    margin-right: 5px;
+}
+input[type="radio"]:checked ~ i{
+    color: #7BC00E;
+
+}
+
+.layui-layer-msg{
+    position: fixed!important;
+    top:50%!important;
+    margin-top: -1rem!important;
+}

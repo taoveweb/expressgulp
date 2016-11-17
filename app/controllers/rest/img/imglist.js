@@ -21,7 +21,6 @@ router.use(function(req, res, next) {
 
 //图片列表
 router.all('/list', function (req, res, next) {
-
   var search = {};
   var pageSize = 10;
   var sortObj={created:-1};

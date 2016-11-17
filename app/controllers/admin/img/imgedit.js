@@ -12,8 +12,11 @@ var express = require('express'),
 module.exports = function (app) {
   app.use('/admin/img', auth.adminLogin, router);
 };
-
+//ssl_certificate /var/www/expressgulp/config/1_www.oldku.com_bundle.crt;
+//ssl_certificate_key /var/www/expressgulp/config/2_www.oldku.com.key;
 //图片表单
+
+// iptables -I INPUT -p tcp --dport 443 -j ACCEPT
 router.get('/edit', function (req, res, next) {
   co(function *() {
     var id = req.query.id || "";

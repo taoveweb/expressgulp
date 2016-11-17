@@ -25,7 +25,7 @@ router.all('/list', function (req, res, next) {
     res.json({
       msg:'提交成功',
       stage:1,
-
+      imgurl:'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg'
     })
 
 });

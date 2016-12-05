@@ -33,3 +33,5 @@ yum install GraphicsMagick
 http-toos
 LoadRunner
 
+webbench
+

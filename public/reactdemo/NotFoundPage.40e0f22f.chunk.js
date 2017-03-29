@@ -1,0 +1,1 @@
+webpackJsonp([9],{467:function(e,t,n){"use strict";function u(e){return e&&e.__esModule?e:{default:e}}Object.defineProperty(t,"__esModule",{value:!0});var l=n(6),a=u(l),r=n(77),c=a.default.createElement("div",null,a.default.createElement("h4",null,"404"),a.default.createElement(r.Link,{to:"/"}," 回到首页  ")),d=function(){return c};t.default=d}});
